@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+  <definition name="cashflow" template="/WEB-INF/layout/page.jsp">
+    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu1.jsp" />
+
+  </definition>
+
+
+
+  <definition name="/cashflow/*" extends="cashflow">
+    <put-attribute name="body" value="/WEB-INF/cashflow/{1}.jsp" />
+  </definition>
+
+
+  <definition name="company" template="/WEB-INF/layout/page.jsp">
+    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu2.jsp" />
+
+  </definition>
+
+  <definition name="/company/*" extends="company">
+    <put-attribute name="body" value="/WEB-INF/company/{1}.jsp" />
+  </definition>
+
+  <definition name="notice" template="/WEB-INF/layout/page.jsp">
+    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu3.jsp" />
+
+  </definition>
+
+
+  <definition name="/notice/*" extends="notice">
+    <put-attribute name="body" value="/WEB-INF/notice/{1}.jsp" />
+  </definition>
+
+  
+</tiles-definitions>
