@@ -72,6 +72,7 @@ import com.repository.BoarddataRepository;
 
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import org.aspectj.lang.annotation.Aspect;
 
 @Controller
 @RequestMapping
@@ -204,6 +205,7 @@ public class NoticeController {
       	model.addAttribute("member", member);
     	return "/notice/write";
     }    
+ 
     
     
     @PostMapping("/notice/write")
@@ -274,7 +276,11 @@ public class NoticeController {
       	model.addAttribute("member", member);
     	return "/notice/showdetail";
     }
-
     
+
+    @GetMapping("/notice/purpose")
+    public String showpurpose(Model model) {
+    	return "/notice/purpose";
+    }     
     
 }

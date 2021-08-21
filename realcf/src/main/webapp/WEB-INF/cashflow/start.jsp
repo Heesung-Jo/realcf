@@ -207,12 +207,6 @@ class subcal{
         var 임시=[]
         
         this.typenumber = abc[1];
-       	if(this.number == 100016){
-       		console.log(this.grouparr.length)
-       		console.log(this.grouparr)
-    		console.log("comecome")
-    		console.log(abc)
-    	}
        
         if(abc[1] > 1){
             
@@ -354,9 +348,6 @@ class subcal{
         	return;
         }
 
-        if(this.number == "2020-10-1200003"){
-     	   console.log("5")
-        }
        
     	this.solvearr = this.afterfail(this.grouparr, this.probmodel, this.smallval)
     	this.typenumber = 2;
@@ -378,9 +369,6 @@ class subcal{
         
         // 일단 grouparr를 복제해두기 // 
         var grouparr_temp =  JSON.parse(JSON.stringify(this.grouparr));
-        if(this.number == "2020-10-1200003"){
-     	   console.log("4")
-        }
         
     	var existence = 0;
         for(var i in this.grouparr){
@@ -404,7 +392,7 @@ class subcal{
         				
         				this.splitarr.push(minuscoa);
         				this.splitarr.push(maincoa);
-        				console.log(this.splitarr)
+        				
         				
         			}
         		}
@@ -478,9 +466,6 @@ class subcal{
                 }
                 successtest[2].push(this.number);
                 this.execute_condition = "stop";
-                if(this.number == "2020-10-1200003"){
-             	   console.log("2")
-                }
                 
             }
                   
@@ -495,9 +480,6 @@ class subcal{
         	return;
         }
     	
-       if(this.number == "2020-10-1200003"){
-    	   console.log("3")
-       }
 
         
        // 손익계정으로만 된 것은 더 이상 분해하지 않고, 종료시킴    	
@@ -526,14 +508,14 @@ class subcal{
 		    
     		if(realcoa[coa]["분류1"] == "현금흐름이 없는 손익" && 분류2_relate == "현금" ){
     			// 이런 경우 상대계정이 현금류이면 해당계정과 가장 유사한 계정으로 바꿔치기 해줘야함
-                console.log("발생함");
+                
     			this.incometype_afterwork(i, {"현금": 0}, realcoa, middlecoa);
     		}
     		
     		if(realcoa[coa]["분류1"] == "처분손익" && 
     			(분류2_relate == "현금"  || 분류2_relate == "중간")){
     			// 이런 경우 상대계정이 현금 또는 중간류이면 바꿔치기 해줘야함
-                console.log("발생함");
+                
     			this.incometype_afterwork(i, {"현금": 0, "중간": 0},realcoa,  middlecoa);
     		}
     	}
@@ -553,7 +535,7 @@ class subcal{
 			  if(this.solvearr[i]['related'] == this.solvearr[j]['related'] && 
 					  middlecoa[realcoa[this.solvearr[j]['계정과목']]["분류2"]]["분류2"] in hash == false){
   		    	var prob_temp = this.probcal(coa, this.solvearr[j]['계정과목'], 차변대변);
-  		    	console.log(this.probmodel)
+  		    	
 		        if(prob_temp > prob){
 		        	prob = prob_temp;
 		        	
@@ -578,15 +560,12 @@ class subcal{
 				}
 				
 			}
-			console.log(selection)
 			
 			// 새전표생성 두개(유사계정 + -) 생성해서 solvearr에 집어넣기
 			
 			var similar1 = JSON.parse(JSON.stringify(relatedarr));
-			console.log("relatedarr:" + similar1["계정과목"] + "^" + similar1["상대계정"])
 			similar1["계정과목"] = selection
 			var similar2 = JSON.parse(JSON.stringify(this.solvearr[i]));
-			console.log("realarr:" + similar2["계정과목"] + "^" + similar2["상대계정"])
 			similar2["계정과목"] = selection
 			
 			this.solvearr.push(similar1);
@@ -606,9 +585,7 @@ class subcal{
     	for(var j in this.solvearr){
     		if(this.solvearr[j]['계정과목'] == relative && this.solvearr[j]['related'] == related){
     			if(this.solvearr[j]['금액'] == -1 * this.solvearr[i]['금액']){
-                    console.log("있는데");
-    				return this.solvearr[j];
-    				
+                    return this.solvearr[j];
     			}
     		}
     		
@@ -1063,11 +1040,6 @@ class subcal{
         }
     }
     
-    if(this.number == "2020-10-1200003"){
-  	   console.log("fail")
-  	   console.log(this.number)
-     }
-   
     return realarr
 
 }
@@ -1218,7 +1190,6 @@ class subcal{
   	}
   	
   	if(temp.length == count){
-      	//console.log(temp);
   		this.realcount += 1
   	}
   	
@@ -1268,7 +1239,6 @@ class subcal{
                 
                 // if fail then, 실패 ==1
                 if(ars[0] == 1){
-                	console.log("실패임")
                     실패 = 10
                     break
                 }
@@ -1788,12 +1758,8 @@ class showing{
 		        "BS": "BS", "일반": "일반", "IS": "IS"}
         this.중분류_손익 = {"현금흐름이 없는 손익":"현금흐름이 없는 손익", "처분손익": "처분손익", 
 		        "이자손익": "이자손익", "IS": "IS"}
-        console.log(this.tablediv)
         this.func_turn_arr = [this.maketable, this.makelabel, this.makeitemselect];
         this.func_turn_act(0);
-       
-        
-        
         
 	}
 
@@ -1803,7 +1769,6 @@ class showing{
     
     func_turn_act(count){
     	
-    	console.log(count)
     	if(count < this.func_turn_arr.length - 1){
     		var real = count + 1;
         	this.func_turn_arr[count](() => {this.func_turn_act(real)});
@@ -1826,7 +1791,7 @@ class showing{
 		
 		return new Promise((resolve) => {
 		
-			console.log(link)
+			
 		// 스프링 시큐리티 관련
 		var header = $("meta[name='_csrf_header']").attr('content');
 		var token = $("meta[name='_csrf']").attr('content');
@@ -1920,7 +1885,7 @@ class showing{
       
     	
     	// 보여줄 계정들 순서 정렬하기
-    	console.log(this.sortedrealcoa);
+    	
     	
     	var turn = []
         for(var i of this.realcoa){
@@ -2059,7 +2024,7 @@ class showing{
         	   var 계정 = this.sortedrealcoa[i]["분류2"];
         	   var 분류2 = this.middlecoa[계정]['분류2']
         	   
-        	   console.log(분류2)
+        	   
         	   
         	   if(메인분류 == "중간"){
          	    	   sortcoa = "영업"
@@ -2094,12 +2059,12 @@ class showing{
        // this.realcoa가 결정되면 이 배열을 ajax로 넘기고
        // 연산해서 coasortobj가 결정되는 구조로 가자
        
-       console.log("sortobj")
+       
        this.ajaxmethod("sortobj", {}, (res) => {
     	   
            this.coasortobj = res.sortobj;
            this.middlecoa = res.middlecoa;
-           console.log(res);
+           
            
        })
     }
@@ -2251,7 +2216,7 @@ class showing{
     maketable = (func) => {
     	this.table = document.createElement("table"); // div 가 나은것 같으면
     	
-    	console.log(this.tablediv)
+    	
     	
     	this.tablediv.appendChild(this.table); 
     	this.selectsheet = document.getElementById("selectsheet");
@@ -2831,7 +2796,6 @@ class showing{
                 
             }
             
-            console.log(successtest)
     }
     
    //
@@ -2955,7 +2919,7 @@ class showing{
     }
     
     async excelsubsum(resolve){
-    	console.log(this.itemarray)
+    	
         // 여기에서 전표번호별 합계를 체크하고 맞으면 최종적으로 전표별로 sub class를 만들기
        
        var total = this.wb.Sheets[this.sheetname]["!ref"]
@@ -3001,7 +2965,7 @@ class showing{
       }           
 
        // subsumarr 점검하고 subclass 만들기 
-       console.log(this.subsumarr);
+       
        
        for(var i in this.subsumarr){
            if(this.subsumarr[i].sum != 0){
@@ -3020,7 +2984,7 @@ class showing{
        var data = {realcoa: [...this.realcoa]}
        await this.ajaxmethod("controlmethod", data, (res) => {
     	   this.sortedcoa = res;
-    	   console.log(res)
+    	   
     	      
        })
        
@@ -3030,7 +2994,7 @@ class showing{
     }
 
     openchild(){
-    	console.log(name);
+    	
         // window.name = "부모창 이름"; 
         window.name = "parentForm";
         // window.open("open할 window", "자식창 이름", "팝업창 옵션");
@@ -3231,46 +3195,7 @@ function hashdatafromexcel(wb, hash, sheet, opt, arr){ // arr는 있다면 사�
 
 window.onload = function(){
 	
-      //real(1, arr, 0, arr[0])
-   	       console.log({1: 2} instanceof Array)
-
-      var tem = {"현금": 0, "중간": 0}
-      console.log("개똥" in tem)
-      
-      var temp = {}
-      
       table = new showing();
-      
-      
-      var arr =[]
-      for(var i = 0; i < 23; i++){
-    	  arr.push(i)
-      }
-      var time = new Date().getTime()
-      console.log(time);
-      
-      //table.making_func(arr)
-      //table.making_test(0, arr)
-      
-      var abc = new subcal();
-      
-      var val = abc.making3(0, [{금액: 13}, {금액: -5}, {금액: -3}, {금액: -10}], [])
-      console.log(val)
-      var temp = [{금액: 6000000}, {금액: -10000000}, {금액:4000000}];
-      var temp2 = [{금액: -6000000}, {금액: 10000000}, {금액:-4000000}];
-
-      //var temp = [{금액: 13}, {금액: -5}, {금액: -3}, {금액: -10}, {금액: 24}, {금액: -8}, {금액: 100}, {금액: -83}, {금액: -21}, {금액: -7}];
-      for(var i = 0; i < 1; i++){
-         // var ar = abc.making3(0, temp, [])
-      }
-
-      //var ar = abc.making(0, temp)
-      //var ar = abc.making(0, temp2)
-      console.log(arr)
-      //abc.erase([new Set([0, 1]), new Set([0,1,2,3])])
-
-      
-
 
 }
 
@@ -3307,400 +3232,6 @@ function excelExport(event){
     reader.readAsBinaryString(input.files[0]);
 }
 
-
-
-
-class makecoa{
-
-
-	constructor(){
-        this.realbs = {};  // 향후 재무제표를 집어넣는다면 bs를 의미
-        this.realis = {};  // 향후 재무제표를 집어넣는다면 is를 의미
-        this.realteam = {}; 
-        this.coamap = {};
-        this.beforecoa = "";
-        this.realcoa = {};
-        this.maintag = {};
-        this.button = {};
-        this.processlist = {};
-	    this.companyteam = {};
-	    this.divisionmapping = divisionmapping
-	    this.processteam = processteam;
-	    this.bi = ["비유동", "비금융", "비상각"]
-	    this.remove = ["/(비){0,1}유동/g", "/(비){0,1}금융/g", "/(비){0,1}상각/g"]
-      
-	}
-
-
-    processmap = () => {
-       
-       this.maintag.parentNode.removeChild(this.maintag); 
-       for(var i in this.realcoa){
-           for(var j in processmap[i]){
-               var pro = processmap[i][j];
-               if(this.processlist[pro]){
-                  this.processlist[pro].push(i);
-               }else{
-                  this.processlist[pro] = [i];
-               }
-
-           }
-       }
-
-       this.makeprocessform();
-
-    }
-
-    makeprocessform = () => {
-    	var div = document.createElement("table"); // div 가 나은것 같으면
-    	this.tablediv.appendChild(div)             // div로 바꾸고
-    	this.maintag = div;                        //밑의 함수는 ~~~div2
-                                                   //가 아닌 ~~~div로
-        // processlist 반영하기 
-    	for(var i in this.processlist){
-    		var subdiv = this.makebuttondiv2(i, this.processlist[i])
-
-    		div.appendChild(subdiv)
-    	}
-
-    }
-
-
-    
-
-    // tr, td로 구성
-    makebuttondiv2 = (text, coas) => {
-       
-     	var div = document.createElement("tr")
-    	var subdiv = document.createElement("td")
-    	subdiv.innerText = text;
-        div.appendChild(subdiv);
-        
-        var divisions = this.finddivision(text);
-
-        var subdiv = document.createElement("td") 
-        for(var j in divisions){
-           var select = this.makeselect(this.companyteam);
-           select.value = divisions[j];
-           subdiv.appendChild(select);
-        }         
-        div.appendChild(subdiv);
-        
-    	var subdiv = document.createElement("td");
-    	subdiv.innerText = "여기는 프로세스 설명을 담을 것";
-        div.appendChild(subdiv);
-
-        // 여기는 관련 계정을 담을 것
-        var subdiv = document.createElement("td");
-        var word = "";
-        for(var i in coas){
-           word = word + coas[i] + ", "
-        }
-        subdiv.innerText = word;
-        div.appendChild(subdiv); 
-        return div;       
-    }   
-    
-    // div로 구성
-    makebuttondiv = (text, coas) => {
-        
-    	var div = document.createElement("div")
-        div.style = "overflow : hidden";
-
-    	var subdiv = document.createElement("div")
-    	subdiv.style = "float : left; width : 150px; margin: 1px; border: 1px solid gold;";
-    	subdiv.innerText = text;
-        div.appendChild(subdiv);
-        
-        var divisions = this.finddivision(text);
-
-        for(var j in divisions){
-           var select = this.makeselect(this.companyteam);
-           select.value = divisions[j];
-           div.appendChild(select);
-        }         
-        
-        
-
-    	var subdiv = document.createElement("div");
-    	subdiv.style = "float : left; width : 150px; border: 1px solid gold;";
-    	subdiv.innerText = "여기는 프로세스 설명을 담을 것";
-        div.appendChild(subdiv);
-
-        // 여기는 관련 계정을 담을 것
-        var subdiv = document.createElement("div");
-        subdiv.style = "float : left; width : 150px;  border: 1px solid gold;";
-        var word = "";
-        for(var i in coas){
-           word = word + coas[i] + ", "
-        }
-        subdiv.innerText = word;
-        div.appendChild(subdiv); 
-        return div;
-    }
- 
-
-    finddivision = (process) => {
-
-    	var team = this.processteam[process];
-    	return this.realteam[team]; // 일단은 이렇게 하고 알고리즘 추가해갈것
-    }
-
-    makeform = () => {
-
-    	var div = document.createElement("div")
-    	this.tablediv.appendChild(div)
-    	this.maintag = div;
-
-        // BS/IS 반영하기 
-        
-    	for(var i in this.realbs){
-    		var subdiv = this.makediv(i, this.realbs[i], "BS");
-    		div.appendChild(subdiv);
-    		this.beforecoa = i;
-
-    	}
-    	for(var i in this.realis){
-    		var subdiv = this.makediv(i, this.realis[i], "IS");
-    		div.appendChild(subdiv)
-    		this.beforecoa = i;
-    	}
-
-    	// 컨펌 버튼 추가하기
-    	var button = this.makebutton();
-        this.tablediv.appendChild(button) 
-    	this.button = button;
-
-    }
-
-
-    
-    makebutton = () => {
-        var button = document.createElement("Input");
-        button.setAttribute('type', "button");
-        button.setAttribute('value', "Confirm");
-        button.addEventListener('click',()=>{this.coamapping()});
-        return button;
-    } 
-
-    coamapping = () => {
-        
-        for(var i in this.coamap){
-            this.realcoa[this.coamap[i].value] = 1
-        }
-
-        this.processmap()    
-    }
-
-
-   comma = (str) => { 
-      str = String(str); 
-      return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'); 
-   } 
-
-   numbertag = (str, tag) => {
-   	  str = String(str); 
-   	  var arr = /[^0-9\-]/g.exec(str);
-   	  
-
-   	  if(arr){
-   	  	return tag; 
-   	  }else{
-   	  	return tag + "text-align: right;"
-   	  }
- 
-   }
-
-    makediv = (text1, text2, opt) => {
-    	var div = document.createElement("div")
-        div.style = "overflow : hidden; ";
-
-    	var subdiv1 = document.createElement("div")
-    	var style = "float : left; width : 150px; border: 1px solid gold;";
-    	subdiv1.style = this.numbertag(text1, style);
-    	subdiv1.innerText = this.comma(text1);
-
-    	var subdiv2 = document.createElement("div")
-    	var style = "float : left; width : 150px;border: 1px solid gold;";
-    	subdiv2.style =this.numbertag(text2, style);
-        subdiv2.innerText = this.comma(text2);
-
-        div.appendChild(subdiv1);
-        div.appendChild(subdiv2);
-        
-        // 선택가능한 계정 집어 넣어주기
-        var subdiv3 = document.createElement("div")
-        var select = this.makeselect(coaarray[opt]);
-        subdiv3.appendChild(select);
-        subdiv3.style = "float : left; height: 21px; width : 200px;border: 1px solid gold";
-
-        div.appendChild(subdiv3);
-
-        this.coamap[text1] = select;
-        
-
-        // 가장 유사한 계정 선택해주기
-        var similar = this.typefind(text1, opt); //
-        if(similar){
-        	select.value = similar;
-        }
-
-        return div;
-    }
-
-    makeselect = (arr) => {
-        
-
-        var select = document.createElement('select');
-        
-        for(var i in arr){
-            var opt = document.createElement('option');
-            //opt.setAttribute('value', i)
-            opt.innerText = i;
-            select.appendChild(opt)
-        }
-        return select;
-
-    }
-
-
-
-
-
-// 이 하단부터는 주로 써칭하는 알고리즘에 관한 것 기술할 것
-    typefind = (name, opt) => {
-        // 위의 type 만들것 
-        // array는 임시로 가정함. array = {'계정명' : '수익 등 real 계정'}
-        if(oppositecoa[opt][name]){
-            return oppositecoa[opt][name]
-        }
-        if(oppositesub[name]){
-            return this.beforecoa;
-        }
-        // 완전히 똑같이 일치하는 것이 없으니 순환하면서 가장 유사한 것 찾기
-        var grade1 = 0;
-        var decide1 = "";
-        
-        
-
-        for(var i in oppositecoa[opt]){
-            
-            var compare = i;
-            //compare = compare.replace("(", "");
-            //compare = compare.replace(")", "");
-            var val = this.wordprocess(name, compare);
-
-
-            var word = this.wordprocess2(name, compare);
-
-            var temp = this.similarmatch(word, compare) + val;
-            
-            if(temp > grade1){
-                grade1 = temp;
-                decide1 = oppositecoa[opt][i];
-            }    
-        }
-
-        return decide1;
-/*
-       var grade2 = 0;
-       var decide2 = "";
-
-       for(var i in oppositesub){
-            
-            var compare = i;
-            //compare = compare.replace("(", "");
-            //compare = compare.replace(")", "");
-            
-            var temp = this.similarmatch(name, compare);
-            
-            if(temp > grade2){
-                grade2 = temp;
-                decide2 = oppositesub[i];
-            }    
-        }
-        
-        if(grade1 > grade2){
-            return decide1;
-        }else{
-            return decide2;   
-        }
- */
-    }
- 
- wordprocess2 = (name) => {
-
-     for(var i in this.remove){
-         name.replace(i, "");
-     }
-
-     return name;
- }
-
- wordprocess = (word, compare) => {
-     var grade = 0;
-     for(var i in this.bi){
-         if(word.match(i) && compare.match(i)){
-             grade += i.length;
-         }  
-     }
-
-     return grade;
- }
-
- similarmatch = (word1, word2) => {
-
-    var before = 0;
-    var realsimil = 0;
-    var simil = 0;
-    var simil_pos = 0;
-    var tem = 0;
-    var arg = 2;
-
-    for(var i = 2; i <= word1.length + 1; i++){
-        
-        var pos = word2.match(word1.substring(before, i));
-       
-        
-        if(pos && i != word1.length + 1){
-            simil = simil + 1
-            var pos_record = pos.index;
-            tem = tem + 1
-        
-        }else{
-
-            if(tem > 0){
-                var a1 = before / word1.length
-                var a2 = pos_record / word2.length
-                var dist1 = Math.sqrt((a1 - a2) * (a1 - a2))
-
-                // 보통자본금/보통adsfasfasdfadf자본금
-                // 앞으로만 dist를 계산하면 사실 끝단어인데도 불구하고 차이가 커짐
-                // 즉 뒤에서 읽는 거리도 포함하여 더 거리가 작은것을 기준으로 반영
-                a1 = (i - 1) / word1.length;
-                a2 = (pos_record + i - 1 - before)/word2.length;
-                var dist2 = Math.sqrt((a1 - a2) * (a1 - a2))
-                var dist = (dist1 + dist2)/2; // 처음에는 min을 사용했으나
-                                              // 단기금융상품/상품 찾지못하여
-                                              // 평균을 사용함
-                realsimil = realsimil + (arg - dist) * tem
-                
-                tem = 0
-            }
-
-            before = i - 1
-        }
-    
-    }
-    
-    
-
-    // word2가 보통 길이가 더 긴것을 보정해주기 위하여
-    return realsimil/Math.max(1, (word2.length/word1.length));
-
-   }
-
-}
 
 
 

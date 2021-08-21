@@ -154,6 +154,37 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 		return list;
 	}	
 
+	// 회사만만 주워졌을때
+	@Transactional
+	public List<Object[]> findval_company(List<String> names, String opt) throws SQLException {
+        
+		// opt가 잘못 들어오는 것 대비함
+		if(opt.equals("val") == true || opt.equals("ratio") == true) {
+			
+		}else {
+			SQLException e = new SQLException();
+			throw e;
+		}
+		
+		
+		String word = "";
+		for(String name : names) {
+			word = word + "'" + name + "',"; 
+		}
+	
+		word = word.substring(0, word.length() - 1);
+		System.out.println(word);
+
+		
+		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.name in (" + word + " ) and m.exceptcol = '포함' group by m.company order by sums desc")
+				.setMaxResults(5).getResultList();
+		
+		return list;
+	}		
+	
+	
+	
+	
 	// coaname만 주워졌을때
 	@Transactional
 	public List<Object[]> findmaxval_name(List<String> names, String opt) throws SQLException {

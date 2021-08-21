@@ -8,4 +8,4 @@
 
 <li><a href="/notice/write">글쓰기</a></li>
 <li><a href="/notice/show">게시판</a></li>
-
+<li><a href="/notice/purpose">홈페이지 소개</a></li>

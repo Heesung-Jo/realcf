@@ -30,10 +30,15 @@ form {
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 4px;
   box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 4px;
   overflow: hidden;
-
+  font-size: 20px;
  }
 
-
+    TEXTAREA {
+       width: 100%;
+       height: 470px;
+       font-size: 20px;
+     
+    };
 
 
 
@@ -68,7 +73,7 @@ form {
             <div id ="content" style = "height: 500px">
                 <label class="control-label" for="detail">내용:</label>
                 <div >
-                    <textarea name = "detail" style = "width: 100%; height: 500px"></textarea>
+                    <textarea name = "detail"></textarea>
                 </div>
             </div>
             <div id ="content">

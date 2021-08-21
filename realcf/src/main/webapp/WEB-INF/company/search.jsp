@@ -341,22 +341,22 @@ class showing{
 		    	  }
 		    	  
 		    	  if(e.key == "ArrowDown"){
-		    		  console.log(this.keyeventcount);
+		    		  
 		    		  
 		    		  if(this.keyeventcount ===""){
-		    			  console.log("why1")
+		    			  
 			    		  this.keyeventcount = 0;
 		    		  }else if(this.keyeventcount >= this.subtable.childNodes.length - 1){
-		    			  console.log("why2")
+		    			  
 		    			  return;
 		    		  }else{
 			    		  this.subtable.childNodes[this.keyeventcount].childNodes[0].style = "";
 			    		  this.keyeventcount += 1
-			    		  console.log("why3")
+			    		  
 		    		  }
 		    		  e.target.value = this.subtable.childNodes[this.keyeventcount].innerText;
 		    		  this.subtable.childNodes[this.keyeventcount].childNodes[0].style = "background: yellow;"
-		    		  console.log(this.keyeventcount);
+		    		  
 		    		  
 		    	  }else if(e.key == "ArrowUp"){
 
@@ -438,6 +438,7 @@ class showing{
 		
 		var func = (res) => {
    		    	this.searcharr = res;
+   		    	console.log(res);
    		    	
    		    	this.table.parentNode.removeChild(this.table); 
    		    	this.table = this.maketable(this.searcharr);
@@ -464,14 +465,13 @@ class showing{
    			data : data,
    			beforeSend: function(xhr){
    			  if(token && header) {
-   				  console.log(header);
-   				  console.log(token);
+   				  
    		        xhr.setRequestHeader(header, token);
    			  } 
    		    },
    		    success : (res) => {
    				
-   		    	console.log(res)
+   		    	
    		    	if("error" in res){
    		    		alert(res['error']);
    		    	}else{
@@ -580,7 +580,7 @@ class showing{
     	
     	var arr = []
     	
-    	for(var i = 0; i < 4; i++){
+    	for(var i = 1; i < 5; i++){
         	arr.push(this.companysortedarr[count_min + i])
     		if(count_min + i >= this.companysortedarr.length - 1){
     			break
@@ -690,7 +690,7 @@ class showing{
    		   
            if(arr){
         	    // 회사별 정렬임
-        	    console.log("why")
+        	    
      		   // 순서대로 표시하기 위해서 this.coaarr를 활용함
      		   
         	   for(var k of this.coaarr){
@@ -720,7 +720,7 @@ class showing{
             			   
         				   if(k in arr[j]){
         					   check = 1;
-        					   console.log(arr[j][k])
+        					   
         				       temp[2 + num].innerText = this.valratio(arr[j][k][this.optval]);
         					   temp[2 + num].style = "text-align: right;"
         				   }

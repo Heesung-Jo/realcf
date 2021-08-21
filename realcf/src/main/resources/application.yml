@@ -43,5 +43,9 @@ management:
   security:
     enabled: false
 
+server:
+  jsp-servlet:
+    init-parameters:
+       development: true 
 
 ##---------------------------------------------------------------------------##

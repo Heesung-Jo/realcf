@@ -35,6 +35,7 @@ public interface CoagroupdataRepositoryCustom  {
 	List<Object[]> findmaxval_business(List<String> coa, String opt) throws SQLException;
 	@Cacheable("realcfcache")
 	List<Object[]> findmaxval_all(List<String> coa, List<String> coa2, String opt) throws SQLException;
-
+	@Cacheable("realcfcache")
+	List<Object[]> findval_company(List<String> names, String opt) throws SQLException; 
 
 } // The End...

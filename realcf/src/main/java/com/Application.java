@@ -16,11 +16,13 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
         "com.repository",
         "com.webconfig",
         "com.service",
-        "com.userdetail"
+        "com.userdetail",
+        "com.aspect"
 })
 @EntityScan("com.entity")
 public class Application {
 
+		
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}

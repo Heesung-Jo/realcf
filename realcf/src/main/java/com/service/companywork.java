@@ -27,6 +27,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.*;
@@ -228,9 +229,9 @@ public class companywork {
     	};
     	
     	try {
-    		xlmake.listmake("company", "datafordb_BS.xls", 0, 2104, coms);
-        	xlmake.listmake("data", "datafordb_BS.xls", 0, 65039, sub); // 15619
-        	xlmake.listmake("data2", "datafordb_BS.xls", 0, 38801, sub);
+    		xlmake.listmake("company", "datafordb_BS.xls", 0, 2102, coms);
+        	xlmake.listmake("data", "datafordb_BS.xls", 0, 65014, sub); // 15619
+        	xlmake.listmake("data2", "datafordb_BS.xls", 0, 62357, sub);
     	}catch(Exception e1) {
             // 결국 이것은 파일이 없는 에러이므로 나중에
     		// 다 throw fileexception으로 처리할 것
@@ -279,7 +280,7 @@ public class companywork {
     	try {
     		xlmake.listmake("coaturn", "datafordb_BS.xls", 0, 142, coa);
     		xlmake.listmake("business", "datafordb_BS.xls", 0, 82, business);
-    		xlmake.listmake("company", "datafordb_BS.xls", 0, 2104, company);
+    		xlmake.listmake("company", "datafordb_BS.xls", 0, 2102, company);
     	}catch(Exception e) {
             // 결국 이것은 파일이 없는 에러이므로 나중에
     		// 다 throw fileexception으로 처리할 것
@@ -296,14 +297,24 @@ public class companywork {
     	HashMap<String, JSONObject> temp = new HashMap<>();
     	for(coagroupdata coa : coas) {
     		
-    		// 필요한 데이터 추출하여 json에 집어넣기
-    		JSONObject json = new JSONObject();
-    		json.put("name", coa.getname());
-    		json.put("bspl", coa.getbspl());
-    		json.put("ratio", coa.getratio());
-    		json.put("business", coa.getbusiness());
-    		json.put("val", coa.getval());
-    		temp.put(coa.getname(), json);
+    		if(coa.getexceptcol().equals("포함") == true) {
+        		// 필요한 데이터 추출하여 json에 집어넣기
+        		JSONObject json = new JSONObject();
+        		json.put("name", coa.getname());
+        		json.put("bspl", coa.getbspl());
+        		json.put("ratio", coa.getratio());
+        		json.put("business", coa.getbusiness());
+        		json.put("val", coa.getval());
+        		
+        		if(temp.containsKey(coa.getname()) == true) {
+        			JSONObject tem = temp.get(coa.getname());
+        			tem.put("val", (double) tem.get("val") + coa.getval());
+        			tem.put("ratio", (double) tem.get("ratio") + coa.getval());
+        			
+        		}else {
+            		temp.put(coa.getname(), json);
+        		}
+    		}
     	}
     	
     	return temp;
@@ -348,6 +359,7 @@ public class companywork {
 
    }
    
+
    
 }      
     
