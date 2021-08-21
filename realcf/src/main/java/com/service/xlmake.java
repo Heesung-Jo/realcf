@@ -50,7 +50,7 @@ public class xlmake {
 	      	
 	      try {
 	    	String rootPath = System.getProperty("user.dir");
-	      	FileInputStream fis = new FileInputStream(rootPath + "\\src\\main\\resources\\static\\excel\\" + filename); ///usr/local/gob/"
+	      	FileInputStream fis = new FileInputStream(rootPath + "/src/main/resources/static/excel/" + filename); ///usr/local/gob/"
 	      	HSSFWorkbook book = new HSSFWorkbook(fis);
 	      	HSSFSheet sheet = book.getSheet(sheetname);
 	      	

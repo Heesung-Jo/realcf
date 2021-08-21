@@ -218,7 +218,7 @@ public class mywork {
 	      	
 	      try {
 	    	String rootPath = System.getProperty("user.dir");
-	    	FileInputStream fis = new FileInputStream(rootPath + "\\src\\main\\resources\\static\\excel\\" + name); ///usr/local/gob/"
+	    	FileInputStream fis = new FileInputStream(rootPath + "/src/main/resources/static/excel/" + name); ///usr/local/gob/"
 	      	HSSFWorkbook book = new HSSFWorkbook(fis);
 	      	HSSFSheet sheet = book.getSheet(sheetname);
 	      	
