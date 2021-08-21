@@ -47,7 +47,7 @@ public class boarddata implements Serializable {
 	 
 	 //@DateTimeFormat(pattern = "yyyyMMddHH")
 	 @NotNull
-	 private String when;
+	 private String timecheck;
 	 
 	 @NotEmpty(message = "제목이 기재되어야 합니다.")
 	 private String name; // 회사이름을 의미
@@ -83,13 +83,13 @@ public class boarddata implements Serializable {
          return id; 
      }
 
-     public void setwhen(String x){ 
-         this.when = x; 
+     public void settimecheck(String x){ 
+         this.timecheck = x; 
      }
      
      
-     public String getwhen(){ 
-         return when; 
+     public String gettimecheck(){ 
+         return timecheck; 
      }
      
      

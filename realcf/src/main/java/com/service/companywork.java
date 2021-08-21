@@ -100,7 +100,7 @@ public class companywork {
     
     
     
-    @PostConstruct
+    //@PostConstruct
     public int setting() {
       
     	// coadata에 이미 데이터가 있으면 넘겨버리고 없으면 후속작업 진행할 것

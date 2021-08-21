@@ -34,7 +34,7 @@ public class lookupcounter {
 	
 	 private String name; // 사람들이 조회하는 메서드 등 명
 	 private int count;    // 카운팅 된 숫자
-	 private String when;  // 마지막 카운팅 된 날짜
+	 private String timecheck;  // 마지막 카운팅 된 날짜
 	 
 	 
 	 public lookupcounter() {
@@ -70,11 +70,11 @@ public class lookupcounter {
          return name; 
      }
 
-     public void setwhen(String x){ 
-         this.when = x; 
+     public void settimecheck(String x){ 
+         this.timecheck = x; 
      }
-     public String getwhen(){ 
-         return when; 
+     public String gettimecheck(){ 
+         return timecheck; 
      }
 
 

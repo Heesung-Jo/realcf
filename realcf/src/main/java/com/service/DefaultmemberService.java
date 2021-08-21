@@ -86,7 +86,7 @@ public class DefaultmemberService implements memberService {
 			boarddata boarddata = new boarddata();
 			boarddata.setdetail("테스트를 위해 첫번째 글을 작성하였습니다.");
 			boarddata.setname("첫번째 글");
-			boarddata.setwhen(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+			boarddata.settimecheck(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 			boarddata.setmember(user);
 			BoarddataRepository.save(boarddata);
 	      }	

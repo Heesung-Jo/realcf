@@ -217,7 +217,7 @@ public class NoticeController {
     	
     	String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     	System.out.println(member.getEmail());
-    	boarddata.setwhen(time);
+    	boarddata.settimecheck(time);
     	boarddata.setmember(member);
     	localValidator.validate(boarddata, result);
     	

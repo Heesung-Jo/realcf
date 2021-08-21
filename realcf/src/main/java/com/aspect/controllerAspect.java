@@ -43,7 +43,7 @@ public class controllerAspect {
 			lookupcounter realcounter = counter.get();
 			realcounter.setcount(realcounter.getcount() + 1);
 	    	String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-			realcounter.setwhen(time);
+			realcounter.settimecheck(time);
 			lookupcounterRepository.save(realcounter);
 
 		}else {
@@ -51,7 +51,7 @@ public class controllerAspect {
 			realcounter.setname(sugnature);
 			realcounter.setcount(1);
 	    	String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-			realcounter.setwhen(time);
+			realcounter.settimecheck(time);
 
 			lookupcounterRepository.save(realcounter);
 		}

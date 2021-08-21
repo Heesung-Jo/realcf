@@ -18,7 +18,8 @@ dependencies {
    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	runtimeOnly 'mysql:mysql-connector-java'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.apache.poi:poi:3.17'
@@ -37,7 +38,7 @@ dependencies {
 	implementation 'org.apache.tiles:tiles-core:3.0.5'
 	implementation 'org.apache.tiles:tiles-api:3.0.5'
 	implementation 'org.apache.tiles:tiles-el:3.0.5'
-	implementation 'org.mariadb.jdbc:mariadb-java-client'
+	
     
 }
 
