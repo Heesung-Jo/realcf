@@ -6,7 +6,7 @@ debug: false
 
 spring:
   profiles:
-     include: oauth
+     include: oauth, real-db
   mvc:
     view:
       prefix: /WEB-INF/view/
