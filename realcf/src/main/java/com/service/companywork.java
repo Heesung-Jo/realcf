@@ -1,69 +1,29 @@
 package com.service; 
 
- import javax.persistence.DiscriminatorValue; 
-import javax.persistence.Entity; 
+
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+
 import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.*;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 
 
-import com.entity.nodedata;
-
-import com.entity.coadata;
 import com.entity.coagroupdata;
 import com.entity.financialstatements;
 
 
 
 import com.repository.CoagroupdataRepository;
-import com.repository.memberrepository;
 import com.repository.CoadataRepository;
-import com.repository.CoadataRepositoryImpl;
 import com.repository.financialstatementsRepository;
-import com.repository.CoagroupdataRepository;
 
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import javax.inject.Inject;
-
-import javax.annotation.PostConstruct;
-import java.util.*;
 // jsp에서 지금 바로는 원하는데로 안받아지므로, submit를 바꿔서, ajax 형태로 입력되도록 수정할 것
 
 import java.sql.SQLException;
@@ -81,8 +41,8 @@ public class companywork {
     private CoagroupdataRepository coagroupdataRepository;
     
  
-    @Autowired
-    private xlmake xlmake;
+   // @Autowired
+  // private xlmake xlmake;
 
     private ArrayList<String> coaturnarr = new ArrayList<>();
     private HashSet<String> companyarr = new HashSet<>();
@@ -98,7 +58,7 @@ public class companywork {
     }
     
     
-    
+    /*
     
    // @PostConstruct
     public int setting() {
@@ -111,13 +71,7 @@ public class companywork {
         	}
     	
     	
-    	/*
-    	// invoke 대신에 익명클래스를 활용해봄
-    	System.out.println(123123123);
-    	coadata coa = CoadataRepository.getprocessquery("company", "name", "3S", "현금및현금성자산").get(0);
-        System.out.println(coa.getyear());
-        System.out.println(coa.getbspl());
-      */
+ 
     	
 //    	HSSFRow row;
   //  	row.getCell(0).getNumericCellValue()
@@ -186,44 +140,7 @@ public class companywork {
     			
     			
     			// coagroupdata에 저장하기
-   			/*
-    			coagroupdata coagroupdata;
-    			
-    			try {
-    				coagroupdata = coagroupdataRepository.findByCompanyAndLevelAndName(company, level, name);
-    				double cash = row.getCell(4).getNumericCellValue();
-    				coagroupdata.setval(cash + coagroupdata.getval());
-    				double ratio = row.getCell(9).getNumericCellValue();
-    				coagroupdata.setratio(ratio + coagroupdata.getratio());
-     				coagroupdata.addcoadata(coa);
-    				coagroupdataRepository.save(coagroupdata);
-    			}catch(NullPointerException e) {
-    				coagroupdata = new coagroupdata();
-    				System.out.println("come in");
-    				coagroupdata.setcompany(company);
-    				double cash = row.getCell(4).getNumericCellValue();
-    				coagroupdata.setval(cash);
-    				double ratio = row.getCell(9).getNumericCellValue();
-    				coagroupdata.setratio(ratio);
-    				coagroupdata.setbspl(bspl);
-    				coagroupdata.setname(name);
-    				coagroupdata.setyear(2020);	
-    				coagroupdata.setlevel(level);
-    				coagroupdata.setbusiness(business);
-    				coagroupdata.setexceptcol(exceptcol);
-    				
-    				coagroupdataRepository.save(coagroupdata);
-        		    
-        		    coagroupdata.addcoadata(coa);
-        		    coagroupdataRepository.save(coagroupdata);
-
-    			}catch(Exception e) {
-    				
-    				// 향후 쿼리 이상 throw를 던지는 문구로 바꿀것
-    				System.out.println(e);
-    				
-    			}
-    		*/	
+   		
     			
      		}
     	};
@@ -253,7 +170,7 @@ public class companywork {
  
     
     
-    @PostConstruct
+  //  @PostConstruct
     public void setting2() {
     	// companyarr이 만들기
        	xlsubwork coa = new xlsubwork() {
@@ -289,6 +206,8 @@ public class companywork {
     	
  
     }
+    
+    */
     
     
     public HashMap<String, JSONObject> toresponse(Set<coagroupdata> coas){

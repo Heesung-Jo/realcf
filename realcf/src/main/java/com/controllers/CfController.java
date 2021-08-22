@@ -26,37 +26,18 @@ import com.auth.UserContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.web.servlet.ModelAndView;
-
-import com.entity.member;
-import com.service.memberService;
-import com.service.xlmake;
-
-import javax.validation.Valid;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.service.memberService;
 
-import com.entity.member;
-//import com.service.UserContext;
 
-import com.model.SignupForm;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import java.io.UnsupportedEncodingException;
 
-
-
-import com.except.WrongIdPasswordException;
-import com.entity.coadata;
 
 
 
 import com.service.mywork;
-import com.service.companywork;
-import com.service.coaarray;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+
 
 import org.aspectj.lang.annotation.Aspect;
 
