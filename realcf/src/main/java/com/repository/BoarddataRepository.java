@@ -3,7 +3,7 @@ package com.repository;
 
 
 import com.entity.boarddata;
-import com.entity.coadata;
+
 
 import java.util.List;
 

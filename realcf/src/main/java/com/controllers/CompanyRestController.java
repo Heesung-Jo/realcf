@@ -45,7 +45,7 @@ import org.json.simple.parser.ParseException;
 import com.fasterxml.jackson.core.sym.Name;
 
 import com.repository.financialstatementsRepository;
-import com.entity.coadata;
+
 import com.entity.coagroupdata;
 import java.sql.SQLException;
 

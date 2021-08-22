@@ -2,7 +2,7 @@ package com.repository;
 
 
 
-import com.entity.coadata;
+
 import com.entity.financialstatements;
 import java.util.List;
 
@@ -24,4 +24,7 @@ public interface financialstatementsRepository extends JpaRepository<financialst
 	@Query("select m from financialstatements m left join fetch m.coagroupdata where m.name = :name")
 	financialstatements findByname(@Param("name") String name);  //@Param("name") 
 
+	 @Query("select m.name from financialstatements m")
+	 List<String> findnames();
+	
 } // The End...

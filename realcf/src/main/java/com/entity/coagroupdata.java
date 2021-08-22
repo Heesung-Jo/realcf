@@ -37,16 +37,16 @@ public class coagroupdata {
 	 
 	 @Column(nullable = true) 
 	 private double val;        // 금액을 의미함 
-	 private int year;          // 2020년 등 결산기간을 의미함
+	 private int yeartime;          // 2020년 등 결산기간을 의미함
 	 private String bspl;       // BS/IS/CF를 의미함
 	 private String company;    // 사실 아래의 financialstatements이나, 여기서 간단히 string만으로 조회가능토록 구상
 
-	 private double level;         // 레벨에 관련된 열 
+	 private double reallevel;         // 레벨에 관련된 열 
 	 private double ratio;         //비율과 관련된 열  
 	 private String business;      //비지니스 종류와 관련된 열
 	 private String exceptcol;      //제외해야하는지 여부 확인하는 열
 	 
-	 private double number;        // 나중에 회사의 재무제표를 순서대로 보여줄수있도록 number 계정 설정함
+	 private double realnumber;        // 나중에 회사의 재무제표를 순서대로 보여줄수있도록 number 계정 설정함
 	 private String reportname; // 사업보고서 상의 계정과목 이름을 말함
 	 
 	 @ManyToOne
@@ -61,12 +61,12 @@ public class coagroupdata {
 	 public coagroupdata() {
 		 
 	 }
-	 public void setnumber(double number) {
-		 this.number = number;
+	 public void setrealnumber(double realnumber) {
+		 this.realnumber = realnumber;
 	 }
 	 
-	 public double getnumber() {
-		 return number;
+	 public double getrealnumber() {
+		 return realnumber;
 	 }
 	 public void setreportname(String val) {
 		 this.reportname = val;
@@ -100,12 +100,12 @@ public class coagroupdata {
 		 return ratio;
 	 }
 	 
-	 public void setlevel(double level) {
-		 this.level = level;
+	 public void setreallevel(double reallevel) {
+		 this.reallevel = reallevel;
 	 }
 	 
-	 public double getlevel() {
-		 return level;
+	 public double getreallevel() {
+		 return reallevel;
 	 }
 
 	 
@@ -127,12 +127,12 @@ public class coagroupdata {
 	 }
 	 
 	 
-	 public void setyear(int year) {
-		 this.year = year;
+	 public void setyeartime(int year) {
+		 this.yeartime = year;
 	 }
 	 
-	 public int getyear() {
-		 return year;
+	 public int getyeartime() {
+		 return yeartime;
 	 }
 
 	 

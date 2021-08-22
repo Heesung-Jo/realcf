@@ -2,7 +2,7 @@ package com.repository;
 
 
 
-import com.entity.coadata;
+
 import com.entity.coagroupdata;
 
 import java.sql.SQLException;
@@ -23,8 +23,6 @@ public interface CoagroupdataRepositoryCustom  {
 	List<coagroupdata> getprocessquery(String name1, String name2, String para1, String para2);
 	@Cacheable("realcfcache")
 	coagroupdata getprocessquery(ArrayList<String> names, ArrayList<String> paras);
-	@Cacheable("realcfcache")
-	List<coagroupdata> getprocessquery(ArrayList<String> businesses, ArrayList<String> coas, ArrayList<String> companys);
 	@Cacheable("realcfcache")
 	List<Object[]> findmaxval(String coa);
 	@Cacheable("realcfcache")

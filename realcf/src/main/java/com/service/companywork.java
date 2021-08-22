@@ -1,5 +1,6 @@
 package com.service; 
 
+import javax.annotation.PostConstruct;
 
 
 import java.util.*;
@@ -19,7 +20,7 @@ import com.entity.financialstatements;
 
 
 import com.repository.CoagroupdataRepository;
-import com.repository.CoadataRepository;
+
 import com.repository.financialstatementsRepository;
 
 
@@ -31,8 +32,6 @@ import java.sql.SQLException;
 public class companywork { 
 
 
-    @Autowired
-    private CoadataRepository CoadataRepository;
 	
     @Autowired
     private financialstatementsRepository financialstatementsRepository;
@@ -50,7 +49,7 @@ public class companywork {
     
     @Autowired
     public void companywork() { 
-            
+    	setting();
     } 
 	
     public financialstatements findbyname(String name) {
@@ -58,7 +57,38 @@ public class companywork {
     }
     
     
+    
+    
+    public void setting() {
+    	
+    	
+    	// 회사배열 입력
+    	for(String com : financialstatementsRepository.findnames()) {
+    		
+    		companyarr.add(com);
+    		
+    	}
+    	System.out.println("여기입니다.");
+    	// 비지니스배열 입력
+    	for(String com : coagroupdataRepository.findbusiness()) {
+    		System.out.println(com);
+    		businessarr.add(com);
+    	}
+     	
+    	for(String com : coagroupdataRepository.findcoaname()) {
+    		coaturnarr.add(com);
+    	}
+     	
+    }
+    
+    
+    
+    
     /*
+    
+    
+    
+    
     
    // @PostConstruct
     public int setting() {

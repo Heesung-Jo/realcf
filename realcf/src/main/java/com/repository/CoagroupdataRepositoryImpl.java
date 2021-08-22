@@ -1,6 +1,6 @@
 package com.repository;
 
-import com.entity.coadata;
+
 import com.entity.coagroupdata;
 import com.entity.member;
 
@@ -82,47 +82,7 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 		return abc.getResultList().get(0);
 	}	    
 
-	@Transactional
-	public List<coagroupdata> getprocessquery(ArrayList<String> businesses, ArrayList<String> coas, ArrayList<String> companys){
-        
-		// ?��중에 ?��?��?�� �?, company�? ?��?�� 것�? ?�� 코드�? ?��?��
-		List<coadata> process = new ArrayList<coadata>();
-		StringBuilder jpql = new StringBuilder("select m from coadata m where ");
-		List<String> criteria = new ArrayList<String>();
-        
-		int num = 0;
-        int testcode = 0;
-		// businesses 쿼리 집어?���?
-		for(String i : businesses) {
-			num += 1;
-			if(num == 0) {
-				criteria.add("(m.business  = :name" + num);
-				if(num > 1) {testcode = 1;}
-			}else if(num == businesses.size()) {
-				criteria.add("m.business  = :name" + num + ")");
-			}else {
-				criteria.add("m.business  = :name" + num + " or ");
-			}
-			jpql.append(criteria.get(criteria.size() - 1));
 
-		}
-		
-		
-		// coa 쿼리 집어?���?
-		
-		TypedQuery<coagroupdata> abc = em.createQuery(jpql.toString(), coagroupdata.class);
-		
-		num = 0;
-		for(String i : businesses) {
-			num += 1;
-			abc = abc.setParameter("name" + num, i);
-		}
-        
-		System.out.println("success");
-		
-		return abc.getResultList();		
-		
-	}
 
 	@Transactional
 	public List<Object[]> findmaxval(String name){
