@@ -43,7 +43,7 @@
 
 #tablediv {
   float: left;
-  width : 68%;
+  width : 75%;
   border-right: 1px solid #5F6673;
   background: #f7f9fa;
   height: 93%;
@@ -1955,7 +1955,7 @@ class showing{
         div.style = "overflow: scroll; width: 100%;  height: 300px; border: 1px solid black;"
 
 
-        this.tablediv.style = "width: 90%;"
+        this.tablediv.style = "width: 97%;"
     }
 
     sorting_sortedrealcoa(){

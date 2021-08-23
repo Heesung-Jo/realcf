@@ -279,7 +279,11 @@ public class NoticeController {
     	return "/notice/showdetail";
     }
     
-
+    @GetMapping("/")
+    public String defaultpage(Model model) {
+    	return "/notice/purpose";
+    } 
+    
     @GetMapping("/notice/purpose")
     public String showpurpose(Model model) {
     	return "/notice/purpose";

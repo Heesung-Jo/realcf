@@ -49,7 +49,7 @@ public class companywork {
     
     @Autowired
     public void companywork() { 
-    	setting();
+    	
     } 
 	
     public financialstatements findbyname(String name) {
@@ -58,7 +58,7 @@ public class companywork {
     
     
     
-    
+    @PostConstruct
     public void setting() {
     	
     	
@@ -254,11 +254,16 @@ public class companywork {
         		json.put("ratio", coa.getratio());
         		json.put("business", coa.getbusiness());
         		json.put("val", coa.getval());
+
+                if(coa.getname().equals("당기순이익") == true) {
+        			System.out.println((double) coa.getval());
+                }
+
         		
         		if(temp.containsKey(coa.getname()) == true) {
         			JSONObject tem = temp.get(coa.getname());
         			tem.put("val", (double) tem.get("val") + coa.getval());
-        			tem.put("ratio", (double) tem.get("ratio") + coa.getval());
+        			tem.put("ratio", (double) tem.get("ratio") + coa.getratio());
         			
         		}else {
             		temp.put(coa.getname(), json);

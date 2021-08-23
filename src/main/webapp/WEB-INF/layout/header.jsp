@@ -25,7 +25,7 @@
         <ul class="left">
             <li><a href="/cashflow/cashflow">원장가공</a></li>
             <li><a href="/company/company">상장회사분석</a></li>
-            <li><a href="/notice/notice">게시글</a></li>
+            <li><a href="/notice/purpose">게시글</a></li>
             
             <li id = "loginout" style = "position:absolute; left:1000px">
                <a href="/notice/login">로그인</a>

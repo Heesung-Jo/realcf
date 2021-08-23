@@ -60,12 +60,16 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter
     public void addViewControllers(final ViewControllerRegistry registry) {
         super.addViewControllers(registry);
 
-        registry.addViewController("/login/loginForm")
-                .setViewName("login");
+        /*
+        registry.addRedirectViewController("/", "/notice/purpose");
+        
+        registry.addViewController("/notice/purpose")
+                .setViewName("purpose");
         registry.addViewController("/errors/403")
                 .setViewName("/errors/403");
 
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+       */
     }
  
 

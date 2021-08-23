@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class ErrorController {
 
-	/*
+	
     private static Logger logger = LoggerFactory.getLogger(ErrorController.class);
 
     @ExceptionHandler(Throwable.class)
@@ -51,7 +51,7 @@ public class ErrorController {
     }
 
     
-  */
+  
 
     
     

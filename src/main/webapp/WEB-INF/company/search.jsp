@@ -36,15 +36,15 @@
                 </div>
                 
                 </br>
-                <div>
-                    <span>조회 기준</span>
-                    <span>
-                       <select id = "selectoption" style = "float: left; height: 22px">
+                <div style = "width: 100%">
+                    <span >조회 기준</span>
+                    <span style = "width: 15%">
+                       <select id = "selectoption" style = "float: left; height: 22px; width: 100%">
                           <option>금액기준으로 조회</option>
                           <option>자산대비 비율기준으로 조회</option>
                        </select>
                     </span>
-                    <span>
+                    <span style = "width: 65%">
                        <input type ="button" id = "submitbutton" value = "제출하기" />
                     </span>
                 </div>
@@ -70,8 +70,12 @@
 
 #submitbutton {
   float: left;
-  width: 700px;
   margin: 0 0 0 20px;
+  width: 100%;
+}
+
+#subtablediv {
+   width: 14%;
 }
 
 #subtable tr:hover th {
@@ -88,7 +92,7 @@ span {
 
 #contentitem {
     position: relative;
-    width: 1050px;
+    width: 90%;
     margin: 20px 0 5px 120px;
     padding: 20px 0 5px 28px;
     border: 1px solid black; 
@@ -99,7 +103,7 @@ span {
 
 .listmanage{
   height: 20px;
-  width: 900px;
+  width: 80%;
   display: inline-block;
   border: 1px solid #444444;
   font-weight: bold;
@@ -118,7 +122,7 @@ span {
 
   float: left;
   padding: 0px;
-  
+  width: 20%;
   height: 100%;
 }
 
@@ -130,7 +134,7 @@ span {
 }
 
 .button {
-  width: 15px;
+  width: 20px;
   height: 20px;
   border: 1px solid #444444;
   padding: 0px;
@@ -142,6 +146,7 @@ span {
 
 table {
     border-collapse: collapse;
+    width: 100%;
     
   }
   
@@ -149,7 +154,7 @@ table th {
   border: 1px solid #444444;
   font-weight: bold;
   background: #dcdcd1;
-  width: 200px;
+  width: 14%;
   height: 20px;
 }
 
@@ -162,7 +167,7 @@ table td {
 
 #tableitem {
     
-    width: 1080px;
+    width: 92%;
     margin: 20px 0 5px 120px;
     border: 1px solid black; 
     background: #f7f9fa;
@@ -175,6 +180,7 @@ table td {
    justify-content: center;
    height: 450px;
    overflow: scroll;
+   width: 100%;
 }
 
 
@@ -500,21 +506,22 @@ class showing{
           if(typeof(opt1) == "object"){
         	var subdiv1 = this.makeselect(opt1);
         	subdiv1.setAttribute('class', "detailcontent");
-        	subdiv1.style = "width: 150px;"
+        	subdiv1.style = "width: 80%;"
             div.appendChild(subdiv1);
           }else{
           	var subdiv1 = this.maketext();
         	subdiv1.setAttribute('class', "detailcontent");
-        	subdiv1.style = "width: 150px;"
+        	subdiv1.style = "width: 80%;"
           	div.appendChild(subdiv1);
           }
         }
 
         // 금액/비율 
+        
         if(opt2 != null){
         	var subdiv2 = this.makeselect(["금액", "비율"]);
         	subdiv2.setAttribute('class', "detailcontent");
-        	subdiv2.style = "width: 50px;"
+        	subdiv2.style = "width: 5%;"
             div.appendChild(subdiv2);		
         }
 
@@ -522,7 +529,7 @@ class showing{
         if(opt3 != null){
         	var subdiv3 = this.makebutton(opt3);
         	subdiv3.setAttribute('class', "detailcontent");
-        	subdiv3.style = "width: 15px; font-weight: bold;"
+        	subdiv3.style = "width: 20%; font-weight: bold;"
             div.appendChild(subdiv3);		
         }
     	
@@ -607,7 +614,7 @@ class showing{
     	// processlist 반영하기 
     	for(var i = 0; i < arr.length;i++){
     	    this.subtablearr[i] = {}
-    	    var subdiv = this.maketrtd(this.subtablearr[i], 1, null, {"width": "100px"});
+    	    var subdiv = this.maketrtd(this.subtablearr[i], 1, null, {"width": "10%"});
      		this.subtable.appendChild(subdiv)
     	    this.subtablearr[i][0].innerText = arr[i]
      		

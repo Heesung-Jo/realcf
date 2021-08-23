@@ -155,6 +155,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
         
         .authorizeRequests()
+        .antMatchers("/").permitAll()
+        .antMatchers("/notice/purpose").permitAll()
         .antMatchers("/cashflow/*").permitAll()
         .antMatchers("/cashflow2/*").permitAll()
         .antMatchers("/UI/*").permitAll()
@@ -174,9 +176,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .oidcUserService(this.oidcUserService())
                 .and().defaultSuccessUrl("/notice/loginSuccess", true)));
 
-        http.exceptionHandling() 
+        http.exceptionHandling()
         .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/notice/login"));
-        
+       
 //        http.defaultSuccessUrl("/view/loginSuccess", true);    
        
         /*

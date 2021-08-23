@@ -64,7 +64,7 @@
             float: left;
             left: 200px;
             height: 100%;
-            width: 1500px;
+            width: 80%;
             background: white;
             position: absolute;
             margin: 0 auto;
