@@ -46,7 +46,7 @@
   width : 75%;
   border-right: 1px solid #5F6673;
   background: #f7f9fa;
-  height: 93%;
+  height: 98%;
   overflow: scroll;
   
 }

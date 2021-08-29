@@ -52,19 +52,19 @@
             overflow: hidden; 
             margin: 0 auto;
             position: relative;
-            }
+       }
         #wrap > #main_lnb { 
             float: left;
-            width: 200px;
-            height: 100%;
+            width: 14%;
+            height: 95%;
             
             
         }
         #wrap > #content_wrap {
             float: left;
-            left: 200px;
+            left: 14%;
             height: 100%;
-            width: 80%;
+            width: 86%;
             background: white;
             position: absolute;
             margin: 0 auto;
@@ -75,7 +75,7 @@
     <style>
         #wrap {  }
         #main_lnb {
-            height: 95%;
+        
             background: #71B1D1;
             
             }

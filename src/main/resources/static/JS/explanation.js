@@ -258,13 +258,22 @@ class draw_class{
 		    var rect = this.itemarray[num];
 		    num += 1;
 			//this.rightctx.drawImage(arr[count], rect.x, rect.y, rect.w, rect.h);	
-
+            this.rightctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+  
+            this.rightctx.shadowOffsetX = 3;
+            this.rightctx.shadowOffsetY = 3;
+            this.rightctx.shadowBlur    = 5;            
+            this.rightctx.strokeStyle = 'lightgray';
+            this.rightctx.fillStyle = "white"
+            this.rightctx.shadowBlur    = 10;
             this.rightctx.font = '50px impact'
             this.rightctx.lineWidth = 2.0;	
 
             if(num >= 10){
+	             // this.rightctx.strokeText(num, rect.x + 20, rect.y + 60);
 	              this.rightctx.fillText(num, rect.x + 20, rect.y + 60);
             }else{
+	            //  this.rightctx.strokeText(num, rect.x + 25, rect.y + 60);
 	              this.rightctx.fillText(num, rect.x + 25, rect.y + 60);
             }
 

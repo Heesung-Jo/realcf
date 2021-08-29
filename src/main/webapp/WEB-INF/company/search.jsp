@@ -93,7 +93,7 @@ span {
 #contentitem {
     position: relative;
     width: 90%;
-    margin: 20px 0 5px 120px;
+    margin: 20px 0 5px 50px;
     padding: 20px 0 5px 28px;
     border: 1px solid black; 
     background: #f7f9fa;
@@ -168,7 +168,7 @@ table td {
 #tableitem {
     
     width: 92%;
-    margin: 20px 0 5px 120px;
+    margin: 20px 0 5px 50px;
     border: 1px solid black; 
     background: #f7f9fa;
     border-collapse: collapse;
@@ -176,6 +176,7 @@ table td {
 
 
 #tablediv {
+   border-collapse: collapse;
    align-items: center;
    justify-content: center;
    height: 450px;
