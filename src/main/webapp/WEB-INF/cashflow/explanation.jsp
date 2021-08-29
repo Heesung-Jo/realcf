@@ -171,13 +171,10 @@ repeatarr(subarr4, realsubarr4, 0, "3");
 repeatarr(subarr5, realsubarr5, 0, "4");
 
 
-console.log(realtotalarr)
-
-
-
 
 window.onload = () => {
 	var drawing = new draw_class();
+
 }
 
 

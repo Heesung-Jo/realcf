@@ -7,6 +7,7 @@
 <%@ page session="false" %>
 
 
-                <li><a href="/cashflow/start">원장입력</a></li>
                 <li><a href="/cashflow/purpose">만든목적</a></li>
                 <li><a href="/cashflow/explanation">활용방법</a></li>
+               <li><a href="/cashflow/start">원장입력</a></li>
+ 

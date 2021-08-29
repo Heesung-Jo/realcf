@@ -1,6 +1,6 @@
 
 
-function repeatarr(arr, realarr, count, name){
+function repeatarr(arr, realarr, count, name, call){
 	var image = new Image();
     image.src = arr[count];
     image.onload = function(){
@@ -11,6 +11,11 @@ function repeatarr(arr, realarr, count, name){
     		repeatarr(arr, realarr, count, name);
     	}else{
     		realtotalarr[name] = realarr;
+    		if(call){
+	            console.log("들어옴")
+	            call()
+            }
+    		
     	}
    	}
 }
@@ -30,12 +35,12 @@ class draw_class{
 	   
 	   this.imagearr = {};
 	       
-	   this.realimagearr = {};    
 	   this.realexplanationarr = {};    
 	   this.repeatarr(imagearr, {}, (image) => {
                   
              this.drawitems();
-		     this.imagedraw(image, offctx1);	 
+		     this.imagedraw(image, offctx1);	
+		     this.firstdraw();  
 
     	   }, 0)
 
@@ -48,9 +53,9 @@ class draw_class{
            e.preventDefault();
            this.mouseDown(loc);
       }	   
-	
+	  
 	  this.repeat = null;
-       
+      
        
 	}
 
@@ -71,7 +76,6 @@ class draw_class{
 	    	}else{
 	    		callback(realarr)
                 this.imagearr = realarr;
-	    		this.realimagearr = realarr;
 	    	}
 
 	    }
@@ -110,37 +114,32 @@ class draw_class{
 
    }
    
-   repeatfunc = () => {
+   repeatfunc = (pos) => {
 	   
 	   if(this.repeat){
-           
-		
-		   clearInterval(this.repeat);
+ 		   clearInterval(this.repeat);
 		   this.repeat = null;
 	   }
 	   
 	   var count = 0;
 	   console.log(this.realexplanationarr)
 	   this.realctx.clearRect(0, 0, this.realcanvas.width, this.realcanvas.height);
-	   this.realctx.drawImage(this.realimagearr[count % this.realimagearr.length], 0, 0, this.realcanvas.width, this.realcanvas.height);
+	   this.realctx.drawImage(realtotalarr[pos][count % realtotalarr[pos].length], 0, 0, this.realcanvas.width, this.realcanvas.height);
 	   this.realexplanationarr[count].style = "background: pink;"
 	   
 	   this.repeat = setInterval(()=> {
 		   count++;
            // 이미지 채우기
 		   this.realctx.clearRect(0, 0, this.realcanvas.width, this.realcanvas.height);
-		   this.realctx.drawImage(this.realimagearr[count % this.realimagearr.length], 0, 0, this.realcanvas.width, this.realcanvas.height);
+		   this.realctx.drawImage(realtotalarr[pos][count % realtotalarr[pos].length], 0, 0, this.realcanvas.width, this.realcanvas.height);
 		   this.realexplanationarr[count-1].style = ""
 		   this.realexplanationarr[count].style = "background: pink;"
 		   
-		   
-		   if(count > this.realimagearr.length * 1 - 2){
+		   if(count > realtotalarr[pos].length * 1 - 2){
 		   // 여기에 클릭 등을 하면 화면에 그림 그리고 글도 pink로 변하게 할 것
               
               for(var a in this.realexplanationarr){
-	              console.log("등록해보장");
-
-                  this.addevent(a);
+                  this.addevent(pos, a);
               }
 
 			   clearInterval(this.repeat);
@@ -153,16 +152,17 @@ class draw_class{
 	   }, 2000)
    }
 	
-   addevent(a){
+   addevent(pos, a){
 
+     
 	 this.realexplanationarr[a].addEventListener('click',(me)=>{
-         console.log(a);	     
+         
 	     for(var b in this.realexplanationarr){
 		              this.realexplanationarr[b].style = "";
 	     }
          this.realexplanationarr[a].style =  "background: pink;"
 	     this.realctx.clearRect(0, 0, this.realcanvas.width, this.realcanvas.height);
-	     this.realctx.drawImage(this.realimagearr[a], 0, 0, this.realcanvas.width, this.realcanvas.height);
+	     this.realctx.drawImage(realtotalarr[pos][a], 0, 0, this.realcanvas.width, this.realcanvas.height);
          
         });
      }	
@@ -180,8 +180,8 @@ class draw_class{
        if (this.rightctx.isPointInPath(loc.x, loc.y)) {
     	   if(i < Object.keys(realtotalarr).length){
     		   this.contentmake(i);
-    		   this.realimagearr = realtotalarr[i];
-    		   this.repeatfunc();
+    		   
+    		   this.repeatfunc(i);
     		   
     		   
     	   }
@@ -196,6 +196,20 @@ class draw_class{
 
 };
 	
+
+   firstdraw() {
+   
+	   var i = 0;
+	   var rect = this.itemarray[i];
+       this.rightctx.beginPath();
+       this.rightctx.rect(rect.x, rect.y, rect.w, rect.h);
+       this.contentmake(i);
+ 	   
+   	   this.repeatfunc(i);
+ 
+};
+
+
 	
 	
 	drawitems(selected) {
@@ -207,7 +221,7 @@ class draw_class{
 
     		      if (selected === rect) this.shadowmake(4);
 			      else                   this.shadowmake(1);
-			      this.rightctx.fillStyle = '#eeeeee';
+			      this.rightctx.fillStyle = '#71B1D1';
 			      this.rightctx.fillRect(rect.x, rect.y, rect.w, rect.h);
                   
 			      this.rightctx.restore();
@@ -243,7 +257,7 @@ class draw_class{
 		for(var count in arr){
 		    var rect = this.itemarray[num];
 		    num += 1;
-			this.rightctx.drawImage(arr[count], rect.x, rect.y, rect.w, rect.h);	
+			//this.rightctx.drawImage(arr[count], rect.x, rect.y, rect.w, rect.h);	
 
             this.rightctx.font = '50px impact'
             this.rightctx.lineWidth = 2.0;	
@@ -256,6 +270,10 @@ class draw_class{
 
 
 		}
+		
+		
+		
+		
 	}
 
 
