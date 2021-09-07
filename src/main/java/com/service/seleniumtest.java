@@ -55,7 +55,7 @@ public class seleniumtest {
 	      	//File path = new File(download_path);
 	      	//download_path = path.getAbsolutePath();
 	}
-	// /home/ec2-user/app/step1/realcf/src/main/resources
+	// /home/ec2-user/app/step1/realcf/src/main/resources/static/stock
 	    //WebDriver
 	    //크롤링 할 URL
 	    private String base_url;
@@ -177,7 +177,7 @@ public class seleniumtest {
 	    	//path = path.replace("\\", "/");
 	    	System.out.println(path);
 	    	logger.info(path);
-	    	File csv = new File(path);
+	    	File csv = new File("/home/ec2-user/app/step1/realcf/src/main/resources/static/stock/data_3201_20210907.csv");
 			BufferedReader br = null;
 			try {
 				br = new BufferedReader(new FileReader(csv, Charset.forName("EUC-KR")));
