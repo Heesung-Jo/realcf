@@ -130,5 +130,20 @@ public class CompanyController {
     	System.out.println("why why why");
       return "/company/explanation";
     }
+ 
+    
+    
+    @GetMapping("/company/stock")
+    public String stock(Model model) {
+    	System.out.println("comin coming");
+      return "/company/stock";
+    }
+
+    
+    @GetMapping("/company/simulation")
+    public String simulation(Model model) {
+    	System.out.println("comin coming");
+      return "/company/simulation";
+    }
     
 }

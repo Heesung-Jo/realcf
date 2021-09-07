@@ -52,14 +52,10 @@
             overflow: hidden; 
             margin: 0 auto;
             position: relative;
+            height: 100%;
+            width: 100%;
        }
-        #wrap > #main_lnb { 
-            float: left;
-            width: 14%;
-            height: 95%;
-            
-            
-        }
+  
         #wrap > #content_wrap {
             float: left;
             left: 14%;
@@ -77,19 +73,24 @@
         #main_lnb {
         
             background: #71B1D1;
-            
+            z-index: 100;
+            float: left;
+            width: 14%;
+            height: 95%;
+            position: absolute;
+            left:0;
+            top:0;
             }
         #main_lnb > ul > li > a {
             display: block;
             height:40px; line-height: 40px;
             padding-left: 15px;
-            
-            
             border-top: 1px solid #96D6F6;
             border-bottom: 1px solid #6298B2;
             color: white;
             font-weight: bold;
         }
+        
     </style>
     <style>
         #content {
@@ -135,7 +136,6 @@ table select {
     
     <t:insertAttribute name="header" />
     
-
 
     <div id="wrap">
         <div id="main_lnb">

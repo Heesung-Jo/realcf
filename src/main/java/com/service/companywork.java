@@ -16,36 +16,53 @@ import org.springframework.stereotype.*;
 
 import com.entity.coagroupdata;
 import com.entity.financialstatements;
-
+import com.entity.listedcompany;
 
 
 import com.repository.CoagroupdataRepository;
 
 import com.repository.financialstatementsRepository;
+import com.repository.companystockRepository;
 
+import com.repository.listedcompanyRepository;
 
 
 // jsp에서 지금 바로는 원하는데로 안받아지므로, submit를 바꿔서, ajax 형태로 입력되도록 수정할 것
 
 import java.sql.SQLException;
+
+import com.entity.companystock;
+
 @Service
 public class companywork { 
 
-
-	
     @Autowired
     private financialstatementsRepository financialstatementsRepository;
     
     @Autowired
     private CoagroupdataRepository coagroupdataRepository;
-    
  
-   // @Autowired
-  // private xlmake xlmake;
+    @Autowired
+    private companystockRepository companystockRepository;
+
+    @Autowired
+    private listedcompanyRepository listedcompanyRepository;
+
+ 
+    // @Autowired
+    // private xlmake xlmake;
 
     private ArrayList<String> coaturnarr = new ArrayList<>();
     private HashSet<String> companyarr = new HashSet<>();
     private HashSet<String> businessarr = new HashSet<>();
+    
+    private List<String> companystock = new ArrayList<>();
+    private List<String> companystock_opp = new ArrayList<>();
+    private HashMap<String, String> companystockhash = new HashMap<>();
+    private HashMap<String, String> companystockhash_opp = new HashMap<>();
+    private List<JSONObject> listedcompany = new ArrayList<>();
+    
+    private HashMap<String, HashMap<String, String>> listedcompanyvalue = new HashMap<>();
     
     @Autowired
     public void companywork() { 
@@ -55,6 +72,132 @@ public class companywork {
     public financialstatements findbyname(String name) {
     	return financialstatementsRepository.findByname(name);
     }
+    
+    
+    @PostConstruct
+    public void setting_stock() {
+
+    	// 회사 이름 등의 배열 세팅하기
+    	List<companystock> companys = companystockRepository.findAll();
+    	
+    	for(companystock com : companys) {
+    		companystockhash.put(com.getName(), com.getRealname());
+    		companystockhash_opp.put(com.getRealname(), com.getName());
+    		if(companystock.contains(com.getName()) == false) {
+    		    companystock.add(com.getName());
+    		    companystock_opp.add(com.getRealname());
+    		}
+    	}
+    	
+    	List<listedcompany> listed = listedcompanyRepository.findAll();
+    	
+    	for(listedcompany com : listed) {
+        	// companystock에 상장회사 빠진것이 있기 때문에 채워넣어야함
+    		
+    		if(companystock.contains(com.getName()) == false) {
+    			companystock.add(com.getName());
+    			companystock_opp.add(com.getRealname());
+    			companystockhash.put(com.getName(), com.getRealname());
+    			companystockhash_opp.put(com.getRealname(), com.getName());
+    		}
+    		
+    		// json 형식으로 변형해서 프론트로 넘기기 위해서
+    		JSONObject temp = new JSONObject();
+    		
+    		temp.put("name", com.getName());
+    		temp.put("realname", com.getRealname());
+    		temp.put("stockcount", com.getStockcount());
+    		temp.put("stockvalue", com.getStockvalue());
+    		temp.put("totalvalue", com.getTotalvalue());
+
+    		listedcompany.add(temp);
+    		
+    	}
+    	
+    	
+    }
+    
+
+    public List<String> getcompanystock(){
+    	return companystock;
+    }
+
+    public List<String> getcompanystock_opp(){
+    	return companystock_opp;
+    }
+    
+    public List<JSONObject> getlistedcompany(){
+    	return listedcompany;
+    }
+
+    public HashMap<String, String> getcompanystockhash(){
+    	return companystockhash;
+    }
+    public HashMap<String, String> getcompanystockhash_opp(){
+    	return companystockhash_opp;
+    }
+    
+    
+    
+    public HashMap<String, List<JSONObject>> findparent_start(String realname, int opt) {
+    	HashMap<String, List<JSONObject>> realhash = new LinkedHashMap<>();
+
+    	// realname이므로 name으로 바꿀것
+    	String name = companystockhash_opp.get(realname);
+    	System.out.println(name);
+    	findparent_stock(name, realhash, 0, opt);
+    	return realhash;
+    }
+    
+    
+    public void findparent_stock(String name, HashMap<String, List<JSONObject>> realhash, int grade, int opt) {
+    	
+      if(grade < 3) {
+    	List<companystock> companys;  
+    	List<JSONObject> temp = new ArrayList<>();
+    	// 정방향일때는 자식 조회
+    	// 역방향일때는 부모 조회
+    	if(opt == 1) {
+    		System.out.println("opt 1");
+    	    companys = companystockRepository.findByname(name);
+        	for(companystock com : companys) {
+        		JSONObject tem = new JSONObject();
+        		tem.put("name", companystockhash.get(com.getParentname()));
+        		tem.put("realname", com.getParentname());
+        		tem.put("percent", com.getPercent());
+        		tem.put("value", com.getVal());
+                temp.add(tem);
+        	}
+
+    	}else {
+    		System.out.println("opt 0");
+
+    		companys = companystockRepository.findByparentname(name);
+    		for(companystock com : companys) {
+        		JSONObject tem = new JSONObject();
+        		tem.put("name", com.getName());
+        		tem.put("realname",com.getRealname());
+        		tem.put("percent", com.getPercent());
+        		tem.put("value", com.getVal());
+                temp.add(tem);
+        	}
+    		
+    	}
+    	
+
+    	
+    	realhash.put(name, temp);
+    	//애경유화 처림
+    	// 다음 순환문 돌리기
+    	grade++;
+    	for(JSONObject com : temp) {
+     	    if(realhash.containsKey(com.get("name")) == false) {
+        		findparent_stock(com.get("name").toString(), realhash, grade, opt);
+    	    }
+    	}
+      }
+    }
+    
     
     
     
@@ -81,7 +224,9 @@ public class companywork {
      	
     }
     
-    
+    public void setlistedcompanyvalue(HashMap<String, HashMap<String, String>> list) {
+    	this.listedcompanyvalue = list;
+    }
     
     
     /*

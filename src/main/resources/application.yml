@@ -29,7 +29,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
     hibernate:
-      ddl-auto: none # none #create #update #create-drop  
+      ddl-auto: none #none # none #create #update #create-drop  
 
   main:
     allow-bean-definition-overriding: true
@@ -45,5 +45,10 @@ server:
   jsp-servlet:
     init-parameters:
        development: true 
+
+ # tomcat:
+ #    additional-tld-skip-patterns: "*.jar"
+
+
 
 ##---------------------------------------------------------------------------##

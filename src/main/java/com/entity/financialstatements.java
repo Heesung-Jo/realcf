@@ -80,6 +80,7 @@ public class financialstatements {
     public void addcoagroupdata(coagroupdata act) {
    	 this.coagroupdata.add(act);
    	 act.setfinancialstatements(this);
+   	 
     }
 
     public Set<coagroupdata> getcoagroupdata() {

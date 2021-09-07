@@ -205,6 +205,7 @@ class showing{
 	constructor(obj){
 		
 	  // tag 세팅
+	  this.lefttag = document.getElementById("main_lnb");  
 	  this.business = document.getElementById("business");  
 	  this.company = document.getElementById("company");    
 	  this.coa = document.getElementById("coa");
@@ -608,7 +609,7 @@ class showing{
     	var pos = me.target.getBoundingClientRect();
     	
     	// 절대좌표 기준으로 설정
-    	var left = Math.round(pos.left - 200 ) + 'px';
+    	var left = Math.round(pos.left - this.lefttag.getBoundingClientRect().width) + 'px';
     	var top = Math.round(pos.top - 20 + window.pageYOffset) + 'px';
     	this.subtablediv.style = "position: absolute; left: " + left + "; top: " +top+ ";"
     	

@@ -9,7 +9,7 @@
 #loginout {
 
   
-  width: 120px;
+  width: 10%;
   height: 80%
   border: thin solid #aaaaaa;
   background: black;
@@ -28,10 +28,10 @@
             <li><a href="/company/purpose">상장회사분석</a></li>
       
             
-            <li id = "loginout" style = "position:absolute; left:1000px">
+            <li id = "loginout" style = "position:absolute; left:80%">
                <a href="/notice/login">로그인</a>
             </li>
-            <li id = "loginout" style = "position:absolute; left:1120px">
+            <li id = "loginout" style = "position:absolute; left:90%">
                <a href="/notice/logout">로그아웃</a>
             </li>            
         </ul>

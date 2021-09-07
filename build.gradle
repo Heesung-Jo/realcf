@@ -38,6 +38,11 @@ dependencies {
 	implementation 'org.apache.tiles:tiles-core:3.0.5'
 	implementation 'org.apache.tiles:tiles-api:3.0.5'
 	implementation 'org.apache.tiles:tiles-el:3.0.5'
+	implementation 'org.projectlombok:lombok:1.18.10'
+	
+	implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+
+	
 	
     
 }

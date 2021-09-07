@@ -27,6 +27,7 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 @EnableSpringDataWebSupport
 @ComponentScan(basePackages = {
         "com.controllers",
+        "com.restcontrollers",
         "com.model"
 })
 public class WebMvcConfig extends WebMvcConfigurerAdapter

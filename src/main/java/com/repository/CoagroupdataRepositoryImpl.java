@@ -17,6 +17,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import java.sql.SQLException;
+
+import com.entity.companystock;
+
 @Component
 public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom {
 
@@ -27,6 +30,8 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 	@Transactional
 	public List<coagroupdata> getprocessquery(String name1, String name2, String para1, String para2){
         
+		
+		
 		List<coagroupdata> process = new ArrayList<coagroupdata>();
 		
 		StringBuilder jpql = new StringBuilder("select m from coadata m where ");
@@ -165,7 +170,7 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 	
 		word = word.substring(0, word.length() - 1);
 		System.out.println(word);
-
+		
 		
 		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.name in (" + word + " ) and m.exceptcol = '포함' group by m.company order by sums desc")
 				.setMaxResults(5).getResultList();

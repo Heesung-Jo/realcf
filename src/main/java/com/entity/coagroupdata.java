@@ -25,6 +25,11 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
 @Entity
 public class coagroupdata { 
 
