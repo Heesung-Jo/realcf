@@ -48,14 +48,13 @@ public class seleniumtest {
     public String time = "";
      
 	public seleniumtest() {
-	    	String rootPath = "/home/ec2-user/app/step1/realcf"; //System.getProperty("user.dir");
-	    	
+	    	String rootPath = System.getProperty("user.dir");
 	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver.exe";
 	      	download_path = rootPath + "/src/main/resources/static/stock";
 	      	//File path = new File(download_path);
 	      	//download_path = path.getAbsolutePath();
 	}
-	// /home/ec2-user/app/step1/realcf/src/main/resources/static/stock
+ 
 	    //WebDriver
 	    //크롤링 할 URL
 	    private String base_url;
@@ -177,12 +176,12 @@ public class seleniumtest {
 	    	//path = path.replace("\\", "/");
 	    	System.out.println(path);
 	    	logger.info(path);
-	    	File csv = new File("/home/ec2-user/app/step1/realcf/src/main/resources/static/stock/data_3201_20210907.csv");
+	    	File csv = new File(path);
 			BufferedReader br = null;
 			try {
-				FileReader read = new FileReader(csv);
+				FileReader read = new FileReader(csv, Charset.forName("EUC-KR"));
 				br = new BufferedReader(read);
-				//Charset.forName("UTF-8");
+
 				String line = "";
 				
 				int first = 0;
