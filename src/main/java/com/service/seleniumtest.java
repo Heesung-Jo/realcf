@@ -48,13 +48,14 @@ public class seleniumtest {
     public String time = "";
      
 	public seleniumtest() {
-	    	String rootPath = System.getProperty("user.dir");
+	    	String rootPath = "/home/ec2-user/app/step1/realcf"; //System.getProperty("user.dir");
+	    	
 	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver.exe";
 	      	download_path = rootPath + "/src/main/resources/static/stock";
 	      	//File path = new File(download_path);
 	      	//download_path = path.getAbsolutePath();
 	}
- 
+	// /home/ec2-user/app/step1/realcf/src/main/resources
 	    //WebDriver
 	    //크롤링 할 URL
 	    private String base_url;
