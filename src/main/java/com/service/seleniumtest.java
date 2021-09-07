@@ -179,7 +179,7 @@ public class seleniumtest {
 	    	File csv = new File(path);
 			BufferedReader br = null;
 			try {
-				FileReader read = new FileReader(csv, Charset.forName("EUC-KR"));
+				FileReader read = new FileReader(csv); //, Charset.forName("EUC-KR")
 				br = new BufferedReader(read);
 
 				String line = "";
