@@ -193,7 +193,7 @@ public class seleniumtest {
 					List<String> tempList = new ArrayList<String>(Arrays.asList(token));
 					list.add(tempList);
 					*/
-					
+				/*	
 					String[] token = line.split(",");
 					List<String> tempList = new ArrayList<String>(Arrays.asList(token));
 					JSONObject temp = new JSONObject();
@@ -217,7 +217,7 @@ public class seleniumtest {
                         
                         list.put(tempList.get(1).replace("\"", ""), temp);
 					}
-					
+					*/
 					
 				}
 				
