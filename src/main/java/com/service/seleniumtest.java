@@ -180,7 +180,8 @@ public class seleniumtest {
 	    	File csv = new File("/home/ec2-user/app/step1/realcf/src/main/resources/static/stock/data_3201_20210907.csv");
 			BufferedReader br = null;
 			try {
-				br = new BufferedReader(new FileReader(csv, Charset.forName("EUC-KR")));
+				FileReader read = new FileReader(csv);
+				br = new BufferedReader(read);
 				//Charset.forName("UTF-8");
 				String line = "";
 				
