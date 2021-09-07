@@ -15,10 +15,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.*;
 
+import com.auth.SpringSecurityUserContext;
 import com.repository.CoagroupdataRepository;
 
 import javax.annotation.PostConstruct;
@@ -31,6 +34,8 @@ import org.json.simple.JSONObject;
 public class seleniumtest { 
 
 	
+    private static final Logger logger = LoggerFactory
+            .getLogger(seleniumtest.class);
 	
     private WebDriver driver;
     
@@ -46,8 +51,8 @@ public class seleniumtest {
 	    	String rootPath = System.getProperty("user.dir");
 	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver.exe";
 	      	download_path = rootPath + "/src/main/resources/static/stock";
-	      	File path = new File(download_path);
-	      	download_path = path.getAbsolutePath();
+	      	//File path = new File(download_path);
+	      	//download_path = path.getAbsolutePath();
 	}
  
 	    //WebDriver
@@ -168,8 +173,9 @@ public class seleniumtest {
 	    	
 	    public void readcsv(String path) { 	
 	    	//List<List<String>> list = new ArrayList<List<String>>();
-	    	path = path.replace("\\", "/");
+	    	//path = path.replace("\\", "/");
 	    	System.out.println(path);
+	    	logger.info(path);
 	    	File csv = new File(path);
 			BufferedReader br = null;
 			try {
