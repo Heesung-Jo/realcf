@@ -179,7 +179,7 @@ public class seleniumtest {
 	    	File csv = new File(path);
 			BufferedReader br = null;
 			try {
-				FileReader read = new FileReader(csv);
+				FileReader read = new FileReader(csv, Charset.forName("EUC-KR"));
 				br = new BufferedReader(read);
 
 				String line = "";
@@ -193,7 +193,7 @@ public class seleniumtest {
 					List<String> tempList = new ArrayList<String>(Arrays.asList(token));
 					list.add(tempList);
 					*/
-				/*	
+					
 					String[] token = line.split(",");
 					List<String> tempList = new ArrayList<String>(Arrays.asList(token));
 					JSONObject temp = new JSONObject();
@@ -217,7 +217,7 @@ public class seleniumtest {
                         
                         list.put(tempList.get(1).replace("\"", ""), temp);
 					}
-					*/
+					
 					
 				}
 				
