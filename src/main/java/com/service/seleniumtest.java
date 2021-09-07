@@ -70,7 +70,7 @@ public class seleniumtest {
 
 	    @PostConstruct
 	    public void simulation_start() {
-	    	 crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
+	    	 //crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
 	         // test만 된다면 여기서는 crawl이 들어가면 안됨
 	    	 File file = findfile(download_path);
 	         readcsv(file.getAbsolutePath());
@@ -79,7 +79,7 @@ public class seleniumtest {
 	    
 	    @Scheduled(cron = "0 0 12 * * * ") 
 	    public void simulation() {
-	         crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
+	         //crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
 	         File file = findfile(download_path);
 	         readcsv(file.getAbsolutePath());
 	    }
