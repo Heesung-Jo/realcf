@@ -112,6 +112,8 @@ public class seleniumtest {
 	         //chromePrefs.put("safebrowsing.enabled", true);
 	         
 	         //options.setExperimentalOption("prefs", chromePrefs);
+	    
+	         
 	         
 	         driver = new ChromeDriver(options);
 	     //    driver.close();
