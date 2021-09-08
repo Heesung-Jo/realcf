@@ -49,10 +49,10 @@ public class seleniumtest {
      
 	public seleniumtest() {
 	    	String rootPath = System.getProperty("user.dir");
-	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver";
+	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver.exe";
 	      	download_path = rootPath + "/src/main/resources/static/stock";
-	      	//File path = new File(download_path);
-	      	//download_path = path.getAbsolutePath();
+	      	File path = new File(download_path);
+	      	download_path = path.getAbsolutePath();
 	}
  
 	    //WebDriver
@@ -79,7 +79,7 @@ public class seleniumtest {
 	    
 	    @Scheduled(cron = "0 0 12 * * * ") 
 	    public void simulation() {
-	         crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
+	         //crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
 	         File file = findfile(download_path);
 	         readcsv(file.getAbsolutePath());
 	    }
