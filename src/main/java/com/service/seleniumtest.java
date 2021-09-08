@@ -92,29 +92,29 @@ public class seleniumtest {
 	                
 	        //Driver SetUp
 	         ChromeOptions options = new ChromeOptions();
-	         options.setCapability("ignoreProtectedModeSettings", true);
+	         //options.setCapability("ignoreProtectedModeSettings", true);
 	         
-	         options.addArguments("--headless");
-	         options.addArguments("--no-sandbox");
-	         options.addArguments("--disable-dev-shm-usage");
-	         options.addArguments("--disable-gpu");
+	         options.addArguments("headless");
+	         options.addArguments("no-sandbox");
+	         options.addArguments("disable-dev-shm-usage");
+	         //options.addArguments("disable-gpu");
 	         options.addArguments("lang=ko_KR");
 	         
 	         
 	         
 	         //options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
 	        
-	         HashMap<String, Object> chromePrefs= new HashMap<String, Object>();
+	         //HashMap<String, Object> chromePrefs= new HashMap<String, Object>();
 	         
-	         chromePrefs.put("download.default_directory", download_path);
-	         chromePrefs.put("download.prompt_for_download", false);
-	         chromePrefs.put("download.directory_upgrade", true);
-	         chromePrefs.put("safebrowsing.enabled", true);
+	         //chromePrefs.put("download.default_directory", download_path);
+	         //chromePrefs.put("download.prompt_for_download", false);
+	         //chromePrefs.put("download.directory_upgrade", true);
+	         //chromePrefs.put("safebrowsing.enabled", true);
 	         
-	         options.setExperimentalOption("prefs", chromePrefs);
+	         //options.setExperimentalOption("prefs", chromePrefs);
 	         
-	         driver = new ChromeDriver(options);
-	         driver.close();
+	      //   driver = new ChromeDriver(options);
+	     //    driver.close();
 	         
 	         /*
 	        try {
