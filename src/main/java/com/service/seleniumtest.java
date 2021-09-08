@@ -49,7 +49,7 @@ public class seleniumtest {
      
 	public seleniumtest() {
 	    	String rootPath = System.getProperty("user.dir");
-	      	WEB_DRIVER_PATH = "/usr/bin/chromedriver"; // rootPath + "/src/main/resources/static/chromedriver.exe"
+	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver"; // "/usr/bin/chromedriver"; // 
 	      	download_path = rootPath + "/src/main/resources/static/stock";
 	      	File path = new File(download_path);
 	      	download_path = path.getAbsolutePath();
@@ -94,9 +94,9 @@ public class seleniumtest {
 	         ChromeOptions options = new ChromeOptions();
 	         options.setCapability("ignoreProtectedModeSettings", true);
 	         
-	         options.addArguments("--headless");
-	         options.addArguments("--no-sandbox");
-	         options.addArguments("--disable-dev-shm-usage");
+	         //options.addArguments("--headless");
+	         //options.addArguments("--no-sandbox");
+	         //options.addArguments("--disable-dev-shm-usage");
 	         
 	         //options.addArguments("disable-gpu");
 	         //options.addArguments("lang=ko_KR");
