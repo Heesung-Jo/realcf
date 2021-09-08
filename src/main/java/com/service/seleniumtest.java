@@ -49,7 +49,7 @@ public class seleniumtest {
      
 	public seleniumtest() {
 	    	String rootPath = System.getProperty("user.dir");
-	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver"; // "/usr/bin/chromedriver"; // 
+	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver"; //  // 
 	      	download_path = rootPath + "/src/main/resources/static/stock";
 	      	File path = new File(download_path);
 	      	download_path = path.getAbsolutePath();
@@ -94,20 +94,21 @@ public class seleniumtest {
 	         ChromeOptions options = new ChromeOptions();
 	         options.setCapability("ignoreProtectedModeSettings", true);
 	         
-	         //options.addArguments("--headless");
-	         //options.addArguments("--no-sandbox");
-	         //options.addArguments("--disable-dev-shm-usage");
+	         options.addArguments("headless");
+	         options.addArguments("no-sandbox");
+	         options.addArguments("disable-dev-shm-usage");
+	         options.addArguments("lang=ko_KR");
 	         
 	         //options.addArguments("disable-gpu");
-	         //options.addArguments("lang=ko_KR");
+	         
 	         //options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
 	        
 	         HashMap<String, Object> chromePrefs= new HashMap<String, Object>();
 	         
 	         chromePrefs.put("download.default_directory", download_path);
-	         chromePrefs.put("download.prompt_for_download", false);
-	         chromePrefs.put("download.directory_upgrade", true);
-	         chromePrefs.put("safebrowsing.enabled", true);
+	         //chromePrefs.put("download.prompt_for_download", false);
+	         //chromePrefs.put("download.directory_upgrade", true);
+	         //chromePrefs.put("safebrowsing.enabled", true);
 	         
 	         options.setExperimentalOption("prefs", chromePrefs);
 	         
