@@ -113,7 +113,7 @@ public class seleniumtest {
 	         
 	         //options.setExperimentalOption("prefs", chromePrefs);
 	         
-	      //   driver = new ChromeDriver(options);
+	         driver = new ChromeDriver(options);
 	     //    driver.close();
 	         
 	         /*
