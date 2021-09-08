@@ -18,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.*;
 
@@ -49,7 +50,7 @@ public class seleniumtest {
      
 	public seleniumtest() {
 	    	String rootPath = System.getProperty("user.dir");
-	      	WEB_DRIVER_PATH = "/usr/bin/chromedriver"; //rootPath + "/src/main/resources/static/chromedriver.exe"; //  // 
+	      	WEB_DRIVER_PATH =  rootPath + "/src/main/resources/static/chromedriver.exe"; //  // 
 	      	download_path = rootPath + "/src/main/resources/static/stock";
 	      	File path = new File(download_path);
 	      	download_path = path.getAbsolutePath();
@@ -85,6 +86,7 @@ public class seleniumtest {
 	    }
 	 
 	    // 거래소 매일 크롤링해서 정보 업데이트 하기
+	    @Async
 	    public void crawl(String url) {
 	        //System Property SetUp
 	        System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
@@ -124,7 +126,7 @@ public class seleniumtest {
 	            //get page (= 브라우저에서 url을 주소창에 넣은 후 request 한 것과 같다)
 	            driver.get(url);
 
-	            
+	         /*   
 	            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	            
 	            WebElement table = driver.findElement(By.className("CI-GRID-BODY-TABLE"));
@@ -138,6 +140,7 @@ public class seleniumtest {
 	            button.click();
 	            
 	            Thread.sleep(60000);
+	           */
 	            
 	            //iframe으로 구성된 곳은 해당 프레임으로 전환시킨다.
 	           // driver.switchTo().frame(driver.findElement(By.id("loginForm")));
