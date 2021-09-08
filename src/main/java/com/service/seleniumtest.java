@@ -49,7 +49,7 @@ public class seleniumtest {
      
 	public seleniumtest() {
 	    	String rootPath = System.getProperty("user.dir");
-	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver";
+	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver2"; // .exe
 	      	download_path = rootPath + "/src/main/resources/static/stock";
 	      	File path = new File(download_path);
 	      	download_path = path.getAbsolutePath();
