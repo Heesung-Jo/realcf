@@ -110,7 +110,7 @@ public class seleniumtest {
 	         //chromePrefs.put("download.directory_upgrade", true);
 	         //chromePrefs.put("safebrowsing.enabled", true);
 	         
-	         options.setExperimentalOption("prefs", chromePrefs);
+	         //options.setExperimentalOption("prefs", chromePrefs);
 	         
 	         driver = new ChromeDriver(options);
 	         driver.close();
