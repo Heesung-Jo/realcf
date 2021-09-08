@@ -115,11 +115,12 @@ public class seleniumtest {
 	    
 	         
 	         
-	         driver = new ChromeDriver(options);
+	         
 	         
 	         
 	         
 	        try {
+	        	driver = new ChromeDriver(options);
 	            //get page (= 브라우저에서 url을 주소창에 넣은 후 request 한 것과 같다)
 	            driver.get(url);
 
