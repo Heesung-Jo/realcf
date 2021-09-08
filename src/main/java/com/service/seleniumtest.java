@@ -15,6 +15,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,7 +90,14 @@ public class seleniumtest {
 	        //System Property SetUp
 	        System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
 	        
-	                
+	        ChromeOptions options = new ChromeOptions();
+	        options.addArguments("--window-size=1366,768");
+	        options.addArguments("--headless");
+	        options.setProxy(null);
+	        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+	        capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+	        capabilities.setCapability("pageLoadStrategy", "none");
+	        /*        
 	        //Driver SetUp
 	         ChromeOptions options = new ChromeOptions();
 	         options.setCapability("ignoreProtectedModeSettings", true);
@@ -111,7 +119,7 @@ public class seleniumtest {
 	         //chromePrefs.put("safebrowsing.enabled", true);
 	         
 	         //options.setExperimentalOption("prefs", chromePrefs);
-	         
+	         */
 	         driver = new ChromeDriver(options);
 	         driver.close();
 	         
