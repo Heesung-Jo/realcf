@@ -116,9 +116,9 @@ public class seleniumtest {
 	         
 	         
 	         driver = new ChromeDriver(options);
-	         driver.close();
 	         
-	         /*
+	         
+	         
 	        try {
 	            //get page (= 브라우저에서 url을 주소창에 넣은 후 request 한 것과 같다)
 	            driver.get(url);
@@ -150,7 +150,7 @@ public class seleniumtest {
 	 
 	            driver.close();
 	        }
-	 */
+	 
 	    }
 	    
 	    
