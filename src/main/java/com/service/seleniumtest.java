@@ -49,7 +49,7 @@ public class seleniumtest {
      
 	public seleniumtest() {
 	    	String rootPath = System.getProperty("user.dir");
-	      	WEB_DRIVER_PATH = rootPath + "/src/main/resources/static/chromedriver2"; // .exe
+	      	WEB_DRIVER_PATH = "/usr/bin/chromedriver"; // rootPath + "/src/main/resources/static/chromedriver.exe"
 	      	download_path = rootPath + "/src/main/resources/static/stock";
 	      	File path = new File(download_path);
 	      	download_path = path.getAbsolutePath();
@@ -87,7 +87,7 @@ public class seleniumtest {
 	    // 거래소 매일 크롤링해서 정보 업데이트 하기
 	    public void crawl(String url) {
 	        //System Property SetUp
-	        //System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
+	        System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
 	        
 	                
 	        //Driver SetUp
