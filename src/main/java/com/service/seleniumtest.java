@@ -108,7 +108,8 @@ public class seleniumtest {
 	         options.setExperimentalOption("prefs", chromePrefs);
 	         
 	         driver = new ChromeDriver(options);
-	         
+	         driver.close();
+	      /*   
 	        try {
 	            //get page (= 브라우저에서 url을 주소창에 넣은 후 request 한 것과 같다)
 	            driver.get(url);
@@ -127,10 +128,10 @@ public class seleniumtest {
 	            button.click();
 	            
 	            Thread.sleep(60000);
-	           /* 
-	            //iframe으로 구성된 곳은 해당 프레임으로 전환시킨다.
-	            driver.switchTo().frame(driver.findElement(By.id("loginForm")));
-	            */
+	            
+	           // //iframe으로 구성된 곳은 해당 프레임으로 전환시킨다.
+	           // driver.switchTo().frame(driver.findElement(By.id("loginForm")));
+	            
 	    
 	        } catch (Exception e) {
 	            
@@ -140,8 +141,8 @@ public class seleniumtest {
 	 
 	            driver.close();
 	        }
-	 
-	    }
+	      */
+	}
 	    
 	    
 	    public File findfile(String path) {
