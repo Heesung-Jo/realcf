@@ -77,7 +77,7 @@ public class seleniumtest {
 	    }
 	    
 	    
-	    @Scheduled(cron = "0 0 12 * * * ") 
+	    //@Scheduled(cron = "0 0 12 * * * ") 
 	    public void simulation() {
 	         //crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
 	         File file = findfile(download_path);
