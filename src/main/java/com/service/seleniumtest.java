@@ -86,7 +86,7 @@ public class seleniumtest {
 	    }
 	 
 	    // 거래소 매일 크롤링해서 정보 업데이트 하기
-	    @Async
+	    //@Async
 	    public void crawl(String url) {
 	        //System Property SetUp
 	        System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
