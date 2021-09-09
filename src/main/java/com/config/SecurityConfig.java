@@ -94,8 +94,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   //  @Autowired
   //  private memberDetailsService memberDetailsService;
     
-    @Autowired
-    private CustomOAuth2UserService customOAuth2UserService;
+    //@Autowired
+   // private CustomOAuth2UserService customOAuth2UserService;
     
  //   @Override
   //  @Autowired

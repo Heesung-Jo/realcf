@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @EnableCaching
 @EnableScheduling
-@EnableAsync
 @SpringBootApplication(scanBasePackages={
         
         "com.config",

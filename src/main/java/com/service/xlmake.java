@@ -33,7 +33,7 @@ import org.springframework.stereotype.*;
 
 import javax.inject.Inject;
 
-@Service
+//@Service
 public class xlmake { 
 
 	 public xlmake() {

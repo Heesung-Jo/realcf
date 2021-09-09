@@ -38,7 +38,7 @@ import javax.servlet.http.HttpSession;
  * @ see CalendarUserAuthenticationProvider
  */
 
-@Service
+//@Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User>  {
     
 	@Autowired
