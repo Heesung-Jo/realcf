@@ -41,7 +41,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok:1.18.10'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
-
+    implementation 'com.codeborne:phantomjsdriver:1.4.1'
 	
 	
     

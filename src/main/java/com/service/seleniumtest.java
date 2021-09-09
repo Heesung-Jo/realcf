@@ -6,15 +6,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/*
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+*/
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +27,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.*;
 
-import com.auth.SpringSecurityUserContext;
-import com.repository.CoagroupdataRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -37,23 +40,30 @@ public class seleniumtest {
 	
     private static final Logger logger = LoggerFactory
             .getLogger(seleniumtest.class);
-	
+	/*
     private WebDriver driver;
     
     private WebElement webElement;
-    private HashMap<String, JSONObject> list = new HashMap<>();
+   
     //Properties
-    public static final String WEB_DRIVER_ID = "webdriver.chrome.driver";
+    public static final String WEB_DRIVER_ID = "phantomjs.binary.path";   //"webdriver.chrome.driver";
     public static String WEB_DRIVER_PATH = "";
+    */
+    private HashMap<String, JSONObject> list = new HashMap<>();
     public static String download_path = "";
+    
+    
     public String time = "";
      
 	public seleniumtest() {
+		
 	    	String rootPath = System.getProperty("user.dir");
-	      	WEB_DRIVER_PATH = "/usr/local/bin/chromedriver"; // rootPath + "/src/main/resources/static/chromedriver.exe"; //  // 
-	      	download_path = rootPath + "/src/main/resources/static/stock";
+	    //  	WEB_DRIVER_PATH =  rootPath + "/src/main/resources/static/phantomjs.exe"; //  // chromedriver.exe
+	      	download_path = "/home/download"; // rootPath + "/src/main/resources/static/stock";  // 
 	      	File path = new File(download_path);
 	      	download_path = path.getAbsolutePath();
+	     
+	
 	}
  
 	    //WebDriver
@@ -61,18 +71,12 @@ public class seleniumtest {
 	    private String base_url;
 	    
 	    
-	    
-	    
-	    public void test() {
-	    	System.out.println("123123123");
-	    	
-	    }
-	    
 
 	    @PostConstruct
 	    public void simulation_start() {
-	    	 crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
+	    	 //crawl("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020101");
 	         // test만 된다면 여기서는 crawl이 들어가면 안됨
+	    	 // 크롤링은 파이썬으로 수행하는 것으로 변경 
 	    	 File file = findfile(download_path);
 	         readcsv(file.getAbsolutePath());
 	    }
@@ -85,6 +89,7 @@ public class seleniumtest {
 	         readcsv(file.getAbsolutePath());
 	    }
 	 
+	    /* 리눅스 서버에서 오류나서 파이썬으로 해당 작업 시키는 것으로 수정
 	    // 거래소 매일 크롤링해서 정보 업데이트 하기
 	    //@Async
 	    public void crawl(String url) {
@@ -117,11 +122,11 @@ public class seleniumtest {
 	         //options.setExperimentalOption("prefs", chromePrefs);
 	         
 	        try {
-	        	driver = new ChromeDriver(options);
+	        	driver = new PhantomJSDriver();   // new ChromeDriver(options);
 	            //get page (= 브라우저에서 url을 주소창에 넣은 후 request 한 것과 같다)
 	            driver.get(url);
 
-	         /*   
+	            
 	            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	            
 	            WebElement table = driver.findElement(By.className("CI-GRID-BODY-TABLE"));
@@ -135,7 +140,7 @@ public class seleniumtest {
 	            button.click();
 	            
 	            Thread.sleep(60000);
-	           */
+	          
 	            
 	            //iframe으로 구성된 곳은 해당 프레임으로 전환시킨다.
 	           // driver.switchTo().frame(driver.findElement(By.id("loginForm")));
@@ -151,7 +156,7 @@ public class seleniumtest {
 	        }
 	 
 	    }
-	    
+	    */
 	    
 	    public File findfile(String path) {
 
@@ -188,7 +193,13 @@ public class seleniumtest {
 	    	File csv = new File(path);
 			BufferedReader br = null;
 			try {
-				FileReader read = new FileReader(csv); //, Charset.forName("EUC-KR")
+				//FileReader read = new FileReader(csv); //, Charset.forName("EUC-KR")
+
+		        FileInputStream input=new FileInputStream(path);
+		        InputStreamReader reader=new InputStreamReader(input,"EUC-KR");
+		        BufferedReader read =new BufferedReader(reader);
+				
+				
 				br = new BufferedReader(read);
 
 				String line = "";
