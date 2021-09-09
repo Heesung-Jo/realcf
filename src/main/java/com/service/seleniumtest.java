@@ -95,9 +95,9 @@ public class seleniumtest {
 	        //Driver SetUp
 	         ChromeOptions options = new ChromeOptions();
 	         options.setCapability("ignoreProtectedModeSettings", true);
-	         
+	         options.addArguments("headless");
 	         options.addArguments("disable-gpu");
-	         //options.addArguments("headless");
+	         
 	         options.addArguments("no-sandbox");
 	         options.addArguments("disable-dev-shm-usage");
 	         
