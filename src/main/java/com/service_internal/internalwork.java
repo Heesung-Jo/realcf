@@ -913,7 +913,7 @@ public class internalwork<E> {
 	*/
     
 	
-	
+	/*
     // xl 사용하기 위해서 테스트
     public void processlistmakexl(String sheetname, String name, HashMap<String, String> oppositearray,
     		       HashMap<String, ArrayList<String>> inarray, int pos, int pos2, int opt) {
@@ -989,8 +989,8 @@ public class internalwork<E> {
       
       
     }   
-	
-
+	*/
+/*
  // xl 사용하기 위해서 테스트
     public void processlistmakexl2(String sheetname, String name, HashMap<String, String> oppositearray,
     		       HashMap<String, ArrayList<String>> inarray, int row1, int row2, int opt, int real) {
@@ -1119,7 +1119,7 @@ public class internalwork<E> {
       
       
     }      
-    
+    */
  
     // 위의 invoke 실행을 위한 서브 함수
     public void subwork(HSSFRow row, processdata pro) {
