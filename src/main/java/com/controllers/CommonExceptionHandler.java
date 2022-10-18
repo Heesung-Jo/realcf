@@ -50,7 +50,7 @@ import java.sql.SQLException;
 public class CommonExceptionHandler {
 
     
-
+/*
 
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<Object> runtimeerror(HttpSession session, HttpServletRequest request) {
@@ -84,7 +84,7 @@ public class CommonExceptionHandler {
 		
 		return ResponseEntity.status(HttpStatus.OK).body(realdata);
 	}    
-	
+	*/
 
 	
 }

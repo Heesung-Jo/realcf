@@ -20,8 +20,10 @@ import org.springframework.transaction.annotation.Transactional;
 public interface CoagroupdataRepository extends JpaRepository<coagroupdata, Integer>, CoagroupdataRepositoryCustom {
 	@Cacheable("realcfcache")
 	List<coagroupdata> findByname(String name);
-	@Cacheable("realcfcache")
-	coagroupdata findByCompanyAndReallevelAndName(String company, double level, String name);
+	
+	
+	//@Cacheable("realcfcache")
+	//coagroupdata findByCompanyAndReallevelAndName(String company, double level, String name);
 	
 	
 	 @Query("select m.business from coagroupdata m group by m.business ")

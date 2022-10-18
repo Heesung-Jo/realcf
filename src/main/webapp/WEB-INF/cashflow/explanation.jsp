@@ -118,6 +118,8 @@ realexplanation[0]["파일선택2"] = "총계정원장이 들어있는 파일선
 
 // subarr2 => 옵션선택
 var subarr2 = []
+
+
 subarr2.push('/UI/옵션선택1.png')
 subarr2.push('/UI/옵션선택2.png')
 subarr2.push('/UI/옵션선택3.png')

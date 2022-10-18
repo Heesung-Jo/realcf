@@ -23,16 +23,10 @@
          
     <nav id="main_gnb">
         <ul class="left">
-            <li><a href="/notice/purpose">홈페이지 소개</a></li>
-            <li><a href="/cashflow/purpose">원장가공</a></li>
-            <li><a href="/company/purpose">상장회사분석</a></li>
-      
             
-            <li id = "loginout" style = "position:absolute; left:80%">
-               <a href="/notice/login">로그인</a>
-            </li>
-            <li id = "loginout" style = "position:absolute; left:90%">
-               <a href="/notice/logout">로그아웃</a>
-            </li>            
+            <li><a href="/company/purpose">상장회사분석</a></li>
+            <li><a href="/cashflow/purpose">현금정산표</a></li>            
+            <li><a href="/internal/explanation1">내부회계고도화</a></li>
+            <li><a href="/game/puzzlefactory">게임</a></li>
         </ul>
     </nav>

@@ -52,7 +52,7 @@
             overflow: hidden; 
             margin: 0 auto;
             position: relative;
-            height: 100%;
+            height: 95%;
             width: 100%;
        }
   
@@ -76,11 +76,12 @@
             z-index: 100;
             float: left;
             width: 14%;
-            height: 95%;
+            height: 500%;
             position: absolute;
             left:0;
             top:0;
             }
+            
         #main_lnb > ul > li > a {
             display: block;
             height:40px; line-height: 40px;
@@ -121,11 +122,6 @@
     margin: 0 auto; 
   }
         
-table select {
-      width: 100%;
-      height: 100%;
-      border: 0px;
-}    
 
   
 

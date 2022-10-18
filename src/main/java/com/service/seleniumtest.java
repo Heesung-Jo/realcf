@@ -59,7 +59,7 @@ public class seleniumtest {
 		
 	    	String rootPath = System.getProperty("user.dir");
 	    //  	WEB_DRIVER_PATH =  rootPath + "/src/main/resources/static/phantomjs.exe"; //  // chromedriver.exe
-	      	download_path = "/home/download"; // rootPath + "/src/main/resources/static/stock";  // 
+	      	download_path = rootPath + "/src/main/resources/static/stock";  // "/home/download";
 	      	File path = new File(download_path);
 	      	download_path = path.getAbsolutePath();
 	     

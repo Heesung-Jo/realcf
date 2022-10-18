@@ -51,7 +51,7 @@ import java.io.UnsupportedEncodingException;
 import com.except.WrongIdPasswordException;
 
 import com.service.companywork;
-import com.service.coaarray;
+
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 
 

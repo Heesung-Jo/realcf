@@ -37,22 +37,23 @@ public class coagroupdata {
 	 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column
 	 private Long id;	
-	
+	 
 	 private String name; // 계정과목 이름을 말함 // 세부분류 계정과목을 뜻함
 	 
 	 @Column(nullable = true) 
 	 private double val;        // 금액을 의미함 
+	 private double val_before;  // 직전년도 금액을 의미함
 	 private int yeartime;          // 2020년 등 결산기간을 의미함
 	 private String bspl;       // BS/IS/CF를 의미함
 	 private String company;    // 사실 아래의 financialstatements이나, 여기서 간단히 string만으로 조회가능토록 구상
 
-	 private double reallevel;         // 레벨에 관련된 열 
+	 //private double reallevel;         // 레벨에 관련된 열 
 	 private double ratio;         //비율과 관련된 열  
 	 private String business;      //비지니스 종류와 관련된 열
-	 private String exceptcol;      //제외해야하는지 여부 확인하는 열
+	 //private String exceptcol;      //제외해야하는지 여부 확인하는 열
 	 
-	 private double realnumber;        // 나중에 회사의 재무제표를 순서대로 보여줄수있도록 number 계정 설정함
-	 private String reportname; // 사업보고서 상의 계정과목 이름을 말함
+	 //private double realnumber;        // 나중에 회사의 재무제표를 순서대로 보여줄수있도록 number 계정 설정함
+	 //private String reportname; // 사업보고서 상의 계정과목 이름을 말함
 	 
 	 @ManyToOne
      @JoinColumn(name = "financialstatements_id")
@@ -66,6 +67,8 @@ public class coagroupdata {
 	 public coagroupdata() {
 		 
 	 }
+	 
+	/* 
 	 public void setrealnumber(double realnumber) {
 		 this.realnumber = realnumber;
 	 }
@@ -88,7 +91,7 @@ public class coagroupdata {
 	 public String getexceptcol() {
 		 return exceptcol;
 	 }
-
+*/
 	 public void setbusiness(String business) {
 		 this.business = business;
 	 }
@@ -105,6 +108,7 @@ public class coagroupdata {
 		 return ratio;
 	 }
 	 
+	 /*
 	 public void setreallevel(double reallevel) {
 		 this.reallevel = reallevel;
 	 }
@@ -112,7 +116,7 @@ public class coagroupdata {
 	 public double getreallevel() {
 		 return reallevel;
 	 }
-
+*/
 	 
 
 	 public void setbspl(String val) {
@@ -145,11 +149,19 @@ public class coagroupdata {
 	 public void setval(double val) {
 		 this.val = val;
 	 }
+
+	 public void setval_before(double val) {
+		 this.val_before = val;
+	 }
 	 
 	 public double getval() {
 		 return val;
 	 }
-	 
+
+	 public double getval_before() {
+		 return val_before;
+	 }
+
      public void setid(Long x){ 
          this.id = x; 
      }

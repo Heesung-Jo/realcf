@@ -39,6 +39,7 @@ public class companywork {
     @Autowired
     private financialstatementsRepository financialstatementsRepository;
     
+    
     @Autowired
     private CoagroupdataRepository coagroupdataRepository;
  
@@ -211,16 +212,43 @@ public class companywork {
     		companyarr.add(com);
     		
     	}
-    	System.out.println("여기입니다.");
     	// 비지니스배열 입력
     	for(String com : coagroupdataRepository.findbusiness()) {
-    		System.out.println(com);
+    		
     		businessarr.add(com);
     	}
-     	
+     	/*
     	for(String com : coagroupdataRepository.findcoaname()) {
+    		
+    		
     		coaturnarr.add(com);
-    	}
+    	}*/
+    	
+    	// 귀차니즘으로 직접 세팅
+    	coaturnarr.add("매출액");
+    	coaturnarr.add("매출원가");
+    	coaturnarr.add("판관비");
+    	coaturnarr.add("영업외손익");
+    	coaturnarr.add("금융손익");
+    	coaturnarr.add("법인세비용");
+    	coaturnarr.add("중단영업손익");
+    	coaturnarr.add("당기순이익");
+    	coaturnarr.add("현금성자산");
+    	coaturnarr.add("금융자산");
+    	coaturnarr.add("재고자산");
+    	coaturnarr.add("유형자산");
+    	coaturnarr.add("무형자산");
+    	coaturnarr.add("투자주식");
+    	coaturnarr.add("기타자산");
+    	coaturnarr.add("자산총계");
+    	coaturnarr.add("금융부채");
+    	coaturnarr.add("기타부채");
+    	coaturnarr.add("충당부채");
+    	coaturnarr.add("부채총계");
+    	coaturnarr.add("영업활동현금흐름");
+    	coaturnarr.add("투자활동현금흐름");
+    	coaturnarr.add("재무활동현금흐름");   	
+    	
      	
     }
     
@@ -391,7 +419,7 @@ public class companywork {
     	HashMap<String, JSONObject> temp = new HashMap<>();
     	for(coagroupdata coa : coas) {
     		
-    		if(coa.getexceptcol().equals("포함") == true) {
+    		//if(coa.getexceptcol().equals("포함") == true) {
         		// 필요한 데이터 추출하여 json에 집어넣기
         		JSONObject json = new JSONObject();
         		json.put("name", coa.getname());
@@ -413,7 +441,7 @@ public class companywork {
         		}else {
             		temp.put(coa.getname(), json);
         		}
-    		}
+    		//}
     	}
     	
     	return temp;

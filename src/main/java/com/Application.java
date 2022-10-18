@@ -16,13 +16,16 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
         "com.auth",
         "com.controllers",
         "com.entity",
+        "com.entity_internal",
         "com.repository",
+        "com.repository_internal",
         "com.webconfig",
         "com.service",
+        "com.service_internal",
         "com.userdetail",
         "com.aspect"
 })
-@EntityScan("com.entity")
+@EntityScan({"com.entity", "com.entity_internal"})
 public class Application {
 
 		

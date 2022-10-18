@@ -40,6 +40,35 @@
   <definition name="/notice/*" extends="notice">
     <put-attribute name="body" value="/WEB-INF/notice/{1}.jsp" />
   </definition>
+  
+  
+  <definition name="internal" template="/WEB-INF/layout/page.jsp">
+    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu4.jsp" />
+  </definition>
 
+  <definition name="/internal/*" extends="internal">
+    <put-attribute name="body" value="/WEB-INF/internal/{1}.jsp" />
+  </definition>
+
+  <definition name="/internal/*/*" extends="internal">
+    <put-attribute name="body" value="/WEB-INF/internal/{1}.jsp" />
+  </definition>
+  
+
+  <definition name="game" template="/WEB-INF/layout/page.jsp">
+    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu5.jsp" />
+  </definition>
+
+  <definition name="/game/*" extends="game">
+    <put-attribute name="body" value="/WEB-INF/game/{1}.jsp" />
+  </definition>
+
+  <definition name="/game/*/*" extends="game">
+    <put-attribute name="body" value="/WEB-INF/game/{1}.jsp" />
+  </definition>
   
 </tiles-definitions>

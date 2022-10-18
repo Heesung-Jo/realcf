@@ -10,5 +10,3 @@
 <li><a href="/company/purpose">만든목적</a></li>
 <li><a href="/company/explanation">활용방법</a></li>
 <li><a href="/company/search">재무수치검색</a></li>
-<li><a href="/company/stock">지분관계조회</a></li>
-<li><a href="/company/simulation">시뮬레이션</a></li>

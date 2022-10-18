@@ -56,6 +56,9 @@ select {
    // 윈도우 켜진후
    window.onload = function(){
 	  
+	   console.log(opener);
+	   
+	   
 	  var subtable = new subwindow(opener.table.중분류);
 	  
 	  subtable.coasubwindow()
@@ -76,10 +79,9 @@ select {
 		   this.condition = "coaconfirm";
 		   this.middlecoa = Object.keys(opener.table.middlecoa);
 		   this.middlecoa.sort();
-		   console.log(opener.table.sortedrealcoa);
 		   
 		   this.sortedrealcoa = []; 
-		   
+		   this.minuscoa = ['국고보조금','대손충당금','현할차','평가손실충당금','평가충당금','손상차손누계액','현재가치할인차금','감가상각누계액','조정','발행차금','할인발행차금','상환할증금']
 	   }
 	   
 	   
@@ -163,12 +165,13 @@ select {
 	 	   // 추가적으로 만들어야하는 것은 갑자기 bs계정이라 생각했는데 차감형을 선택하면 위치를 차감형쪽으로 올리도록 수정
 	 	   // 그리고 최종적으로 클릭하면 sortedcoa가 아니라,
 	 	   // sortedconcoa로 확정할 것
-		 console.log(opener.table.sortedcoa)
+		 
+	 	   
 	 	   for(var i in opener.table.sortedcoa){
 	 		  // 손익류 , 차감형 등 집어넣기  
-	          console.log(i)
+	          console.log(opener.table.sortedcoa[i])
 	 		  
-	 		  var sorting = this.sort_coa(i)
+	 		  var sorting = opener.table.sortedcoa[i].middlecategory
 	 		  // 210622 이자류가 별도로 엑셀파일에 집계 안되었을 수도 있으니, 추후 집계할 것
 	 		  
 	 		  if(sorting == "처분류"){
@@ -180,7 +183,8 @@ select {
 	 		  }else if(sorting == "차감"){
 	 			arr.push([i, "자산/부채에 차감하는 계정"]);
 	 		  }else if(sorting){
-	 			var bsis = opener.table.middlecoa[opener.table.coasortobj[opener.table.coasort(i)]]["분류1"];
+	 			var bsis = opener.table.sortedcoa[i].bspl;
+	 			if(bsis == "PL") bsis = "IS"
 	 			arr.push([i, bsis]);
 	 		  }else{
 	 			arr.push([i, ""])  
@@ -189,6 +193,9 @@ select {
 	 		  
 	 	   }
 	 	   
+	 	   console.log(arr);
+	 	   console.log("why")
+	 	   
 	 	   this.tag1 = this.maketable(arr);
 	 	   var temp = document.getElementById("tag1")
 	 	   temp.appendChild(this.tag1);
@@ -196,6 +203,8 @@ select {
 	   
 	   
 	   makeselect(arr){
+		   
+		   
 	       var select = document.createElement('select');
 	       for(var i in arr){
 	           var opt = document.createElement('option');
@@ -219,7 +228,7 @@ select {
 		   // 이제 집어넣기 
 	       // 테이블 만들어 추가하기
 	   	   var temptable = document.createElement("table");
-		   
+		   console.log(opener.table.sortedcoa)
 	       
 	       // 제목행 
 	       var thead = document.createElement("thead");
@@ -237,14 +246,17 @@ select {
 	       var tbody = document.createElement("tbody");
 	       temptable.appendChild(tbody);
 	       
+	       
 	       for(var i in arr){
+	    	   console.log(arr);
+	    	   
 		       var tem = {}
 	           var subdiv = this.maketrtd(tem, 3);
                
 	           var sel = this.makeselect(this.중분류)
 	           tem[0].appendChild(sel);
 	           
-	           sel.value = arr[i][1] 
+	           sel.value = arr[i][1]
 		       
 	           if(arr[i][1] == ""){
 	        	   sel.style = "background: red;"
@@ -254,7 +266,7 @@ select {
 		       tem[1].innerText = arr[i][0];
 	           var sel2 = this.makeselect(this.middlecoa)
 	           tem[2].appendChild(sel2);
-	           sel2.value = opener.table.coasortobj[opener.table.coasort(arr[i][0])] 
+	           sel2.value = opener.table.sortedcoa[arr[i][0]].resultname 
 	           if(sel2.value == ""){
 	        	   sel2.style = "background: red;"
 	           }
@@ -292,7 +304,6 @@ select {
 	       
 
 	       
-	       
 	     for(var i in opener.table.sortedrealcoa){
 	    	 
 	    	if(opener.table.sortedrealcoa[i]["분류1"] == "자산/부채에 차감하는 계정"){
@@ -307,6 +318,39 @@ select {
 	           tem[1].appendChild(sel);
 	           sel.appendChild(opt)
 	           sel.value = "고를것"
+        	   sel.style.background = "red";
+	           // 여기서 확률로 가능한 것을 잘 찾아보자
+	           // 차감형은 단어가 포함되는 계정 중에서, 차감형이 아닌 것으로 하자
+	           var samesize = 0
+	           var sameword = ""
+	           
+	           var realword = i;
+	           for(var j in this.minuscoa){
+	        	   
+	        	   realword = realword.replace(this.minuscoa[j], "");
+	        	   
+	           }
+	           
+	           for(var j in opener.table.sortedrealcoa){
+	        	   
+	        	   var tempsamesize = this.findsameword(realword,j);
+	        	   if(i == "전환사채상환할증금유동"){
+	        		   console.log(j + " : " + tempsamesize);
+	        	   }
+	        	   
+	        	   if(tempsamesize > samesize || (tempsamesize == samesize && Math.abs(realword.length - j.length) < Math.abs(realword.length - sameword.length))){
+	        		   var coa2 = opener.table.sortedrealcoa[j];
+	        		   if(coa2.분류1 != "자산/부채에 차감하는 계정"){
+	        			   sel.value = j;
+	        			   sel.style.background = "white";
+	        			   samesize = tempsamesize;
+	        			   sameword = j
+	        			  
+	        		   }
+	        	   }
+	           }
+	           
+	           
 
 		       tbody.appendChild(subdiv)
 		       tem[0].innerText = i;
@@ -318,6 +362,17 @@ select {
 	       return temptable;
 	   }	   
 	   
+	   findsameword(word1, word2){
+		   
+		   var samecount = 0;
+		   for(var i = 0; i < word1.length; i++){
+			   if(word2.indexOf(word1.substr(i, 2)) >= 0){
+				   samecount++;
+			   }
+			   
+		   }
+		   return samecount;
+	   }
 	   
 	   maketrtd(arr, count, td, stylearr){
 	       
@@ -351,6 +406,7 @@ select {
 	   }
 	   
 	   coaconfirm(){
+		   
 		   
 		   // arr의 구조가 이럼
 		   //210708 이거 할 차례임 이거 반영하고, 그 다음 바로 정산표가 뜨는게 아니도록 수정할 것

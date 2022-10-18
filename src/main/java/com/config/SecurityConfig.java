@@ -159,6 +159,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/notice/purpose").permitAll()
         .antMatchers("/cashflow/*").permitAll()
         .antMatchers("/cashflow2/*").permitAll()
+        .antMatchers("/internal/*").permitAll()
+        .antMatchers("/internal2/*").permitAll()
+        .antMatchers("/game/*").permitAll()
         .antMatchers("/UI/*").permitAll()
         .antMatchers("/JS/*").permitAll()
         .antMatchers("/company/*").permitAll()
@@ -177,7 +180,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().defaultSuccessUrl("/notice/loginSuccess", true)));
 
         http.exceptionHandling()
-        .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/notice/login"));
+        .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/notice/purpose"));
        
 //        http.defaultSuccessUrl("/view/loginSuccess", true);    
        

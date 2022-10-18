@@ -25,6 +25,8 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -32,14 +34,25 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.entity.accountingdata;
+import com.repository.AccountingdataRepository;
+import com.repository.CoaarrayRepository;
+import com.repository.CoagroupdataRepository;
 
+import com.entity.coaarray;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 
 import javax.inject.Inject;
 
@@ -50,7 +63,11 @@ import javax.inject.Inject;
 public class mywork { 
 
 
+    @Autowired
+    private AccountingdataRepository accountingdataRepository;
 	
+    @Autowired
+    private CoaarrayRepository coaarrayrepository;
 
 	private HashMap<String, String> processteammap = new LinkedHashMap<>();
 
@@ -72,12 +89,37 @@ public class mywork {
     }
 
 
-    
+	public List<accountingdata> getaccountlist(){
+		
+		return accountingdataRepository.findAll();
+		
+	}
+	
+   
+	public void setting() {
+	       
+	    	// invoke 대신에 익명클래스를 활용해봄
+		
+		   for(coaarray coa : coaarrayrepository.findAll()) {
+	            coahash.put(coa.getDetailname(), coa);
+	            sortobj.put(coa.getDetailname(), coa.getLargecategory());
+    		      HashMap<String, String> tem1 = new HashMap<>();
+    		      tem1.put("분류1", coa.getBspl());
+    		      tem1.put("분류2", coa.getMiddlecategory());
+    		      tem1.put("분류3", coa.getLargecategory());
+
+   	            middlecoa.put(coa.getResultname(), tem1);
+		   }
+
+
+
+    }
+	
+	/* 아래는 자연어 처리전으로 아래처럼 했었음
     public void setting() {
        
     	// invoke 대신에 익명클래스를 활용해봄
 
-    	System.out.println("why not");
     	
     	subclass sub1 = new subclass() {
     	  @Override
@@ -126,22 +168,101 @@ public class mywork {
             System.out.println(e);    		
     	}
 
-    }
+    } */
     
     public coaarray getcoaarray(String str){
     	return coahash.get(str);
     }
     
+    
     public HashMap<String, String> getsortobj(){
     	return this.sortobj;
     }
+    
     
     public HashMap<String, HashMap<String, String>> getmiddlecoa(){
     	return this.middlecoa;
     }
     
+
+	 // 계정과목 세팅 // 자연어 처리로 처리하는게 깔끔하므로 새로운 함수를 만들었음
+	 public JSONObject coatest_flask(List<String> strs) throws ParseException {
+	         
+	 	 // coa마다 정규식 매칭을 시켜서, 포함되는 coa를 포함시킬 것
+	 	 JSONObject result = new JSONObject();
+    	 JSONObject faillist = new JSONObject();
+    	 JSONObject afterresult = new JSONObject();
+	 	 for(String str : strs) {
+	 		 if(coahash.containsKey(str)) {
+	 			 result.put(str, coahash.get(str));
+	 		 }else {
+	 			 faillist.put(str, 1);
+	 		 }	 
+	 	 }
+		 
+		  // faillist를 파이썬 서버에 요청할 것
+		  afterresult = flaskrequest(faillist);
+		  for(Object str : afterresult.keySet()) {
+			  result.put(str.toString(), coahash.get(afterresult.get(str)));
+		  }
+		  
+	 	 
+		 System.out.println(result);
+         return result;
+	 }
     
+	 public JSONObject flaskrequest(JSONObject faillist) throws ParseException{
+		  // 데이터마이닝 위하여 파이썬 플라스크를 사용하였음
+			
+		String url = "http://localhost:5000/testcashflow";
+		String sb = "";
+		try {
+			
+	        Map<String,Object> params = new LinkedHashMap<>(); // 파라미터 세팅
+	        params.put("coa", faillist);
+	 
+	        StringBuilder postData = new StringBuilder();
+	        for(Map.Entry<String,Object> param : params.entrySet()) {
+	            if(postData.length() != 0) postData.append('&');
+	            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+	            postData.append('=');
+	            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+	        }
+	        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+	 
+	        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+	        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+	        conn.setDoOutput(true);
+	        conn.getOutputStream().write(postDataBytes); // POST 호출
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+
+			String line = null;
+
+			while ((line = br.readLine()) != null) {
+				sb = sb + line + "\n";
+			}
+			
+			br.close();
+         
+		   } catch (MalformedURLException e) {
+			   e.printStackTrace();
+		   } catch (IOException e) {
+			   // TODO Auto-generated catch block
+			   e.printStackTrace();
+		   }
+
+		JSONObject realdata = new JSONObject();
+		JSONParser jsonParse = new JSONParser();
+		realdata = (JSONObject) jsonParse.parse(sb.toString());
+		System.out.println(realdata);
+		return realdata; 
+	 }    
     
+	 
+	 /*
 	 public JSONObject coatest(String str) {
          
 		 // coa마다 정규식 매칭을 시켜서, 포함되는 coa를 포함시킬 것
@@ -149,8 +270,6 @@ public class mywork {
 		 
 		 for(coaarray coa : coahash.values()) {
 			  
-			 
-			 
 			  for(String sort : coa.getlist_sort()) {
 				  Pattern p = Pattern.compile(sort);
 			      Matcher m = p.matcher((String) str);
@@ -197,17 +316,12 @@ public class mywork {
 		 
         // nums에 각 항목별로 num이 1보다 크면 실패가 되어, 비어있는 jsonobject를 넘기고 
      	// 그렇지 않을때는 data를 넘길 것
-		/* 1초과라도  
-     	for(int num : nums.keySet()) {
-     		if(nums.get(num) > 1) {
-     			return new JSONObject();
-     		}
-     	}
-        */
+
     	
      	return data;
 		 
     }
+    */
     
 	    // xl 사용하기 위해서 테스트
 	    public void listmake(String name, String sheetname, int row1, int row2, subclass sub)

@@ -269,6 +269,7 @@ class showing{
 
 	// coa을 더블클릭할때 발생이베튼 
 	this.coa.addEventListener('dblclick',(me) => {
+		
 		  if(this.coa.childNodes.length < 5){
 			  var div = this.makediv(this.coasortedarr, null, "X"); 
 			  this.coa.appendChild(div);
@@ -295,9 +296,10 @@ class showing{
 	  });        
 	  
 	  var func = (res) => {
+		  
 		  this.coaarr = new Set(res.coa);
 		  this.coasortedarr = JSON.parse(JSON.stringify(res.coa));
-		  this.coasortedarr.sort();
+		  //this.coasortedarr.sort();
 		  this.coasortedarr = new Set(this.coasortedarr);
 		  this.companysortedarr = JSON.parse(JSON.stringify(res.company));
 		  this.companysortedarr.sort();
@@ -446,13 +448,15 @@ class showing{
 		
 		var func = (res) => {
    		    	this.searcharr = res;
-   		    	console.log(res);
+   		    	//console.log(res);
    		    	
    		    	this.table.parentNode.removeChild(this.table); 
    		    	this.table = this.maketable(this.searcharr);
    		    	var temp = document.getElementById("tablediv")
    		 	    temp.appendChild(this.table);
 		}
+		
+		//console.log(data);
 		
 		await this.ajaxmethod("searchrequest", data, func);
 		

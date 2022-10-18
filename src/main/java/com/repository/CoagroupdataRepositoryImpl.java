@@ -92,7 +92,7 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 	@Transactional
 	public List<Object[]> findmaxval(String name){
 
-		List<Object[]> list = em.createQuery("select m.company, sum(m.val) as sums from coagroupdata m where m.name = :name and m.exceptcol = '포함' group by m.company order by sums desc")
+		List<Object[]> list = em.createQuery("select m.company, sum(m.val) as sums from coagroupdata m where m.name = :name group by m.company order by sums desc")
 				.setParameter("name", name).setMaxResults(2).getResultList();
 
 		
@@ -111,7 +111,7 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 		word = word.substring(0, word.length() - 1);
 		System.out.println(word);
 		
-		List<Object[]> list = em.createQuery("select m.company, sum(m.val) as sums from coagroupdata m where m.name in (" + word + " ) and m.exceptcol = '포함' group by m.company order by sums desc")
+		List<Object[]> list = em.createQuery("select m.company, sum(m.val) as sums from coagroupdata m where m.name in (" + word + " ) group by m.company order by sums desc")
 				.setMaxResults(5).getResultList();
 
 		
@@ -141,7 +141,7 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 		System.out.println(word);
 
 		
-		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.name in (" + word + " ) and m.exceptcol = '포함' group by m.company order by sums desc")
+		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.name in (" + word + " ) group by m.company order by sums desc")
 				.setMaxResults(5).getResultList();
 		
 		return list;
@@ -172,7 +172,7 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 		System.out.println(word);
 		
 		
-		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.name in (" + word + " ) and m.exceptcol = '포함' group by m.company order by sums desc")
+		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.name in (" + word + " ) group by m.company order by sums desc")
 				.setMaxResults(5).getResultList();
 		
 		return list;
@@ -200,7 +200,7 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 		System.out.println(word);
 
 		
-		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.business in (" + word + " ) and m.name = '자산총계' and m.exceptcol = '포함' group by m.company order by sums desc")
+		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.business in (" + word + " ) and m.name = '자산총계' group by m.company order by sums desc")
 				.setMaxResults(5).getResultList();
 		
 		return list;
@@ -235,7 +235,7 @@ public class CoagroupdataRepositoryImpl implements CoagroupdataRepositoryCustom 
 		word2 = word2.substring(0, word2.length() - 1);
 		System.out.println(word2);
 		
-		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.name in (" + word + " ) and m.business in (" + word2 + ") and m.exceptcol = '포함' group by m.company order by sums desc")
+		List<Object[]> list = em.createQuery("select m.company, sum(m." + opt + ") as sums from coagroupdata m where m.name in (" + word + " ) and m.business in (" + word2 + ") group by m.company order by sums desc")
 				.setMaxResults(5).getResultList();
 
 		

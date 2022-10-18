@@ -188,7 +188,29 @@ public class CfController {
     }
     
     
+    // 여기다가 게임도 같이 일단은 묻었음
+
+    @RequestMapping("/game/purpose")
+    public String gamepurpose(Model model) {
+
+     	
+    	return "/game/purpose";
+    }
+
+    @RequestMapping("/game/explanation")
+    public String gameexplanation(Model model) {
+
+     	
+    	return "/game/explanation";
+    }
+
     
+    @RequestMapping("/game/puzzlefactory")
+    public String puzzlefactory(Model model) {
+
+     	
+    	return "/game/puzzlefactory";
+    }
  
     
     

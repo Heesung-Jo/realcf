@@ -39,11 +39,16 @@ import org.springframework.web.bind.support.*;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import com.entity.accountingdata;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.sym.Name;
 
 
 
 import org.aspectj.lang.annotation.Aspect;
+
+import com.service_internal.jsonmake;
 
 
 @RestController
@@ -53,10 +58,13 @@ public class CfRestController {
 	@Autowired
 	private mywork mywork;
 
+	@Autowired
+	private jsonmake jsonmake;
+
     
 	@PostMapping("/cashflow/controlmethod")
 	public ResponseEntity<Object> inputtest(HttpSession session,
-		@RequestParam(value="realcoa[]") List<String> realcoa,	HttpServletRequest request) {
+		@RequestParam(value="realcoa[]") List<String> realcoa,	HttpServletRequest request) throws ParseException {
 	
 		ArrayList<String> names = new ArrayList<>();
 		ArrayList<String> paras = new ArrayList<>();
@@ -64,25 +72,29 @@ public class CfRestController {
 		System.out.println(realcoa);
 		JSONArray arr = new JSONArray();
 		JSONObject realarr = new JSONObject();
-		
-		for(String coa : realcoa) {
-			realarr.put(coa, mywork.coatest(coa));
-		}
-	
-		
-       /*		
-		for(String name : request.getParameterMap().keySet()) {
-			names.add(name);
-			paras.add(request.getParameter(name));
-	        System.out.println(name);
-	        System.out.println(paras);
-
-		}
-	   */
+        realarr = mywork.coatest_flask(realcoa);
+        
+        
+        System.out.println("이제 넘어왔습니다.");
 		return ResponseEntity.status(HttpStatus.OK).body(realarr);
 	       
 	}    
 
+	@PostMapping("/cashflow2/controlmethod")
+	public ResponseEntity<Object> inputtest2(HttpSession session,
+		@RequestParam(value="realcoa[]") List<String> realcoa,	HttpServletRequest request) throws ParseException {
+	
+		ArrayList<String> names = new ArrayList<>();
+		ArrayList<String> paras = new ArrayList<>();
+ 
+		System.out.println(realcoa);
+		JSONArray arr = new JSONArray();
+		JSONObject realarr = new JSONObject();
+        realarr = mywork.coatest_flask(realcoa);
+		return ResponseEntity.status(HttpStatus.OK).body(realarr);
+	       
+	}  
+	
 	@PostMapping("/cashflow/sortobj")
 	public ResponseEntity<Object> makesortobj(HttpSession session,
 			HttpServletRequest request) {
@@ -96,6 +108,17 @@ public class CfRestController {
 	}    
 	
 	
+	@PostMapping("/cashflow/tutorialdata")
+	public ResponseEntity<Object> getaccountlist(HttpSession session,
+			HttpServletRequest request) throws JsonProcessingException, ParseException {
+	
+    	System.out.println("tutorialdata");
+		
+    	List<accountingdata> accountlist = mywork.getaccountlist();
+    	
+		return ResponseEntity.status(HttpStatus.OK).body(jsonmake.processtojson3(accountlist));
+	       
+	}    
 	
 	
 	@PostMapping("/cashflow/poolmake")
