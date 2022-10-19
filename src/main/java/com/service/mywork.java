@@ -54,6 +54,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 
@@ -77,8 +78,8 @@ public class mywork {
 
 	private HashMap<String, HashMap<String, String>> middlecoa = new LinkedHashMap();
     
-    @Autowired
-    public void mywork() { 
+	@PostConstruct
+    public void myworktime() { 
     	setting();
     } 
 	
