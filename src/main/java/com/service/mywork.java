@@ -101,16 +101,23 @@ public class mywork {
 	public void setting_my() {
 	       
 	    	// invoke 대신에 익명클래스를 활용해봄
+		   int count = 0;
 		
 		   for(coaarray coa : coaarrayrepository.findAll()) {
+			    count++;
+			    
+			    if(count > 100) {
+			    	break;
+			    }
 	            coahash.put(coa.getDetailname(), coa);
 	            sortobj.put(coa.getDetailname(), coa.getLargecategory());
-    		      HashMap<String, String> tem1 = new HashMap<>();
-    		      tem1.put("분류1", coa.getBspl());
-    		      tem1.put("분류2", coa.getMiddlecategory());
-    		      tem1.put("분류3", coa.getLargecategory());
+    		    HashMap<String, String> tem1 = new HashMap<>();
+    		    tem1.put("분류1", coa.getBspl());
+    		    tem1.put("분류2", coa.getMiddlecategory());
+    		    tem1.put("분류3", coa.getLargecategory());
 
    	            middlecoa.put(coa.getResultname(), tem1);
+   	            tem1.clear();
 		   }
 
 
