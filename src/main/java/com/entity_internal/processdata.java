@@ -129,9 +129,9 @@ public abstract class processdata {
 	 private String processname;
 	 
 	 private String mainprocess;
-	 private String subprocesscode;
+	// private String subprocesscode;
 	 private String subprocess;
-	 private String subprocessnumber;
+	// private String subprocessnumber;
 
      
 	 // 세부 프로세스 관련 변수들
@@ -258,32 +258,32 @@ public abstract class processdata {
      
      
      // 예외사항 관련 변수들
-     private String exceptitem;
-     private String exceptexplain;
+  //   private String exceptitem;
+   //  private String exceptexplain;
      
      
      // 팀 관련. 위에 childtable에 있으나, 일단 작성된 엑셀파일에 따라서 String 변수로 반영. 나중에 수정할 것
      private String teamname;
-     private String ControlOwner;
+  //   private String ControlOwner;
      
-     private String proofname;
+   //  private String proofname;
      
      
      
      
      // 아래는 과거 부분임
 	 //210419 추가함 나중에 항목을 더 늘려야함
-	 private String companyname;
-	 private String processcode;
+//	 private String companyname;
+//	 private String processcode;
 	 private String riskcode;
 	 private String risk;
-	 private String riskgrade;
-	 private String detailprocess;
-	 private String detailprocessname;
-	 private String processexplain;
-	 private String controlcode;
-	 private String controlname;
-	 private String controlexplain;
+//	 private String riskgrade;
+//	 private String detailprocess;
+//	 private String detailprocessname;
+//	 private String processexplain;
+//	 private String controlcode;
+//	 private String controlname;
+//	 private String controlexplain;
 
 	 public void setbusinesscode(String x){
 	        this.businesscode = x;
@@ -291,30 +291,13 @@ public abstract class processdata {
 	public String getbusinesscode(){
 	        return businesscode;
 	}
-	public void setcompanyname(String x){
-	        this.companyname = x;
-	}
-	public String getcompanyname(){
-	        return companyname;
-	}
-	public void setprocesscode(String x){
-	        this.processcode = x;
-	}
-	public String getprocesscode(){
-	        return processcode;
-	}
 	public void setprocessname(String x){
 	        this.processname = x;
 	}
 	public String getprocessname(){
 	        return processname;
 	}
-	public void setsubprocesscode(String x){
-	        this.subprocesscode = x;
-	}
-	public String getsubprocesscode(){
-	        return subprocesscode;
-	}
+
 	public void setsubprocess(String x){
 	        this.subprocess = x;
 	}
@@ -333,48 +316,7 @@ public abstract class processdata {
 	public String getrisk(){
 	        return risk;
 	}
-	public void setriskgrade(String x){
-	        this.riskgrade = x;
-	}
-	public String getriskgrade(){
-	        return riskgrade;
-	}
-	public void setdetailprocess(String x){
-	        this.detailprocess = x;
-	}
-	public String getdetailprocess(){
-	        return detailprocess;
-	}
-	public void setdetailprocessname(String x){
-	        this.detailprocessname = x;
-	}
-	public String getdetailprocessname(){
-	        return detailprocessname;
-	}
-	public void setprocessexplain(String x){
-	        this.processexplain = x;
-	}
-	public String getprocessexplain(){
-	        return processexplain;
-	}
-	public void setcontrolcode(String x){
-	        this.controlcode = x;
-	}
-	public String getcontrolcode(){
-	        return controlcode;
-	}
-	public void setcontrolname(String x){
-	        this.controlname = x;
-	}
-	public String getcontrolname(){
-	        return controlname;
-	}
-	public void setcontrolexplain(String x){
-	        this.controlexplain = x;
-	}
-	public String getcontrolexplain(){
-	        return controlexplain;
-	}
+
 
 	 // 210419 여기까지 추가됨
 	 

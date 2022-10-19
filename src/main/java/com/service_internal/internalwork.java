@@ -779,15 +779,6 @@ public class internalwork<E> {
 		for(processdata pro : arr) {
 			JSONObject temp = new JSONObject();
 			temp.put("name", pro.getname());
-			temp.put("companyname", pro.getcompanyname());
-			System.out.println(pro.getdetailprocessname());
-			
-			temp.put("controlexplain", pro.getcontrolexplain());
-			temp.put("controlname", pro.getcontrolname());
-			temp.put("detailprocess", pro.getdetailprocess());
-			temp.put("detailprocessname", pro.getdetailprocessname());
-			temp.put("businesscode", pro.getbusinesscode());
-			temp.put("processexplain", pro.getprocessexplain());
 			temp.put("processname", pro.getprocessname());
 			temp.put("team", pro.getteamdata().get(0).getTeamname());
 
@@ -802,9 +793,6 @@ public class internalwork<E> {
 				pas.add(data.getname());
 			}
 
-			childdata.put(pro.getdetailprocessname(), childs);
-			padata.put(pro.getdetailprocessname(), pas);
-			realdata.put(pro.getdetailprocessname(), temp);
 			
 		}
 
@@ -1132,25 +1120,13 @@ public class internalwork<E> {
 	      pro.setbusinesscode (businesscode );
 	      }
 
-	      String companyname = makestring(row, 1);
-	      if(companyname != null) {
-	      pro.setcompanyname(companyname);
-	      }
 
-	      String processcode = makestring(row, 2);
-	      if(processcode != null) {
-	      pro.setprocesscode(processcode);
-	      }
 
 	      String processname = makestring(row, 3);
 	      if(processname != null) {
 	      pro.setprocessname(processname);
 	      }
 
-	      String subprocesscode = makestring(row, 4);
-	      if(subprocesscode != null) {
-	      pro.setsubprocesscode(subprocesscode);
-	      }
 
 	      String subprocess = makestring(row, 5);
 	      if(subprocess != null) {
@@ -1167,40 +1143,8 @@ public class internalwork<E> {
 	      pro.setrisk(risk);
 	      }
 
-	      String riskgrade = makestring(row, 8);
-	      if(riskgrade != null) {
-	      pro.setriskgrade(riskgrade);
-	      }
 
-	      String detailprocess = makestring(row, 9);
-	      if(detailprocess != null) {
-	      pro.setdetailprocess(detailprocess);
-	      }
 
-	      String detailprocessname = makestring(row, 10);
-	      if(detailprocessname != null) {
-	      pro.setdetailprocessname(detailprocessname);
-	      }
-
-	      String processexplain = makestring(row, 11);
-	      if(processexplain != null) {
-	      pro.setprocessexplain(processexplain);
-	      }
-
-	      String controlcode = makestring(row, 12);
-	      if(controlcode != null) {
-	      pro.setcontrolcode(controlcode);
-	      }
-
-	      String controlname = makestring(row, 13);
-	      if(controlname != null) {
-	      pro.setcontrolname(controlname);
-	      }
-
-	      String controlexplain = makestring(row, 14);
-	      if(controlexplain != null) {
-	      pro.setcontrolexplain(controlexplain);
-	      }
 		  
 	      String teams = makestring(row, 47);
 	      if(teams != null) {
@@ -1238,11 +1182,11 @@ public class internalwork<E> {
 	    	  
 	    	  processdata parent = processrepository.getprocessquery("detailprocessname", node).get(0);
 	    	  parentnodedata act = new parentnodedata();
-	    	  act.setname(parent.getdetailprocessname());
+	    	 // act.setname(parent.getdetailprocessname());
               pro.addparentnodedata(act);
 
 	    	  childnodedata act2 = new childnodedata();
-	    	  act2.setname(pro.getdetailprocessname());
+	    	//  act2.setname(pro.getdetailprocessname());
               parent.addchildnodedata(act2);
               
 	    	   

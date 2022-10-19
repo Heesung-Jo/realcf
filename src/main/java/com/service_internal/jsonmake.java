@@ -312,16 +312,7 @@ public class jsonmake {
 			for(processdata pro : arr) {
 			
 				temp.put("name", pro.getname());
-				temp.put("companyname", pro.getcompanyname());
-				
-				
-				temp.put("controlexplain", pro.getcontrolexplain());
-				temp.put("controlname", pro.getcontrolname());
-				temp.put("detailprocess", pro.getdetailprocess());
-				temp.put("detailprocessname", pro.getdetailprocessname());
-				temp.put("businesscode", pro.getbusinesscode());
-				temp.put("processexplain", pro.getprocessexplain());
-				temp.put("processname", pro.getprocessname());
+					temp.put("processname", pro.getprocessname());
 				temp.put("team", pro.getteamdata().get(0).getTeamname());
 				
 				ArrayList<String> childs = new ArrayList<>();
@@ -339,7 +330,6 @@ public class jsonmake {
 				temp.put("before", pas); 
 
 				
-				realdata.put(pro.getcontrolname(), temp);
 
 				
 			}
