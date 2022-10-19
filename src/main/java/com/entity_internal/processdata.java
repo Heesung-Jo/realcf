@@ -57,9 +57,9 @@ public abstract class processdata {
 	 
 	 
 	 
-	 private String sameword1;  // 한 플로우차트 안에서 공유되는 단어를 의미함
-	 private String sameword2;
-	 private String sameword3;
+	// private String sameword1;  // 한 플로우차트 안에서 공유되는 단어를 의미함
+	// private String sameword2;
+	// private String sameword3;
 	 
 
 	 private String realname; // 현재는 processname1을 realname으로 생각했는데, 없는 경우도 있으므로, 별도의 열을 추가하였음.
@@ -137,14 +137,15 @@ public abstract class processdata {
 	 // 세부 프로세스 관련 변수들
 
 	 // 객관식을 위해서, process1 ~ 5에서 필수적인 것은 1, 객관식 선택가능한 것은 2, sentenceplus의 경우에는 3 등으로 구분을 위한 열을 만들자.
-	 private Integer processplus1;
-	 private Integer processplus2;
-	 private Integer processplus3;
-	 private Integer processplus4;
-	 private Integer processplus5;
-	 private Integer processplus6;
-	 private Integer processplus7;
+	// private Integer processplus1;
+	// private Integer processplus2;
+	// private Integer processplus3;
+	// private Integer processplus4;
+	// private Integer processplus5;
+	// private Integer processplus6;
+	// private Integer processplus7;
 	 
+	 /*
 	 // sentenceplus일 경우에, 순번을 부여하기 위해서 만들었음
 	 private Integer processpluscount1;
 	 private Integer processpluscount2;
@@ -154,7 +155,7 @@ public abstract class processdata {
 	 private Integer processpluscount6;
 	 private Integer processpluscount7;
 	 
-	 
+	 */
 	 private String processname1;
      private String processname2;
      private String processname3;
@@ -173,6 +174,7 @@ public abstract class processdata {
 
      
      // 통제관련 변수들
+     /*
 	 private Integer controlplus1;
 	 private Integer controlplus2;
 	 private Integer controlplus3;
@@ -198,7 +200,7 @@ public abstract class processdata {
      private String controlcode5;
      private String controlcode6;
      private String controlcode7;
-
+*/
      
      private String controlname1;
      private String controlname2;
@@ -216,7 +218,7 @@ public abstract class processdata {
      private String controlexplain6;
      private String controlexplain7;
 
-     
+     /*
      // 후행 프로세스 관련 변수들
      private String processname1_after;
      private String processname2_after;
@@ -227,7 +229,7 @@ public abstract class processdata {
      private String processexplain2_after;
      private String processexplain3_after;
      private String processexplain4_after;
-
+*/
      /*
      
      // 진짜 그 다음으로 이어는 후행 프로세스 관련 변수들
