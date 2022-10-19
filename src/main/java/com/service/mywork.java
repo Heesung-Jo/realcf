@@ -97,8 +97,8 @@ public class mywork {
 		
 	}
 	
-   
-	public void setting() {
+	@PostConstruct
+	public void setting_my() {
 	       
 	    	// invoke 대신에 익명클래스를 활용해봄
 		

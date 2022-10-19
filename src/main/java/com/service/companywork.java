@@ -203,7 +203,7 @@ public class companywork {
     
     
     @PostConstruct
-    public void setting() {
+    public void setting_com() {
     	
     	
     	// 회사배열 입력
