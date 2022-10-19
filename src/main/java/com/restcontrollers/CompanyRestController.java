@@ -219,7 +219,7 @@ public class CompanyRestController {
 	}  	
 	
 	
-	
+	/*
 	@PostMapping("/mycontrol/companycontrol")
 	public ResponseEntity<Object> mycontrol(HttpSession session, 
 			 Model model //, @PathVariable String name
@@ -237,7 +237,7 @@ public class CompanyRestController {
 		  return ResponseEntity.status(HttpStatus.OK).body(1909);
 	}
     	  
-  }
+  }*/
 
 	
 	
