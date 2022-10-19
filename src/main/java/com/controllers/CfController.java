@@ -36,7 +36,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 
-import com.service.mywork;
 
 
 import org.aspectj.lang.annotation.Aspect;
@@ -51,8 +50,6 @@ public class CfController {
 
 	@Autowired
 	private memberService memberservice;
-	@Autowired
-	private mywork mywork;
 	
     private final UserContext userContext;
 
