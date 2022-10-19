@@ -49,8 +49,6 @@ public class coaarray {
 	 private String resultname;
      private String middlecategory;
      private String largecategory;
-	 //private int order;
-	 private ArrayList<String> list_sort = new ArrayList<>();
 	 
 	 private String bspl;
 	 

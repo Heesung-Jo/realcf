@@ -2,7 +2,6 @@ package com.repository;
 
 
 
-import com.entity.boarddata;
 import com.entity.coaarray;
 
 import java.util.List;
