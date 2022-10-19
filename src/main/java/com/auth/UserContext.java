@@ -1,6 +1,7 @@
 package com.auth;
 
-import com.entity.memberdata;
+
+import com.entity_internal.member;
 
 /**
  * Manages the current {@link memberdata}. This demonstrates how in larger applications it is good to abstract out
@@ -14,8 +15,8 @@ import com.entity.memberdata;
 public interface UserContext {
 
  
-    memberdata getCurrentUser();
+	member getCurrentUser();
 
  
-   // void setCurrentUser(member user);
+    void setCurrentUser(member user);
 }

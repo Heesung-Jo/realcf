@@ -148,9 +148,6 @@ public class internalwork<E> {
 	private currentmanageservice currentmanageservice;
 
 	
-	public void mywork() { 
-    	
-    } 
 
 	
 	/* 순서세팅
@@ -349,7 +346,7 @@ public class internalwork<E> {
     public List<String> findstartlist(member user){
     	
     	return parentnodedataRepository.findstartlist().stream().filter(s -> 
-    		UniteddataRepository.findByProcessname1(s).get(0).getPersoncharge().equals(user.getRealname())
+    		UniteddataRepository.findByProcessname1(s).get(0).getPersoncharge().equals(user.getName())
         ).collect(Collectors.toList());
     	
     }

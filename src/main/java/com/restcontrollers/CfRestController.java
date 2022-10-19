@@ -52,7 +52,7 @@ import com.service_internal.jsonmake;
 
 
 @RestController
-@SessionAttributes("process")
+//@SessionAttributes("process")
 public class CfRestController {
 
 	@Autowired
@@ -143,5 +143,27 @@ public class CfRestController {
 	}
     	  
   }
+	
+	
+	@PostMapping("/mycontrol/cfcontrol")
+	public ResponseEntity<Object> mycontrol(HttpSession session, 
+			 Model model //, @PathVariable String name
+	) {
+		
+	//System.out.println(name);
+    
+    
+	try {	
+	    mywork.setting();
+		return ResponseEntity.status(HttpStatus.OK).body(123);
+
+	} catch(Exception e) {
+    	  System.out.println(e);
+		  return ResponseEntity.status(HttpStatus.OK).body(1909);
+	}
+    	  
+  }
+	
+	
 	
 }

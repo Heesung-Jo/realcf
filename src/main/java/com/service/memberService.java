@@ -5,23 +5,24 @@ import java.util.List;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import com.entity.memberdata;
+
+import com.entity_internal.member;
 
 
 
 public interface memberService {
 
 
-    memberdata getUser(int id);
+	member getUser(int id);
 
 
-    memberdata findUserByEmail(String email);
+	member findUserByEmail(String email);
 
 
-    List<memberdata> findUsersByEmail(String partialEmail);
+    List<member> findUsersByEmail(String partialEmail);
 
 
-    int createUser(memberdata user);
+    int createUser(member user);
 
 
 }

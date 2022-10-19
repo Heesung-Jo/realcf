@@ -55,16 +55,17 @@ public class boarddata implements Serializable {
 	 @NotEmpty(message = "내용이 기재되어야 합니다.")
 	 private String detail;
 	 
+	 /*
 	 @NotNull
 	 @ManyToOne(fetch = FetchType.EAGER)
 	 @JoinColumn(name = "memberdata_id")
 	 private memberdata memberdata;
-	
+	*/
 	 
 	 public boarddata() {
 		 
 	 }
-
+/*
      public void setmemberdata(memberdata x){ 
          this.memberdata = x; 
          memberdata.addboarddata(this);
@@ -74,7 +75,7 @@ public class boarddata implements Serializable {
      public memberdata getmemberdata(){ 
          return memberdata; 
      }
-           
+  */         
 	 
      public void setId(Long x){ 
          this.id = x; 

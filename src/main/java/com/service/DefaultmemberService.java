@@ -17,7 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.repository.CoagroupdataRepository;
 import com.repository.memberdao;
 import com.entity.Role;
-import com.entity.memberdata;
+
+import com.entity_internal.member;
 import com.entity.boarddata;
 import com.repository.BoarddataRepository;
 
@@ -69,24 +70,36 @@ public class DefaultmemberService implements memberService {
  		// role 세팅
 		Role role = Role.USER;
 		// 기본 아이디 세팅
-
+		member user = new member();
+	        user.setEmail("gochoking@naver.com");
+	       
+	        user.setPassword("{noop}1234");
+	        user.setRole(role);
+	        
+	        
+             
+	        
+	        // 팀데이터도 일부 만들어 집어넣어야 함
+	        //user.setTeamdata();
+	        System.out.println("여기가 문제니");
+	        int id = createUser(user);
         
        // this.passwordEncoder = passwordEncoder;
     }
 
 
     @Override
-    public memberdata getUser(int id) {
+    public member getUser(int id) {
         return userDao.getUser(id);
     }
 
     @Override
-    public memberdata findUserByEmail(String email) {
+    public member findUserByEmail(String email) {
         return userDao.findUserByEmail(email);
     }
 
     @Override
-    public List<memberdata> findUsersByEmail(String partialEmail) {
+    public List<member> findUsersByEmail(String partialEmail) {
         return userDao.findUsersByEmail(partialEmail);
     }
 
@@ -97,7 +110,7 @@ public class DefaultmemberService implements memberService {
      * @return
      */
     @Override
-    public int createUser(memberdata user) {
+    public int createUser(member user) {
         String encodedPassword = user.getPassword(); // passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         int id = userDao.createUser(user);

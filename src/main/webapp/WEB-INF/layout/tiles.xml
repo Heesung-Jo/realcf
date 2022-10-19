@@ -71,4 +71,21 @@
     <put-attribute name="body" value="/WEB-INF/game/{1}.jsp" />
   </definition>
   
+  
+  
+    <definition name="mycontrol" template="/WEB-INF/layout/page.jsp">
+    <put-attribute name="header" value="/WEB-INF/layout/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    <put-attribute name="menu" value="/WEB-INF/layout/menu6.jsp" />
+
+  </definition>
+
+
+  <definition name="/mycontrol/*" extends="notice">
+    <put-attribute name="body" value="/WEB-INF/mycontrol/{1}.jsp" />
+  </definition>
+  
+  
+  
+  
 </tiles-definitions>

@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public enum Role {
 
-	   임원(0, "임원"), 팀장(1, "팀장"), 팀원(2, "팀원");
+	   USER(0, "USER");
 
 	   private int num;
 	   private String key;

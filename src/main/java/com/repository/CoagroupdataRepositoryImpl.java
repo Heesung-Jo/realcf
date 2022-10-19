@@ -2,7 +2,7 @@ package com.repository;
 
 
 import com.entity.coagroupdata;
-import com.entity.memberdata;
+
 
 
 import java.util.ArrayList;

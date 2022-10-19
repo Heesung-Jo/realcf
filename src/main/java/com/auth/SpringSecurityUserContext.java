@@ -1,6 +1,6 @@
 package com.auth;
 
-import com.entity.memberdata;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+
+import com.entity_internal.member;
 import com.service.memberService;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
@@ -28,57 +30,66 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 @Component
 public class SpringSecurityUserContext implements UserContext {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(SpringSecurityUserContext.class);
+	   private static final Logger logger = LoggerFactory
+	            .getLogger(SpringSecurityUserContext.class);
 
-    private final memberService memberService;
- 
+	    private final memberService memberService;
+	    private final UserDetailsService userDetailsService;
 
-    @Autowired
-    public SpringSecurityUserContext(final memberService memberService
-                                  ) {
-        if (memberService == null) {
-            throw new IllegalArgumentException("calendarService cannot be null");
-        }
-   
-        this.memberService = memberService;
-     
-    }
+	    @Autowired
+	    public SpringSecurityUserContext(final memberService memberService,
+	                                     final UserDetailsService userDetailsService) {
+	        if (memberService == null) {
+	            throw new IllegalArgumentException("calendarService cannot be null");
+	        }
+	        if (userDetailsService == null) {
+	            throw new IllegalArgumentException("userDetailsService cannot be null");
+	        }
+	        this.memberService = memberService;
+	        this.userDetailsService = userDetailsService;
+	    }
 
-     @Override
-    public memberdata getCurrentUser() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        if (authentication == null) {
-            return null;
-        }
+	    /**
+	     * Get the {@link member} by obtaining the currently logged in Spring Security user's
+	     * {@link Authentication#getName()} and using that to find the {@link member} by email address (since for our
+	     * application Spring Security usernames are email addresses).
+	     */
+	    @Override
+	    public member getCurrentUser() {
+	        SecurityContext context = SecurityContextHolder.getContext();
+	        Authentication authentication = context.getAuthentication();
+	        if (authentication == null) {
+	            return null;
+	        }
 
-        OAuth2User user = (OAuth2User)authentication.getPrincipal();
-        String email = (String) user.getAttributes().get("email");
-        if (email == null) {
-            return null;
-        }
-        
-        memberdata result = memberService.findUserByEmail(email);
-        if (result == null) {
-            throw new IllegalStateException(
-                    "Spring Security is not in synch with members. Could not find user with email " + email);
-        }
+	        System.out.println(authentication.getName());
+	        
+	        member user = (member)authentication.getPrincipal();
+	        String email = user.getEmail();
+	        if (email == null) {
+	            return null;
+	        }
+	        member result = memberService.findUserByEmail(email);
+	        if (result == null) {
+	            throw new IllegalStateException(
+	                    "Spring Security is not in synch with members. Could not find user with email " + email);
+	        }
 
-        logger.info("member: {}", result);
-        return result;
-    }
-/*
-    @Override
-    public void setCurrentUser(member user) {
-        if (user == null) {
-            throw new IllegalArgumentException("user cannot be null");
-        }
-        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
-                user.getPassword(), userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
-*/
+	        logger.info("member: {}", result);
+	        return result;
+	    }
+
+	    @Override
+	    public void setCurrentUser(member user) {
+	        if (user == null) {
+	            throw new IllegalArgumentException("user cannot be null");
+	        }
+	        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+	        
+	        System.out.println("여기까지 넘어옴 다행인가");
+	        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
+	                user.getPassword(), userDetails.getAuthorities());
+	        SecurityContextHolder.getContext().setAuthentication(authentication);
+	    }
      
 } // The End...

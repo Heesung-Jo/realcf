@@ -756,7 +756,24 @@ public class AjaxInternalController {
     	return ResponseEntity.status(HttpStatus.OK).body(tem);
     }
 
+	@PostMapping("/mycontrol/internalcontrol")
+	public ResponseEntity<Object> mycontrol(HttpSession session, 
+			 Model model //, @PathVariable String name
+	) {
+		
+	//System.out.println(name);
     
+    
+	try {	
+	    Scoping.settingresultcoa();
+		return ResponseEntity.status(HttpStatus.OK).body(123);
+
+	} catch(Exception e) {
+    	  System.out.println(e);
+		  return ResponseEntity.status(HttpStatus.OK).body(1909);
+	}
+    	  
+  }
     
 	
    }

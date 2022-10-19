@@ -80,7 +80,7 @@ public class mywork {
     
 	@Autowired
     public void mywork() { 
-    	setting();
+    	//setting();
     } 
 	
 	/*

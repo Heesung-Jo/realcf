@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.entity.memberdata;
+
 import com.service.memberService;
 import com.service.xlmake;
 
@@ -38,7 +38,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.service.memberService;
 
-import com.entity.memberdata;
 //import com.service.UserContext;
 
 import com.model.SignupForm;
@@ -65,17 +64,15 @@ public class CompanyController {
             .getLogger(CompanyController.class);
 
 	@Autowired
-	private memberService memberservice;
+	private memberService memberService;
 	
 	
 	
 	@Autowired
 	private companywork companywork;
 
-	
+	@Autowired
     private final UserContext userContext;
-
-	private final memberService memberService;
 	
 	/*
     private AuthService authService;

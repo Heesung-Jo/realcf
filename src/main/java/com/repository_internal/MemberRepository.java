@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface MemberRepository extends JpaRepository<member, Integer> {
 
-    List<member> findByEmail(String name); 
+	List<member> findByEmail(String name); 
     List<member> findByRealname(String name); 
     
 } // The End...

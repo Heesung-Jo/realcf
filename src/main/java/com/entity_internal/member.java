@@ -1,6 +1,6 @@
 package com.entity_internal;
 
-import com.enumfolder.Role;
+import com.entity.Role;
 import com.enumfolder.position;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -48,16 +48,16 @@ public class member {
     
     private String teamname;
     
-    /*
+    
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
-   */
-    
+   
+    /*
 	 @JsonIgnore
 	 @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	 private List<roledata> roledata = new ArrayList<>();
-    
+    */
     
 	@JsonIgnore
 	@ManyToOne

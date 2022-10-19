@@ -64,9 +64,8 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 import com.service.memberService;
 
 import com.entity.Role;
-import com.entity.memberdata;
+
 import com.repository.memberdao;
-import com.userdetail.CustomOAuth2UserService;
 import javax.servlet.http.HttpSession;
 /**
  * Spring Security Config Class
@@ -161,14 +160,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/cashflow2/*").permitAll()
         .antMatchers("/internal/*").permitAll()
         .antMatchers("/internal2/*").permitAll()
-        .antMatchers("/game/*").permitAll()
+           .antMatchers("/game/*").permitAll()
         .antMatchers("/UI/*").permitAll()
         .antMatchers("/JS/*").permitAll()
         .antMatchers("/company/*").permitAll()
        .antMatchers("/thymeleaf/*").permitAll()
        .antMatchers("/notice/login").permitAll()
        .antMatchers("/**").hasRole("USER")
-     //  .antMatchers("/google").hasAuthority(GOOGLE.getRoleType())
+       .and().formLogin()
+       .loginPage("/notice/loginForm")
+       .loginProcessingUrl("/notice/login")
+           .failureUrl("/login/form?error")
+          .usernameParameter("username")
+          .passwordParameter("password")
+
+       .defaultSuccessUrl("/notice/loginSuccess", true)
+       .permitAll()
+    .and().httpBasic()
+    .and().csrf().disable();
+
+       
+       
+       //  .antMatchers("/google").hasAuthority(GOOGLE.getRoleType())
+   /*
        .anyRequest().authenticated()
        .and()
        .logout()
@@ -178,9 +192,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userInfoEndpoint(userInfo -> userInfo
                     .oidcUserService(this.oidcUserService())
                 .and().defaultSuccessUrl("/notice/loginSuccess", true)));
-
+*/
         http.exceptionHandling()
-        .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/notice/purpose"));
+        .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/company/purpose"));
        
 //        http.defaultSuccessUrl("/view/loginSuccess", true);    
        
@@ -220,7 +234,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private memberdao memberdao;	
 
-    
+	
+    /*
     private OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService() {
         final OidcUserService delegate = new OidcUserService();
         
@@ -271,7 +286,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             return oidcUser;
         };
     }
-    
+    */
     /*
     @Override
     public void configure(final WebSecurity web) throws Exception {

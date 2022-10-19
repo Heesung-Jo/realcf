@@ -51,8 +51,10 @@ public class CfController {
 	@Autowired
 	private memberService memberservice;
 	
+	@Autowired
     private final UserContext userContext;
 
+	@Autowired
 	private final memberService memberService;
 	
 	/*

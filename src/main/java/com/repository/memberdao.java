@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import com.entity.memberdata;
+import com.entity_internal.member;
 
 /**
  * An interface for managing {@link memberdata} instances.
@@ -23,7 +23,7 @@ public interface memberdao {
      * @throws EmptyResultDataAccessException
      *             if the {@link memberdata} cannot be found
      */
-    memberdata getUser(int id);
+	member getUser(int id);
 
     /**
      * Finds a given {@link memberdata} by email address.
@@ -34,7 +34,7 @@ public interface memberdao {
      * @throws IllegalArgumentException
      *             if email is null.
      */
-    memberdata findUserByEmail(String email);
+	member findUserByEmail(String email);
 
 
     /**
@@ -47,7 +47,7 @@ public interface memberdao {
      * @throws IllegalArgumentException
      *             if email is null or empty String.
      */
-    List<memberdata> findUsersByEmail(String partialEmail);
+    List<member> findUsersByEmail(String partialEmail);
 
     /**
      * Creates a new {@link memberdata}.
@@ -58,5 +58,5 @@ public interface memberdao {
      * @throws IllegalArgumentException
      *             if {@link memberdata#getId()} is non-null.
      */
-    int createUser(memberdata user);
+    int createUser(member user);
 }

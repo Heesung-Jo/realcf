@@ -2,9 +2,9 @@ package com.repository;
 
 
 import com.entity.Role;
-import com.entity.memberdata;
-
+import com.entity_internal.member;
 import com.repository.memberdatarepository;
+import com.repository_internal.MemberRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,12 +34,12 @@ public class Jpamemberdao implements memberdao {
 
     // --- members ---
     @Autowired
-    private memberdatarepository userRepository;
+    private MemberRepository userRepository;
 
     // --- constructors ---
 
     @Autowired
-    public Jpamemberdao(final memberdatarepository repository
+    public Jpamemberdao(final MemberRepository repository
                               ) {
         if (repository == null) {
             throw new IllegalArgumentException("repository cannot be null");
@@ -52,7 +52,7 @@ public class Jpamemberdao implements memberdao {
     
    // @Override
     @Transactional(readOnly = true)
-    public memberdata getUser(final int id) {
+    public member getUser(final int id) {
 
         return userRepository.getOne(id);
     }
@@ -60,15 +60,15 @@ public class Jpamemberdao implements memberdao {
     
   //  @Override
     @Transactional(readOnly = true)
-    public memberdata findUserByEmail(final String email) {
+    public member findUserByEmail(final String email) {
     	
-    	
+    	System.out.println("여기까지도 왔네요");
         if (email == null) {
             throw new IllegalArgumentException("email cannot be null");
         }
         try {
-        	
-            return userRepository.findByEmail(email);
+        	System.out.println("여기까지도 왔네요 ~~~~");
+            return userRepository.findByEmail(email).get(0);
         } catch (EmptyResultDataAccessException notFound) {
         	System.out.println("여기가 에러니");
         	
@@ -80,7 +80,7 @@ public class Jpamemberdao implements memberdao {
     // TODO FIXME Need to add a LIKE clause
    // @Override
     @Transactional(readOnly = true)
-    public List<memberdata> findUsersByEmail(final String email) {
+    public List<member> findUsersByEmail(final String email) {
         if (email == null) {
             throw new IllegalArgumentException("email cannot be null");
         }
@@ -91,7 +91,7 @@ public class Jpamemberdao implements memberdao {
     }
 
     // @Override
-    public int createUser(final memberdata userToAdd) {
+    public int createUser(final member userToAdd) {
         if (userToAdd == null) {
             throw new IllegalArgumentException("userToAdd cannot be null");
         }
@@ -103,7 +103,9 @@ public class Jpamemberdao implements memberdao {
         Role role = Role.USER;
         userToAdd.setRole(role);
 
-        memberdata result = userRepository.save(userToAdd);
+        member result = userRepository.save(userToAdd);
+        
+        System.out.println("저장합니다.");
         
 
         return result.getId();

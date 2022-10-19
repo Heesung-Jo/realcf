@@ -32,7 +32,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.entity.memberdata;
+
+import com.entity_internal.member;
 import com.service.memberService;
 import com.service.xlmake;
 
@@ -42,7 +43,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.service.memberService;
 import java.time.*;
-import com.entity.memberdata;
+
 //import com.service.UserContext;
 
 import com.model.SignupForm;
@@ -72,26 +73,26 @@ import org.aspectj.lang.annotation.Aspect;
 
 @Controller
 @RequestMapping
-@SessionAttributes("member")
+//@SessionAttributes("member")
 public class NoticeController {
 	
     private static final Logger logger = LoggerFactory
             .getLogger(NoticeController.class);
 
 	@Autowired
-	private memberService memberservice;
+	private memberService memberService;
 
-	@Autowired
-	private LocalValidatorFactoryBean localValidator;
+	//@Autowired
+	//private LocalValidatorFactoryBean localValidator;
 
-	@Autowired
-	private BoarddataRepository boarddatarepository;
+	//@Autowired
+	//private BoarddataRepository boarddatarepository;
 
 	
-	
+	@Autowired
     private final UserContext userContext;
 
-	private final memberService memberService;
+	//private final memberService memberService;
 	
 	/*
     private AuthService authService;
@@ -116,20 +117,35 @@ public class NoticeController {
     }
 
 
+/*
+    @GetMapping("/mycontrol/loginForm")
+    public String form(LoginCommand loginCommand, Model model) {
+    	System.out.println(123);
+    	System.out.println(1239090);
+        //@PathVariable("name") String name
+        //model.addAttribute("currentgrade", currentmanageservice.currentgrade());
 
-    
+    	return "/mycontrol/loginForm";
+    }
+
+    @RequestMapping("/mycontrol/loginSuccess")
+    public String submit2(Model model) {
+    	
+    	return "/mycontrol/loginSuccess";
+    }
+
     
     @GetMapping("/notice/login")
     public String form(LoginCommand loginCommand) {
     	System.out.println(123);
     	System.out.println(1239090);
         //@PathVariable("name") String name
-    	return "/notice/login";
-    }
+    	return "/mycontrol/loginForm"; // "/notice/login";
+    }*/
 
-    /*
+   
  // 현재는 일단 oauth2 사용해서 사용치 않음
-    @GetMapping("/notice/login")
+    @GetMapping("/notice/loginForm")
     public ModelAndView login(
             @RequestParam(value = "error", required = false) String error,
             @RequestParam(value = "logout", required = false) String logout) {
@@ -145,17 +161,17 @@ public class NoticeController {
         if (logout != null) {
             model.addObject("message", "You've been logged out successfully.");
         }
-        model.setViewName("/notice/login");
+        model.setViewName("/notice/loginForm");
 
         return model;
 
     }
 
-    */
+    
     
     // 현재는 일단 oauth2 사용해서 사용치 않음
     
-    /*
+    
     @PostMapping("/notice/login")
     public String submit(
     		LoginCommand loginCommand, Errors errors, HttpSession session,
@@ -171,19 +187,19 @@ public class NoticeController {
         try {
         	
             return "survey/surveyForm";
-        } catch (WrongIdPasswordException e) {
+        } catch (Error e) {
             errors.reject("idPasswordNotMatching");
             return "/notice/loginForm";
         }
     }
-    */
+    
   
     
     @RequestMapping("/notice/loginSuccess")
     public String submit2(Model model, OAuth2AuthenticationToken authentication) {
         
-    	memberdata member = userContext.getCurrentUser();
-    	model.addAttribute("name", member.getname());
+    	member member = userContext.getCurrentUser();
+    	model.addAttribute("name", member.getName());
     	
     	return "/notice/loginsuccess";
     }
@@ -197,15 +213,15 @@ public class NoticeController {
     @GetMapping("/notice/write")
     public String writeshow(Model model) {
     	System.out.println("여기인가");
-    	memberdata member = userContext.getCurrentUser();
+    	member member = userContext.getCurrentUser();
       	model.addAttribute("member", member);
     	return "/notice/write";
     }    
  
     
-    
+    /*
     @PostMapping("/notice/write")
-    public String write(boarddata boarddata, BindingResult result, @ModelAttribute("member") memberdata member,
+    public String write(boarddata boarddata, BindingResult result, @ModelAttribute("member") member member,
     		SessionStatus status, Model model) {
     	System.out.println("들어는왔네");
     	
@@ -213,9 +229,9 @@ public class NoticeController {
     	
     	String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     	System.out.println(member.getEmail());
-    	boarddata.settimerecord(time);
-    	boarddata.setmemberdata(member);
-    	localValidator.validate(boarddata, result);
+    	//boarddata.settimerecord(time);
+    	//boarddata.setmemberdata(member);
+    	//localValidator.validate(boarddata, result);
     	
     	//System.out.println(member.getEmail());
     	if(result.hasErrors()) {
@@ -229,7 +245,7 @@ public class NoticeController {
     	System.out.println("들어왔니");
     	
     	return "redirect:/notice/show";
-    }
+    }*/
     
     @RequestMapping("/notice/logout")
     public String logout(Model model) {
@@ -239,12 +255,12 @@ public class NoticeController {
     }
     @RequestMapping("/notice/notice")
     public String notice(Model model) {
-       	memberdata member = userContext.getCurrentUser();
-    	model.addAttribute("name", member.getname());
+       	member member = userContext.getCurrentUser();
+    	model.addAttribute("name", member.getName());
     	
     	return "/notice/loginsuccess";    }
 
-
+/*
     @GetMapping("/notice/show")
     public String showopt( @PageableDefault(sort = {"timerecord"}, size = 20, direction = Sort.Direction.DESC) Pageable pageable, Model model, 
     		HttpServletRequest request) {
@@ -270,19 +286,20 @@ public class NoticeController {
     	System.out.println("디테일한 페이지입니다.");
     	boarddata boarddata = boarddatarepository.findByid(id);
     	model.addAttribute("boarddata", boarddata);
-    	memberdata member = boarddata.getmemberdata();
-      	model.addAttribute("member", member);
+    	//memberdata member = boarddata.getmemberdata();
+      	//model.addAttribute("member", member);
     	return "/notice/showdetail";
     }
-    
+  */  
     @GetMapping("/")
     public String defaultpage(Model model) {
     	return "/notice/purpose";
     } 
     
-    @GetMapping("/notice/purpose")
+    @GetMapping("/mycontrol/control")
     public String showpurpose(Model model) {
-    	return "/notice/purpose";
+    	System.out.println("디테일한 페이지입니다.");
+    	return "/mycontrol/control";
     }     
     
 }

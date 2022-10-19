@@ -52,7 +52,7 @@ import java.sql.SQLException;
 
 import org.aspectj.lang.annotation.Aspect;
  
-import com.service.seleniumtest;
+
 
 @RestController
 @SessionAttributes("process")
@@ -62,9 +62,7 @@ public class CompanyRestController {
 	@Autowired
 	private companywork companywork;
 
-	@Autowired
-	private seleniumtest seleniumtest;
-
+	
 	
 
 	@PostMapping("/company/searchrequest")
@@ -190,6 +188,7 @@ public class CompanyRestController {
     
 	}    
 
+	/*
 	@PostMapping("/company/simulationbasic")
 	public ResponseEntity<Object> simulationbasic(HttpSession session, HttpServletRequest request){
 		System.out.println("simulationbasic");
@@ -203,7 +202,7 @@ public class CompanyRestController {
     
 		}    
 
-	
+	*/
 	
 	@PostMapping("/company/simulationrequest")
 	public ResponseEntity<Object> simulationrequest(
@@ -218,6 +217,28 @@ public class CompanyRestController {
 		return ResponseEntity.status(HttpStatus.OK).body(realdata);
     
 	}  	
+	
+	
+	
+	@PostMapping("/mycontrol/companycontrol")
+	public ResponseEntity<Object> mycontrol(HttpSession session, 
+			 Model model //, @PathVariable String name
+	) {
+		
+	//System.out.println(name);
+    
+    
+	try {	
+		companywork.setting();
+		return ResponseEntity.status(HttpStatus.OK).body(123);
+
+	} catch(Exception e) {
+    	  System.out.println(e);
+		  return ResponseEntity.status(HttpStatus.OK).body(1909);
+	}
+    	  
+  }
+
 	
 	
 }
