@@ -19,6 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface CoaarrayRepository extends JpaRepository<coaarray, Integer> {
 
 	//@Query("select m from boarddata m left join fetch m.member where m.id = :id")
-	boarddata findByid(Long id);
+	//boarddata findByid(Long id);
 	
 } // The End...

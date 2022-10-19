@@ -102,13 +102,13 @@ public class mywork {
 	       
 	    	// invoke 대신에 익명클래스를 활용해봄
 		   int count = 0;
-		
+		   List<coaarray> coa = coaarrayrepository.findAll();
+		   
+		   /*
 		   for(coaarray coa : coaarrayrepository.findAll()) {
 			    count++;
 			    
-			    if(count > 100) {
-			    	break;
-			    }
+
 	            coahash.put(coa.getDetailname(), coa);
 	            sortobj.put(coa.getDetailname(), coa.getLargecategory());
     		    HashMap<String, String> tem1 = new HashMap<>();
@@ -118,7 +118,7 @@ public class mywork {
 
    	            middlecoa.put(coa.getResultname(), tem1);
    	            tem1.clear();
-		   }
+		   }*/
 
 
 
