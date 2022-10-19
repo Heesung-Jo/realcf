@@ -78,16 +78,17 @@ public class mywork {
 
 	private HashMap<String, HashMap<String, String>> middlecoa = new LinkedHashMap();
     
-	@PostConstruct
-    public void myworktime() { 
+	@Autowired
+    public void mywork() { 
     	setting();
     } 
 	
+	/*
 	public class  subclass{
   	   public void work(HSSFRow row) {
   		 System.out.println(123123);
   	   }; 
-    }
+    }*/
 
 
 	public List<accountingdata> getaccountlist(){
@@ -323,7 +324,7 @@ public class mywork {
 		 
     }
     */
-    
+    /*
 	    // xl 사용하기 위해서 테스트
 	    public void listmake(String name, String sheetname, int row1, int row2, subclass sub)
 	   		 throws ClassNotFoundException, IllegalAccessException, InstantiationException
@@ -375,7 +376,7 @@ public class mywork {
 	      
 	    }      
     
-    
+    */
     
     
     
