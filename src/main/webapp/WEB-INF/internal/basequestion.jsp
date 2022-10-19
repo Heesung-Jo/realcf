@@ -163,7 +163,6 @@
 
            // passedhash는 이미 위치를 세팅한게 또 나오면 그 위치의 y좌표는 바꾸지 않도록 하기위함
            // 그리고 x위치는 더 큰거로 바꾸는게 목표임
-           console.log(arr)
            for(var i in arr){
                  
                  // arr[i]를 realarr에서 찾아서 위치를 바꿔주기
@@ -183,7 +182,7 @@
  
                          }else{
                              realarr[j].loc = pos.x + " " + pos.y;
-                             console.log(realarr[j].loc)  
+                             
                              
                              passedhash[arr[i].key] = 1;
                              var newpos = {x: pos.x + 200, y: pos.y}
@@ -211,7 +210,7 @@
                     }
                  }
                  
-                 console.log(realarr)     
+                      
                  if(nextarr.length > 0){
                      poswhile(posarr, realarr, nextarr, newpos, passedhash)
                  }                                
@@ -379,7 +378,7 @@ class diagram{
    		    	
    		    	// 가능한 목록을 여기서 받고, listmanage에다가 끼울 것임 
 
-   		    	console.log(123);
+   		    	
    		    	this.totalarr = res;
                 this.listmake_detail(res, this.step0);
                 
@@ -421,7 +420,7 @@ class diagram{
 
 			
  	 			
- 			console.log(data)
+ 			
             var grade = "";
             this.realtag = me.target;
             this.realtag.style.background = "blue"
@@ -503,8 +502,6 @@ class diagram{
             var div = this.makediv(currentitem.question, {id: "content"})
             item.appendChild(div);
             this.currentitems.push(currentitem);
-             console.log("currentitem: ");
-             console.log(currentitem);
              
              
             if(currentitem.inputs){
@@ -548,6 +545,7 @@ class diagram{
                 			for(var ans in currentitem.answer){
                 				if(num == 0){
                 					var input = text.querySelector("input[type=text]")
+                					
                 					input.value = currentitem.answer[ans].val
                 					
                 				}else{
@@ -593,8 +591,6 @@ class diagram{
          	///////////////////////////////////////
          	/////////////////////////////////////////
          	
-         	console.log(this.totalarr)
-         	console.log(this.realdata)
          	
          	var condition = "1"
          	if(this.totalarr instanceof(Array) == true){
@@ -612,7 +608,7 @@ class diagram{
             		realbackhash[ia] = JSON.stringify(realhash[ia])
             	}
             	
-            	 console.log(realhash)
+            	 
             	 this.ajaxmethod("baseinventoryconfirm/" + this.realdata.subprocess1, realbackhash, (res) => {
             		 this.totalarr = res;
             		 this.makingnodetag(realhash);
@@ -647,8 +643,7 @@ class diagram{
         	    
         	    
                 realdata[name] = data;
-                console.log(realdata);
-        	
+                
         	} 
 
                 //console.log(this.inventoryfinalprocess)
@@ -661,16 +656,15 @@ class diagram{
             	 var pro1 = this.realdata.val
              	 //var pro2 = this.inventoryfinalprocess.from
             	// var pro3 = this.inventoryfinalprocess.to
-            	 console.log(this.totalarr)
+            	 
                 if(this.totalarr instanceof(Array) == true && this.realdata.mainprocess == "재고"){
-                	console.log("basefinalanswer")
+                	
                 	this.ajaxmethod("basefinalanswer/" + pro1 + "/" + pro2 + "/" + pro3, realdata, () => alert("입력이 되었습니다."))
                 	return
                 	
                 }else{
                     // 현상태 서버에 입력하기
-                    console.log("baseanswer")
-                    console.log(realdata);
+                    
             	    this.ajaxmethod("baseanswer", realdata, () => alert("입력이 되었으니, 현재상태창에 가서 다음단계를 진행해주세요"))
                 }
 
@@ -687,7 +681,6 @@ class diagram{
 		// step0, 1, 2 단계별로 선택된 값이 들어옴
 		// 이것을 받아서, 현재 step의 하위 step에 대한 정보를 조회해서 넘겨줌
 		// 하위 step이 하나도 없다면 새로 하위 step 작성이 필요한 것임
-		console.log("poolmake");
 		
 		// 스프링 시큐리티 관련
 		var header = $("meta[name='_csrf_header']").attr('content');
@@ -708,7 +701,7 @@ class diagram{
    		    },
    		    success : (res) => {
    		    	
-   		    	console.log(res);
+   		    	
                 this.totalarr = res;
                 this.countnumber = 1;
                 
@@ -726,7 +719,6 @@ class diagram{
 	
 	ajaxmethod = (link, data, act) => {
 		
-		console.log(data);
 		
 		// 스프링 시큐리티 관련
 		var header = $("meta[name='_csrf_header']").attr('content');
@@ -747,7 +739,7 @@ class diagram{
    				
    		    	// 211015
    		    	// res는 있는데, 그림이 안 그려졌음
-   		    	console.log(res);
+   		    	//console.log(res);
    		    	if(act){
    	   				act(res)
    		    	}
@@ -857,9 +849,9 @@ class diagram{
     	item.addEventListener('click',(me)=>{
         	
         	// 먼저 select의 개수가 최대개수를 초과했는지 확인하고 최대개수를 초과하지 않았으면 추가할 것
-        	console.log(val)
+        	
             var tags = document.getElementById(val);
-        	console.log(tags)
+        	
             
       	    if(tags.childNodes.length < 5){
 

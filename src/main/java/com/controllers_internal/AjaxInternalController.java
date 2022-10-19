@@ -681,10 +681,6 @@ public class AjaxInternalController {
     
 	 try {	
 		System.out.println("왜 안오는거니");
-		System.out.println(answerlist);
-		System.out.println(pro1);
-		System.out.println(pro2);
-		System.out.println(pro3);
 
 		// 참고로 name1이 step임 현재는 step이 2인경우를 의미함. 다만 step이 subprocess로 현재는 표시되어 있음.
 		

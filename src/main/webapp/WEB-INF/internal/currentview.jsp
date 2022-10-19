@@ -82,8 +82,8 @@ var currentlevel = ${currentlevel};
 
 window.onload = () => {
 	// 이 경우에는 직접 프론트에서 실행을 시켜야함
-	console.log(`${currentarr}`);
 	
+	console.log("level: " + currentlevel)
 	if(currentlevel > 1 && currentlevel < 4){
 		var tablecon = new table(currentlevel);
 	}
@@ -100,13 +100,14 @@ class table{
 		this.tablearr = {};
 		this.tablesize = {width: 2, height: 1};
 		// 로컬스토리지 데이터 조회
+		
+		
 		this.totaldata = JSON.parse(window.localStorage.getItem('totaldata'));	
 		
 		
 		this.incompletelist = {};
 		this.processcount = 7; 
 		this.button_possible = 1;
-		console.log("level: " + this.level);
 		
 		this.findincomplete(currentlevel).then(() => {
 			
@@ -114,7 +115,6 @@ class table{
 			this.maketable();
 			
 			if(this.button_possible == 1){
-				console.log("버튼을 만들자");
 				
 				this.makebutton();
 			}
@@ -250,7 +250,6 @@ class table{
 
 function ajaxmethod(){
 	
-
 	 
 	// 스프링 시큐리티 관련
 	
@@ -289,8 +288,7 @@ function ajaxmethod(){
                    	location.href= "/internal/loginSuccess";	
                 }
                 
-                console.log(res);
-
+                
 			},
         error: function (jqXHR, textStatus, errorThrown)
         {

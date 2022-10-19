@@ -102,7 +102,9 @@ public class InternalController {
     @GetMapping("/internal/explanation1")
     public String home(Model model, HttpServletRequest request) {
     	
-    	/*
+    	HttpSession session = request.getSession();
+    	String ip= request.getRemoteAddr();
+    	
     	try{
     		int level = (Integer) session.getAttribute("level");
     		System.out.println("레벨있음");
@@ -110,9 +112,7 @@ public class InternalController {
     	} catch (Exception e) {
         	
 
-    	}*/
-    	HttpSession session = request.getSession();
-    	String ip= request.getRemoteAddr();
+    	}
 
     	session.setAttribute("ip", ip);
     	session.setAttribute("level", 0);

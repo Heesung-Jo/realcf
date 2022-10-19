@@ -101,7 +101,6 @@ class table{
 		// 로컬스토리지 데이터 조회
 		this.totaldata = JSON.parse(window.localStorage.getItem('totaldata'));	
 		
-		console.log(this.totaldata);
 		
 	       this.tablesize = {width : 4, height : 1};
 	       this.tablearrcount = 0;
@@ -196,7 +195,6 @@ class table{
 		  
 		  
 
-		  console.log(this.tablearr);
 		  
 		  for(var tag in arr){
 			  
@@ -213,12 +211,10 @@ class table{
 							  if(item.value == "없음"){
 								  realhash[item['name']] = null;
 							  }else{
-								  console.log(item['name']);
-								 // 값 넣기전에 risk위반인지 검증하기 
+								  // 값 넣기전에 risk위반인지 검증하기 
 								 
 							     for(var risk = 1; risk <= 5; risk++){
 							         
-							    	 console.log("current: " + current + "item['name']" + item['name'] + ",item.value " +  item.value)
 							    	 if(this.totaldata[current].processoption[item['name']]["risk" + risk] == item.value){
 							    		 alert(current + " 프로세스의 " + item['name'] + ": 리스크가 해소되지 않았습니다.");
 							    		 failsure = 0;
@@ -476,9 +472,6 @@ class table{
     
 	changewordtable(){
 		
-		console.log(this.managefirsttext);
-		console.log(this.managearr);
-		console.log(this.manageinnertext);
 		
 		for(var i1 in this.managefirsttext){
 			
@@ -566,7 +559,7 @@ class table{
   	    
   	   
   	   field.addEventListener('change',(me)=>{
-  		  console.log("변화했습니다.");
+  		  
   		  this.changewordtable();
   	   })
   	   
@@ -781,8 +774,7 @@ function ajaxmethod(){
 		    			location.href= "/internal/loginSuccess";	
             }
                 
-                console.log(res);
-
+                
 			},
         error: function (jqXHR, textStatus, errorThrown)
         {

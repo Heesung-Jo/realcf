@@ -56,7 +56,6 @@ select {
    // 윈도우 켜진후
    window.onload = function(){
 	  
-	   console.log(opener);
 	   
 	   
 	  var subtable = new subwindow(opener.table.중분류);
@@ -118,7 +117,6 @@ select {
 	 	   
 	 	   for(var i in opener.table.sortedcoa){
 	 		  // 손익류 , 차감형 등 집어넣기  
-	          console.log(i)
 	          
 	 		  var sorting = this.sort_coa(i);
 	 		  // 210622 이자류가 별도로 엑셀파일에 집계 안되었을 수도 있으니, 추후 집계할 것
@@ -169,8 +167,7 @@ select {
 	 	   
 	 	   for(var i in opener.table.sortedcoa){
 	 		  // 손익류 , 차감형 등 집어넣기  
-	          console.log(opener.table.sortedcoa[i])
-	 		  
+	          
 	 		  var sorting = opener.table.sortedcoa[i].middlecategory
 	 		  // 210622 이자류가 별도로 엑셀파일에 집계 안되었을 수도 있으니, 추후 집계할 것
 	 		  
@@ -193,8 +190,6 @@ select {
 	 		  
 	 	   }
 	 	   
-	 	   console.log(arr);
-	 	   console.log("why")
 	 	   
 	 	   this.tag1 = this.maketable(arr);
 	 	   var temp = document.getElementById("tag1")
@@ -228,8 +223,7 @@ select {
 		   // 이제 집어넣기 
 	       // 테이블 만들어 추가하기
 	   	   var temptable = document.createElement("table");
-		   console.log(opener.table.sortedcoa)
-	       
+		   
 	       // 제목행 
 	       var thead = document.createElement("thead");
 	   	   temptable.appendChild(thead);
@@ -248,7 +242,6 @@ select {
 	       
 	       
 	       for(var i in arr){
-	    	   console.log(arr);
 	    	   
 		       var tem = {}
 	           var subdiv = this.maketrtd(tem, 3);
@@ -334,9 +327,6 @@ select {
 	           for(var j in opener.table.sortedrealcoa){
 	        	   
 	        	   var tempsamesize = this.findsameword(realword,j);
-	        	   if(i == "전환사채상환할증금유동"){
-	        		   console.log(j + " : " + tempsamesize);
-	        	   }
 	        	   
 	        	   if(tempsamesize > samesize || (tempsamesize == samesize && Math.abs(realword.length - j.length) < Math.abs(realword.length - sameword.length))){
 	        		   var coa2 = opener.table.sortedrealcoa[j];

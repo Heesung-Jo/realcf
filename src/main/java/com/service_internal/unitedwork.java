@@ -91,6 +91,9 @@ public class unitedwork {
 	 @Transactional   
 	 public ArrayList<uniteddata> getunitelist(){
 		 
+		 System.out.println("unitelist");
+		 System.out.println(unitelist);
+		 
 		 return unitelist;
 	 }
 	 
@@ -107,6 +110,7 @@ public class unitedwork {
 		 
 		 // uniteddata 삭제하기
 		 List<uniteddata> datas = uniteddatarepository.findAll();
+		 
 		 for(uniteddata das : datas) {
 			 
 			 ParentnodedataRepository.deleteAllInBatch(das.getparentnodedata());
@@ -141,6 +145,8 @@ public class unitedwork {
 			 
 			 // 더 개발이 되야하나, 일단은 어거지로 조정함
 			 // 엔티티증에서 deletelist에 값을 담아서, 지우는 것으로 수정할 것
+			 System.out.println("질문에 대한 답변입니다.");
+			 System.out.println(str);
 			 if(str.equals("예")) {
 				 for(int num = pro_list.size() - 1; num >= 0; num--) {
 					 if(pro_list.get(num).getProcessname1().equals("구매계획의 수립2")) {
@@ -268,6 +274,8 @@ public class unitedwork {
 
 		 }
 		 
+		 System.out.println("unitelist 갯수입니다.");
+		 System.out.println(unitelist.size());
 		 realdata = null;
 		 realdata_oppt = null;
 		 
@@ -296,7 +304,7 @@ public class unitedwork {
 			 opt_new = mapper.readValue(temp2, processoption.class);
 			 opt_new.setProcessdata(uni);
 			 opts_new.add(opt_new);
-			 processoptionrepository.save(opt_new);
+			 //processoptionrepository.save(opt_new);
 		 }
 		 
 		 uni.setProcessoption(opts_new);

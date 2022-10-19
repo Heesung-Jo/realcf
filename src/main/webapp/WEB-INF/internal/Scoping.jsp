@@ -789,6 +789,7 @@ class showing{
 
     maketable_scope = (data, func) => {
     	
+    	console.log("들어왔음")
     	var table = document.createElement("table"); // div 가 나은것 같으면
 
     	table.style.width ="100%"
@@ -826,6 +827,11 @@ class showing{
         	
           if(ai > startrow){
         	var coaname = this.tablearr[ai][this.itemarray["계정과목"]].innerText;
+
+        	if(coaname == ""){
+        		continue;
+        	}
+        	
         	coaname = this.subwin.subtable.tablearr[coaname].value;
         	
         	
@@ -882,9 +888,11 @@ class showing{
         	   
         	   // 표준계정이 차감계정이라면 currentcoa로 대체하기
         	   var realcoa = this.subwin.subtable.tablearr[coaname].value;
-
-        	   if(realcoa == "대손충당금" || realcoa == "감가상각누계액" ||realcoa == "손상차손누계액" ||realcoa == "현재가치할인차금"){
+        	   
+        	   if(realcoa == "차감형"){
         		   realcoa = currentcoa;
+        		   
+        		   
         		   this.tablearr_scope[num][1].innerText = currentcoa;
         	   }else{
             	   this.tablearr_scope[num][1].innerText = realcoa;  // 표준계정을 의미함

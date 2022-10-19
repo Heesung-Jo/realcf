@@ -33,7 +33,7 @@ import pickle as pk
 import copy 
 
 
-option = "PL"
+option = "BS"
 real = set([])
 
 
@@ -44,7 +44,7 @@ def transform(text):
 
         
 
-rawdata = pd.read_csv("coadata2.csv")
+rawdata = pd.read_csv("coadata3.csv")
 data = rawdata.dropna(axis = 0)
 data = data.drop_duplicates()
 realdata = data.loc[data["bspl"] == option]

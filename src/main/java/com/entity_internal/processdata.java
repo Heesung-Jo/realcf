@@ -44,7 +44,7 @@ public abstract class processdata {
 	 
 	
 	 @JsonIgnore
-	 @Id @GeneratedValue(strategy = GenerationType.TABLE)
+	 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	 @Column
 	 private Long id;	
 	

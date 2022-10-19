@@ -316,7 +316,7 @@ public class Scoping {
 	 			 faillist.put(str, 1);
 	 		 }	 
 	 	 }
-		 
+	 	
 		  // faillist를 파이썬 서버에 요청할 것
 		  afterresult = flaskrequest(faillist);
 		  for(Object str : afterresult.keySet()) {
@@ -360,6 +360,7 @@ public class Scoping {
 	 		 }
 	 	 }
 		 
+     	 
 		  // faillist를 파이썬 서버에 요청할 것
 		  afterresult_bs = flaskrequest_opt(faillist_bs, "bs");
 		  afterresult_pl = flaskrequest_opt(faillist_pl, "pl");

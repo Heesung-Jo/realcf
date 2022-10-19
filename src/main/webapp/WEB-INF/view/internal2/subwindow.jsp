@@ -56,7 +56,6 @@ select {
    // 윈도우 켜진후
    window.onload = function(){
 	  
-	  console.log(opener.table.coasortobj)
 	  subtable = new subwindow(opener.table.coasortobj);
 	  //210622 생성된 창을 보고 어떻게 수정할지 고민할 것
    }
@@ -87,6 +86,8 @@ select {
 	   sort_coa(i){
 		   
 		   var val = opener.table.coasort(i);
+		   
+		   
 		   if(val){
 			   if(val in opener.table.coasortobj){
 				   if(opener.table.coasortobj[val] in opener.table.middlecoa){
@@ -150,6 +151,9 @@ select {
                
 		       // 내일은 이것을 수정해야함
 	           var sel = this.makeselect(opener.table.sortedcoa)
+	           
+	           
+		       
 	           sel.value = arr[i]
 
 	           tem[0].innerText = i;

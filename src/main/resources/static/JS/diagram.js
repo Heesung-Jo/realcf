@@ -717,6 +717,7 @@ class diagram{
 	  
 	  var arr = []
 	   for(var i in first){
+		      console.log(first[i].processname1);
 		      
 		  this.whilefunc(first[i].processname1, 0, 0);
 	   }
@@ -755,6 +756,8 @@ class diagram{
 	      text = text.replace("}@", "");
 	      text = text.replaceAll("@", "");
 
+console.log(text)
+console.log(turn.processoption[text])
 		  var division = turn.processoption[text].result;
 		  var control = turn.controlcode;
 		  var risk = turn.riskcode;
@@ -774,6 +777,8 @@ class diagram{
     		 // 선그리기
     		 this.canvasmaking.line({left: x + this.width/4, top: y + this.height/4}, {left: x + k * this.width + this.width/4 , top: y + this.height + this.height/4})
     		 // 다음 노드 작업하기
+    		 console.log(turn.subpro[k]);
+    		 
     		 this.whilefunc(turn.subpro[k], current_x, current_y);  
              current_x++;
     	 }
@@ -895,7 +900,7 @@ class diagram{
 	
 	listmake2 = (name) => {
 		
-		
+		console.log(this.totaldata);
 	    	var listmanage = document.getElementById('listmanage');
 	    	var first = "";
 	    	// 부모노드 찾아서 먼저 넣기

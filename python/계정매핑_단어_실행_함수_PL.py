@@ -5,10 +5,10 @@ Created on Thu Oct 14 11:21:06 2021
 @author: gocho
 """
 import urllib.request
-import pandas as pd
+#import pandas as pd
 import numpy as np
 
-from konlpy.tag import Twitter
+#from konlpy.tag import Twitter
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import load_model
 import pickle as pk
