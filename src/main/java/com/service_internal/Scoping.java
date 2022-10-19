@@ -88,6 +88,7 @@ public class Scoping {
 
 	 // 계정과목 소분류 세팅
 	 
+	 @PostConstruct
 	 public void settingresultcoa() throws ParseException{
 		 resultcoa = CoadataRepository.findresultcoa();
 		

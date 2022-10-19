@@ -756,6 +756,7 @@ public class AjaxInternalController {
     	return ResponseEntity.status(HttpStatus.OK).body(tem);
     }
 
+	/*
 	@PostMapping("/mycontrol/internalcontrol")
 	public ResponseEntity<Object> mycontrol(HttpSession session, 
 			 Model model //, @PathVariable String name
@@ -773,7 +774,7 @@ public class AjaxInternalController {
 		  return ResponseEntity.status(HttpStatus.OK).body(1909);
 	}
     	  
-  }
+  }*/
     
 	
    }

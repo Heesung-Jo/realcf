@@ -144,7 +144,7 @@ public class CfRestController {
     	  
   }
 	
-	
+	/*
 	@PostMapping("/mycontrol/cfcontrol")
 	public ResponseEntity<Object> mycontrol(HttpSession session, 
 			 Model model //, @PathVariable String name
@@ -162,7 +162,7 @@ public class CfRestController {
 		  return ResponseEntity.status(HttpStatus.OK).body(1909);
 	}
     	  
-  }
+  }*/
 	
 	
 	

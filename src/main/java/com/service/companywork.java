@@ -202,7 +202,7 @@ public class companywork {
     
     
     
-    
+    @PostConstruct
     public void setting() {
     	
     	
