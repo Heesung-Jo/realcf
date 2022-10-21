@@ -52,7 +52,7 @@ import com.service_internal.jsonmake;
 
 
 @RestController
-//@SessionAttributes("process")
+@SessionAttributes("process")
 public class CfRestController {
 
 	@Autowired
