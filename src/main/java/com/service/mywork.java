@@ -111,7 +111,7 @@ public class mywork {
     		    tem1.put("분류3", coa.getLargecategory());
 
    	            middlecoa.put(coa.getResultname(), tem1);
-   	            tem1.clear();
+   	            
 		   }
 
 

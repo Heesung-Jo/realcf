@@ -1053,7 +1053,7 @@ console.log(turn.processoption[text])
 		if(optionarr){
 			// 정상적인 경우
 			// 순서가 엉망이 되어서, 재귀함수로 처리함
-			
+			console.log(optionarr);
 			this.nextloop(key, optionarr, textarr, data, 0, parameter);
 		}else{
 			// 옵션이 전혀없는 경우에는 바로 내용 띄울 것
