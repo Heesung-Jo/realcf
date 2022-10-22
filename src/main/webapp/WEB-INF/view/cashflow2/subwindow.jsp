@@ -412,6 +412,7 @@ select {
 			    
 			    temp["분류1"] = this.tablearr[i]["분류1"].value
 			    temp["분류2"] = this.tablearr[i]["분류2"].value
+			    console.log(temp)
 			    opener.table.sortedrealcoa[i] = temp
 		   }
 		   this.sortedrealcoa = Object.keys(opener.table.sortedrealcoa);
@@ -435,8 +436,11 @@ select {
 		   //210708 이거 할 차례임 이거 반영하고, 그 다음 바로 정산표가 뜨는게 아니도록 수정할 것
 		   // table => td.innertext = 계정, td.sel = 분류
 		   
+		   
+		   
 		   for(var i in this.tablearr){
 			  if(this.examtest(i) == true){
+				  
 				    opener.table.sortedrealcoa[i]["main"] = this.tablearr[i].value
 			  }else{
 				    alert(i + "계정에 대한 차감계정을 선택해주세요. 단, 차감계정을 선택하면 안 됩니다.")
@@ -444,6 +448,7 @@ select {
 			  } 
 		   }
 	   
+		   
            // 210619 여기에 table 코드 집어넣을 것
            opener.table.makeprob();
 	       opener.table.execute3();

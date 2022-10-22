@@ -508,6 +508,9 @@ class subcal{
     execute_incometype(realcoa , middlecoa){
     	// 손익류 || 현금 처리를 다른 것으로 처리해야함
     	// 손익류 || 손익 처리도 다른 것으로 처리해야 함
+    	console.log(this.solvearr);
+    	console.log(realcoa);
+    	
     	
     	for(var i in this.solvearr){
     	    var coa = this.solvearr[i]["계정과목"];
@@ -2337,6 +2340,7 @@ class showing{
        
        this.ajaxmethod("sortobj", {}, (res) => {
     	   
+    	   console.log(res);
            this.coasortobj = res.sortobj;
            this.middlecoa = res.middlecoa;
            
