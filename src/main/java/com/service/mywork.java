@@ -109,7 +109,8 @@ public class mywork {
     		    tem1.put("분류1", coa.getBspl());
     		    tem1.put("분류2", coa.getMiddlecategory());
     		    tem1.put("분류3", coa.getLargecategory());
-
+                System.out.println(coa.getBspl());
+                
    	            middlecoa.put(coa.getResultname(), tem1);
    	            
 		   }
