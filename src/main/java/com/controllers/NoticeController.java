@@ -295,6 +295,11 @@ public class NoticeController {
     public String defaultpage(Model model) {
     	return "/notice/purpose";
     } 
+
+    @GetMapping("/notice/purpose")
+    public String noticepurpose(Model model) {
+    	return "/notice/purpose";
+    } 
     
     @GetMapping("/mycontrol/control")
     public String showpurpose(Model model) {

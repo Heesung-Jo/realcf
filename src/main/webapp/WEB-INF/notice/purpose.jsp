@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>   
 
+
+<head>
+
+<meta name="naver-site-verification" content="6b2b1e163182752c9ca47fff9d693a7a2c84160e" />
+
+</head>
 <div id="content">
 
 
