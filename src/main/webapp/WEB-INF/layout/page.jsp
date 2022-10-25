@@ -10,6 +10,7 @@
     <title>원장분석</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="naver-site-verification" content="6b2b1e163182752c9ca47fff9d693a7a2c84160e" />
+    <meta name="google-site-verification" content="sJ1nOhbpS_11x-gH2IgxJYH0hvaDfqqhWdIdobhupNY" />
     
     <style>
         * { margin: 0; padding: 0; }
