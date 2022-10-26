@@ -33,7 +33,7 @@ import pickle as pk
 import copy 
 
 
-option = "BS"
+option = "PL"
 real = set([])
 
 
@@ -44,7 +44,7 @@ def transform(text):
 
         
 
-rawdata = pd.read_csv("coadata3.csv")
+rawdata = pd.read_csv("coadata5.csv")
 data = rawdata.dropna(axis = 0)
 data = data.drop_duplicates()
 realdata = data.loc[data["bspl"] == option]
@@ -180,7 +180,7 @@ model.add(Embedding(vocab_size, embedding_dim))
 model.add(Dropout(0.3))
 model.add(Bidirectional(LSTM(hidden_units)))
 model.add(Dropout(0.3))
-model.add(Dense(28, activation='softmax'))
+model.add(Dense(23, activation='softmax'))
 
 es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=4)
 #mc = ModelCheckpoint('model2_양방향.h5', monitor='val_acc', mode='max', verbose=1, save_best_only=True)
