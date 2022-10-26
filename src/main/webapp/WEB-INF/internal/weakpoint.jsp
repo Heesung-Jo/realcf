@@ -249,6 +249,7 @@ class table{
 		     var button = document.createElement("input");
 		     button.setAttribute('type', "button");
 		     button.value = "확정하기"
+		     button.setAttribute("class", "btn btn-primary");
 		     
 	    	 document.getElementById("content_wrap").appendChild(button);
 		     

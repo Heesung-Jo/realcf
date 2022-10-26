@@ -27,7 +27,7 @@
  
 
  
-      <input type = "button" id = "process_answer" value = "확정하기"/>
+      <input type = "button" class = "btn btn-primary" id = "process_answer" value = "확정하기"/>
  
     </body>
  
@@ -78,7 +78,6 @@
   height: 50px;
   width: 1410px;
   display: inline-block;
-  border: 1px solid #444444;
   font-weight: bold;
   background: white;
   padding: 0px;
@@ -91,7 +90,7 @@
 .detailcontent{
   float : left; 
   border: 1px solid black; 
-  height: 45%; 
+  height: 50%; 
   width: 200px;
   background: none;
   cursor: pointer;

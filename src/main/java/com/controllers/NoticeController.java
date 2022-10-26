@@ -300,11 +300,12 @@ public class NoticeController {
     public String noticepurpose(Model model) {
     	return "/notice/purpose";
     } 
-    
+
+    /*
     @GetMapping("/mycontrol/control")
     public String showpurpose(Model model) {
     	System.out.println("디테일한 페이지입니다.");
     	return "/mycontrol/control";
-    }     
+    } */    
     
 }

@@ -285,9 +285,12 @@ class Canvasmaking  {
         this.context.fillText(division, position.left+ this.size.left/4 + moving.x, position.top + this.size.top/8 - 5+ moving.y, this.size.left/2 )  
         
 		// 리스크 번호
+		
+		
 		this.context.fillText(risk, position.left+ this.size.left/8 + moving.x, position.top + this.size.top/8*2 - 5+ moving.y, this.size.left/4 );
 
 		// 통제 번호
+		console.log(control);
 		this.context.fillText(control, position.left+ this.size.left/8*3 + moving.x, position.top + this.size.top/8*2 - 5+ moving.y, this.size.left/4 );
 
 		// 선그리기

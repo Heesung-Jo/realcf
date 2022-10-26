@@ -17,6 +17,10 @@
     width: 100%;
     border: 1px solid #444444;
     border-collapse: collapse;
+    
+  }
+  th {
+    text-align: center;
   }
   th, td {
     border: 1px solid #444444;
@@ -28,7 +32,7 @@
   background: white;
   margin: 20px 0 5px 20px;
   overflow: hidden;
-  width: 23%;
+  width: 30%;
 }
 
 #content_right > div { 
@@ -964,6 +968,7 @@ class showing{
     makebutton = () => {
         var button = document.createElement("Input");
         button.setAttribute('type', "button");
+        button.setAttribute('class', "btn btn-primary");
         button.setAttribute('value', "Confirm");
         button.addEventListener('click',()=>{
         	this.scopingmake()
@@ -2171,24 +2176,25 @@ class makecoa{
 <div id = "content_right">
 
 <h3>정산표 수준의 파일선택</h3>
+<p>같은 계정레벨로 이루어진 BS/IS 데이터 입력 필요</p>
 
 
 <div>
-<input type="file" id="excelFile" onchange="excelExport(event)"/>
+<input type="file" id="excelFile" class = "btn btn-secondary" onchange="excelExport(event)"/>
 </div>
 
 <div> 
-<input type="button" id ="testbutton" value="실행하기" style = "width: 75px;"/>
-<select id = "selectsheet" style = "width: 173px;"></select>
+<input type="button" class = "btn btn-primary" id ="testbutton" value="실행하기" style = "width: 75px;"/>
+<select id = "selectsheet"  style = "width: 173px;"></select>
 </div>
-<h5>같은 계정레벨로 이루어진 BS/IS 데이터 입력 필요</h5>
 
 <h3 style = "padding-top: 20px;">튜토리얼</h3>
-<input type="button" id ="tutorial" value="예제로 실행하기" style = "width: 75px; margin-top: 10px;"/>
+<input type="button" id ="tutorial" class = "btn btn-success" value="예제로 실행하기" style = "margin-top: 10px;"/>
 
 <div id = "maindiv"></div>
 
 </div>
+
 
 
 </body>

@@ -85,7 +85,7 @@
 .detailcontent{
   float : left; 
   border: 1px solid black; 
-  height: 45%; 
+  height: 50%; 
   width: 200px;
   background: gray;
   cursor: pointer;
@@ -572,6 +572,8 @@ class diagram{
 	// 제출하기 버튼 추가하기
         var button = document.createElement("input");
         button.setAttribute('type', "button");
+        button.setAttribute('class', "btn btn-primary");
+
         button.value = "제출하기"
         var finaldiv = document.getElementById('final');
 

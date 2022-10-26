@@ -8,7 +8,7 @@
 
             <form id="search" method = "post" action = "">
               <div id = "contentitem"> 
-                </br>
+                
                 <div >
                     <span>업종 선택</span>
                     <span id = "business" class = "listmanage"></span>
@@ -17,7 +17,7 @@
                     </span>
                 </div>
             
-               </br>
+               
                 <div>
                     <span>회사 선택</span>
                     <span id = "company" class = "listmanage"></span>
@@ -26,7 +26,7 @@
                     </span>
                 </div>
                 
-                </br>
+               
                 <div>
                     <span>계정 선택</span>
                     <span id = "coa" class = "listmanage"></span>
@@ -38,14 +38,14 @@
                 </br>
                 <div style = "width: 100%">
                     <span >조회 기준</span>
-                    <span style = "width: 15%">
-                       <select id = "selectoption" style = "float: left; height: 22px; width: 100%">
+                    <span style = "width: 20%; padding: 3px">
+                       <select id = "selectoption" class = "form-select"  style = "float: left; height: 22px; width: 100%">
                           <option>금액기준으로 조회</option>
                           <option>자산대비 비율기준으로 조회</option>
                        </select>
                     </span>
-                    <span style = "width: 65%">
-                       <input type ="button" id = "submitbutton" value = "제출하기" />
+                    <span style = "width: 60%">
+                       <input type ="button" class = "btn btn-success"  id = "submitbutton" value = "제출하기" style = "height: 30px"/>
                     </span>
                 </div>
             
@@ -94,7 +94,7 @@ span {
     position: relative;
     width: 90%;
     margin: 20px 0 5px 50px;
-    padding: 20px 0 5px 28px;
+    padding: 10px 0 5px 28px;
     border: 1px solid black; 
     background: #f7f9fa;
  }
@@ -102,13 +102,14 @@ span {
 
 
 .listmanage{
-  height: 20px;
+  height: 30px;
   width: 80%;
   display: inline-block;
   border: 1px solid #444444;
   font-weight: bold;
   background: white;
   padding: 0px;
+  margin: 13px 0 3px 10px;
   overflow: hidden;
   
 }
@@ -134,8 +135,8 @@ span {
 }
 
 .button {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #444444;
   padding: 0px;
 }
@@ -296,6 +297,7 @@ class showing{
 	  });        
 	  
 	  var func = (res) => {
+		  
 		  
 		  this.coaarr = new Set(res.coa);
 		  this.coasortedarr = JSON.parse(JSON.stringify(res.coa));

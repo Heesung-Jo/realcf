@@ -65,7 +65,7 @@ table td {
               
        <c:if test="${currentlevel < '2'}"> 
              <c:if test="${name eq '완성'}">
-                    <input type ="submit" value = "확정하기" onClick = "ajaxmethod()"/>
+                    <input type ="submit" class = "btn btn-primary" value = "확정하기" onClick = "ajaxmethod()"/>
              </c:if>
        </c:if>
  
@@ -231,6 +231,8 @@ class table{
 		 // 뒤에 추가버튼 만들기
 	     var button = document.createElement("input");
 	     button.setAttribute('type', "button");
+	     button.setAttribute('class', "btn btn-primary");
+	     
 	     button.value = "확정하기"
 	     
     	 document.getElementById("content_wrap").appendChild(button);

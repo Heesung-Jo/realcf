@@ -281,7 +281,7 @@ public abstract class processdata {
 //	 private String detailprocess;
 //	 private String detailprocessname;
 //	 private String processexplain;
-//	 private String controlcode;
+	 private String controlcode;
 //	 private String controlname;
 //	 private String controlexplain;
 

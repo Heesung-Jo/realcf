@@ -13,7 +13,7 @@
 
 
      <div>
-        작업을 원하시는 항목을 클릭해주세요
+        <p> 작업을 원하시는 항목을 클릭해주세요 </p>
         <span id = "listmanage" class = "listmanage"></span>
      </div>
      
@@ -34,6 +34,10 @@
  
 <style>
  
+ p {
+   margin: 10px;
+   font-size: 18px;
+}
           #canvas {
             background: #ffffff;
 			border: 1px solid black; 
@@ -79,12 +83,10 @@
   height: 50px;
   width: 1410px;
   display: inline-block;
-  border: 1px solid #444444;
   font-weight: bold;
   background: white;
   padding: 0px;
   overflow: hidden;
-  margin-top: 20px;
   margin-left: 10px;
 }
  
@@ -92,7 +94,7 @@
 .detailcontent{
   float : left; 
   border: 1px solid black; 
-  height: 45%; 
+  height: 50%; 
   width: 200px;
   background: none;
   cursor: pointer;

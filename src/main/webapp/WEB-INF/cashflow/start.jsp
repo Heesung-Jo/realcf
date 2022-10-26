@@ -63,6 +63,7 @@ table.maintable th {
   font-weight: bold;
   background: #dcdcd1;
   width: 100px;
+  text-align: center;
 
   }
 
@@ -3796,25 +3797,25 @@ function excelExport(event){
 <div id = "content_right">
 
 <h3>원장이 있는 파일선택</h3>
-<h5>전표번호 순으로 정렬하여, 엑셀파일 입력 필요</h5>
+<p>* 전표번호 순으로 정렬하여, 엑셀파일 입력 필요</p>
 
 <div> 
-<input type="file" id="excelFile" onchange="excelExport(event)"/>
+<input type="file" id="excelFile" class = "btn btn-secondary" onchange="excelExport(event)"/>
 
 </div>
 
 
-<h3>시트선택 및 실행</h3>
+
 
 <div> 
-<input type="button" id ="testbutton" value="실행하기" style = "width: 75px;"/>
+<input type="button" class = "btn btn-primary" id ="testbutton" value="실행하기" style = "width: 75px;"/>
 <select id = "selectsheet" style = "width: 173px;"></select>
 </div>
 
 
 
 <h3>튜토리얼</h3>
-<input type="button" id ="tutorial" value="예제로 실행하기" style = "width: 75px;"/>
+<input type="button" class = "btn btn-success" id ="tutorial" value="예제로 실행하기" />
 
 
 </div>

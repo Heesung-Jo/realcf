@@ -245,6 +245,7 @@ public class companywork {
     	coaturnarr.add("기타부채");
     	coaturnarr.add("충당부채");
     	coaturnarr.add("부채총계");
+    	coaturnarr.add("자본총계");
     	coaturnarr.add("영업활동현금흐름");
     	coaturnarr.add("투자활동현금흐름");
     	coaturnarr.add("재무활동현금흐름");   	

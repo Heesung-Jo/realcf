@@ -7,6 +7,6 @@
 <%@ page session="false" %>
 
 
-
+               <li><a href="/game/purpose">게임설명</a></li>
                <li><a href="/game/puzzlefactory">개인정보처리방침</a></li>
  

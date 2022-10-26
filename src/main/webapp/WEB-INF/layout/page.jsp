@@ -12,6 +12,8 @@
     <meta name="naver-site-verification" content="6b2b1e163182752c9ca47fff9d693a7a2c84160e" />
     <meta name="google-site-verification" content="sJ1nOhbpS_11x-gH2IgxJYH0hvaDfqqhWdIdobhupNY" />
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+   
     <style>
         * { margin: 0; padding: 0; }
         body { font-family: 'Helvetica', sans-serif; }
@@ -22,19 +24,23 @@
 
     </style>
     <style>
+        
         #main_gnb {
             overflow: hidden;
             border-bottom: 1px solid black;
             background: #32394A;
         }
+        
         #main_gnb > ul.left {
             overflow: hidden;
             float: left;
         }
+        
         #main_gnb > ul.right {
             overflow: hidden;
             float: right;
         }
+        
         #main_gnb > ul.left > li { float: left; }
         #main_gnb > ul.right > li { float: left; }
 
@@ -79,7 +85,7 @@
             z-index: 100;
             float: left;
             width: 14%;
-            height: 500%;
+            height: 100%;
             position: absolute;
             left:0;
             top:0;
@@ -123,22 +129,31 @@
   body {
     width: 100%;
     margin: 0 auto; 
-  }
-        
 
+     font-size: 15px;
+
+    line-height: 2;
+
+color: #333;
+
+background-color: #fff;
+
+  }
   
 
     
     </style>
 </head>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     
     <t:insertAttribute name="header" />
     
 
     <div id="wrap">
-        <div id="main_lnb">
-            <ul>
+        <div id="main_lnb" class = "d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+            <ul class = "nav nav-pills flex-column mb-auto">
                <t:insertAttribute name="menu" />  
             </ul>
          </div>
