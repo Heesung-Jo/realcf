@@ -10,7 +10,7 @@ import json
 import 계정매핑_단어_실행_함수_BS as bs
 import 계정매핑_단어_실행_함수_PL as pl
 import 계정매핑_단어_실행_cashflow as cashflow
-
+import re
 
 
 app = Flask(__name__)
@@ -35,13 +35,21 @@ def limit_remote_addr():
 def hellopl():
     
     words = request.values.get("coa")
-    realwords = json.loads(words)
-    print(words)
+    words2 = json.loads(words)
+    realwords = []
+    
+    for i in words2:
+
+        # 영어,숫자 및 공백 제거.
+        text = re.sub('[^가-힣]', '', i)
+        realwords.append(text)
+    
+    print(realwords)
     result = pl.realtest(realwords)
     print(result)
     
     realresult = {}
-    for i, word in enumerate(realwords):
+    for i, word in enumerate(words2):
         realresult[word] = result[i] 
     #print(request.environ)
     #print(request.get_json())
@@ -58,13 +66,21 @@ def hellopl():
 def hellobs():
     
     words = request.values.get("coa")
-    realwords = json.loads(words)
-    print(words)
+    words2 = json.loads(words)
+    realwords = []
+    
+    for i in words2:
+
+        # 영어,숫자 및 공백 제거.
+        text = re.sub('[^가-힣]', '', i)
+        realwords.append(text)
+
+    print(realwords)
     result = bs.realtest(realwords)
     print(result)
     
     realresult = {}
-    for i, word in enumerate(realwords):
+    for i, word in enumerate(words2):
         realresult[word] = result[i] 
 
     return realresult
@@ -73,13 +89,21 @@ def hellobs():
 def hellocashflow():
     
     words = request.values.get("coa")
-    realwords = json.loads(words)
-    print(words)
+    words2 = json.loads(words)
+    realwords = []
+    
+    for i in words2:
+
+        # 영어,숫자 및 공백 제거.
+        text = re.sub('[^가-힣]', '', i)
+        realwords.append(text)
+
+    print(realwords)
     result = cashflow.realtest(realwords)
     print(result)
     
     realresult = {}
-    for i, word in enumerate(realwords):
+    for i, word in enumerate(words2):
         realresult[word] = result[i] 
 
     return realresult
