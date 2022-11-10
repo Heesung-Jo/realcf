@@ -177,9 +177,9 @@ public class NoticeController {
     		LoginCommand loginCommand, Errors errors, HttpSession session,
     		HttpServletResponse response) {
     	
-    	System.out.println(123);
-    	System.out.println(loginCommand.getusername());
-    	System.out.println(errors);
+//    	System.out.println(123);
+ //   	System.out.println(loginCommand.getusername());
+  //  	System.out.println(errors);
     	
         if (errors.hasErrors()) {
             return "/notice/loginForm";
@@ -212,7 +212,7 @@ public class NoticeController {
     
     @GetMapping("/notice/write")
     public String writeshow(Model model) {
-    	System.out.println("여기인가");
+    	//System.out.println("여기인가");
     	member member = userContext.getCurrentUser();
       	model.addAttribute("member", member);
     	return "/notice/write";

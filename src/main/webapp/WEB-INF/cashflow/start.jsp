@@ -114,6 +114,45 @@ table.settlement td {
   background: white
 }
 
+#progress {
+     background-color: white;
+     border: 1px solid #ccc;
+     border-radius: 9px;
+     top: 5%;
+     left: 30%;
+     position: absolute;
+     width: 300px;
+     visibility: hidden;
+}
+
+
+
+#progressbar {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 200px;
+    height: 30px;
+    margin-left: 50px; 
+    margin-bottom:20px;
+    
+}
+
+
+
+#progressbar::-webkit-progress-bar {
+    background:#f0f0f0;
+    border-radius:10px;
+    box-shadow: inset 3px 3px 10px #ccc;
+}
+#progressbar::-webkit-progress-value {
+    border-radius:10px;
+    background: #1D976C;
+    background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);
+    background: linear-gradient(to right, #93F9B9, #1D976C);
+
+}
+
 
 
 </style>
@@ -159,7 +198,7 @@ class subcal{
         this.number = num;
         this.successtestnum = 0 // 나중에 삭제해도 되는 것임
         
-        this.makingcounter = 23; // 20개 정도를 초과하면 시간이 급수적으로 늘어남 // 그래도 재귀함수(배열.slice() 시간에서 많이 까먹음)보단 월등히 빠름
+        this.makingcounter = 13; // 20개 정도를 초과하면 시간이 급수적으로 늘어남 // 그래도 재귀함수(배열.slice() 시간에서 많이 까먹음)보단 월등히 빠름
 
         this.typenumber = 0; // abc[1]의 숫자로 잘 분해되었는지에 대한 값을 저장함
                              // 0은 명확하게 나누어졌을때, 1은 확률카운터로 어느정도 명확할 때, 2는 afterfail 실행
@@ -184,15 +223,10 @@ class subcal{
         // mainarr 복제해서 grouparr 만들기
         // 옵션값에 따라서 계정과목별로 grouping 할 것
         
-        this.coagrouping(); // coagrouping 사용 안하려면, 아래 /* 지울 것
-        
-        /*
-        for(var i in mainarr){
-            var temp = JSON.parse(JSON.stringify(mainarr[i]));
-            temp.ref = [i]
-            this.grouparr.push(temp);
-        }
-        */
+
+        	
+        this.coagrouping(); 
+        	
         
         this.solvearr = [];
         this.solvegroup = [];
@@ -267,7 +301,7 @@ class subcal{
 
         }else{
 
-            var abc2 = this.erase(abc[0]);
+        	var abc2 = this.erase(abc[0]);
             
 
             for(var i in abc2){
@@ -333,6 +367,7 @@ class subcal{
                         temp["related"] = related
                         temp["금액"] = -1 * this.grouparr[i2]["금액"];
                         this.solvearr.push(temp);
+                        
 
                     }
                 }
@@ -356,6 +391,7 @@ class subcal{
         	return;
         }
 
+        
        
     	this.solvearr = this.afterfail(this.grouparr, this.probmodel, this.smallval)
     	this.typenumber = 2;
@@ -430,6 +466,8 @@ class subcal{
         	return;
         }
     	
+        
+        
         if(this.typenumber > 0){
         	
             // prob적으로 가까운 것 count만큼 모아서, making하는 함수
@@ -440,6 +478,7 @@ class subcal{
 
             if(this.typenumber == 1){
                 var abc2 =  this.solvegroup;
+                
                 
 
                 for(var i in abc2){
@@ -473,6 +512,8 @@ class subcal{
                         }
                     }
                 }
+                
+                
                 successtest[2].push(this.number);
                 this.execute_condition = "stop";
                 
@@ -485,12 +526,11 @@ class subcal{
     
     // 3으로 표시되어 있으나, 이게 시작포인트임
     execute3(realcoa, 손익){
+    	
         if(this.execute_condition == "stop"){
         	return;
         }
     	
-        
-       
         
        // 손익계정으로만 된 것은 더 이상 분해하지 않고, 종료시킴    	
     	for(var i in this.grouparr){
@@ -520,19 +560,20 @@ class subcal{
 		    
 		    
 		    
-    		if((realcoa[coa]["분류1"] == "현금흐름이 없는 손익" || realcoa[coa]["분류1"] == "이자손익") && (분류2_relate == "현금" || 분류2_relate == "손익" || 분류2_relate == "손익류" || 분류2_relate == "이자류")){
+    		if((realcoa[coa]["분류1"] == "현금흐름이 없는 손익" || realcoa[coa]["분류1"] == "이자손익") && (분류2_relate == "현금" || 분류2_relate == "손익" || 분류2_relate == "손익류" || 분류2_relate == "이자류" || 분류2_relate == "처분류")){
     			
     			// 이런 경우 상대계정이 현금류나 손익, 손익류이면 해당계정과 가장 유사한 계정으로 바꿔치기 해줘야함
-    			
-    			
-    			this.incometype_afterwork(i, {"현금": 0, "손익": 0, "손익류": 0, "이자류": 0}, realcoa, middlecoa);
+      			
+    			this.incometype_afterwork(i, {"현금": 0, "손익": 0, "손익류": 0, "이자류": 0, "처분류": 0}, realcoa, middlecoa);
     		}
     		
     		if(realcoa[coa]["분류1"] == "처분손익" && 
-    			(분류2_relate == "현금"  || 분류2_relate == "중간" || 분류2_relate == "손익" || 분류2_relate == "손익류" || 분류2_relate == "이자류")){
+    			(분류2_relate == "현금"  || 분류2_relate == "중간" || 분류2_relate == "손익" || 분류2_relate == "손익류" || 분류2_relate == "이자류" || 분류2_relate == "처분류")){
     			// 이런 경우 상대계정이 현금 또는 중간류거나 손익이면 바꿔치기 해줘야함
-                
-    			this.incometype_afterwork(i, {"현금": 0, "중간": 0, "손익": 0, "손익류": 0, "이자류": 0}, realcoa,  middlecoa);
+               
+    			
+    			
+    			this.incometype_afterwork(i, {"현금": 0, "중간": 0, "손익": 0, "손익류": 0, "이자류": 0, "처분류": 0}, realcoa,  middlecoa);
     		}
     	}
     	
@@ -564,6 +605,8 @@ class subcal{
 			// 유사계정을 못찾은 경우 전체 prob에서 가장 큰 값으로 선택해야 함
 			
 			if(selection == ""){
+				
+				
 				for(var ia in this.probmodel[coa][차변대변]){
 					var val = 0;
 					if(ia != "total" && middlecoa[realcoa[ia]["분류2"]]["분류2"] in hash == false){
@@ -602,6 +645,7 @@ class subcal{
 			
 			// 그래도 못 찾았으면 넘겨버릴 것
 			if(selection == ""){
+				
 				return;
 			}
 			
@@ -620,6 +664,7 @@ class subcal{
 			relatedarr['상대계정'] = selection;
 			this.solvearr[i]['상대계정'] = selection;  
     }
+    
     
     find_relativeaccount(arr, i){
 
@@ -641,6 +686,7 @@ class subcal{
     coagrouping(){
     	// 계정번호 같은 것을 그룹핑하기 위해서 만들었음
     	var arr = {}
+    	
         for(var i in this.mainarr){
         	var 계정과목 = this.mainarr[i]["계정과목"];
         	if(계정과목 in arr){
@@ -786,14 +832,11 @@ class subcal{
 	 for(var i in this.countmodel){
 		 if(this.equal(this.countmodel[i].type, arr) == true){
 			 
-			 return this.countmodel[i].count * this.smallval;
+			 return this.countmodel[i].count;
 		 }
 	 }
 	 
-	 var prob = 1;
-	 for(var i of arr){
-		 prob *= this.smallval;
-	 }
+	 var prob = 0.1;
 	 
 	 return prob;
  }
@@ -830,6 +873,48 @@ class subcal{
        return prob; 
  }
 
+ 
+ 
+ probcal_avg = (arr) => {
+
+	 // 위에는 최대값이지만, 이건 평균값임 예를들어 2개, 2개, 2개로 쪼개진 것과 2개 4개로 쪼개진 것 아무래도 2, 2, 2이 될 가능성이 높음
+	 // 왜냐하면 결국 6개에 대한 확률을 곱하면 6번임 그런데 2, 2, 2은 상대계정이 하나씩이므로, 확률이 높은값을 가질것이므로 높아짐
+	 // 그런데 2, 4에서 4개는 평균값으로 하면 저절로 확률이 낮아져서 선택가능성이 낮아짐. 즉 avg가 맞는 것임
+
+	 // 조건부 독립은 아닐테지만, 조건부 독립을 가정하여, 확률값 계산
+     // P(a,b,c,d ......) = P(b, c, d, ......|a) * P(a)
+     // P(a)는 이미 발생했다고 가정하면 = P(b, c, d, ......|a) = P(b|a) * P(c|a) * P(d|a) .........
+     
+     var prob = 1;
+ 	
+     for(var i in arr){
+         
+         // i란 사건이 이미 발생했다고 가정함
+         var temp = 0;
+         var count = 0;
+         var opt = arr[i]["금액"] > 0 ? "차변" : "대변";   
+ 
+         for(var j in arr){
+            if(i != j){
+                temp = temp + this.probcal(arr[i]["계정과목"], arr[j]["계정과목"], opt)
+                count += 1;
+            }
+
+         }
+         
+         if(count > 0){
+        	 temp = temp / count;
+         }else{
+        	 temp = this.smallval;
+         }
+         
+         prob = prob * temp;
+     }
+      
+      return prob; 
+}
+ 
+ 
   // 이 함수 일단 버림// 확률적으로 맞는것 같지 않음
   probcal_mul = (arr) => {
       
@@ -1145,7 +1230,8 @@ class subcal{
 ######  이자수익:{'대변':{'total':1,'미수이자':1}},현금:{'차변':{'total':1,'미수이자':1}}}
 */        
         
-        var arr3 = this.grouparr;   
+        var arr3 = this.grouparr;  
+
         var abc = this.making(0, arr3)
         
         
@@ -1450,10 +1536,13 @@ class subcal{
        var 지속 = 0
        
        합계[0] = s1
+       
+
        if(arr.length > this.makingcounter){
            실패 = 20    //실패를 20은 숫자초과로 행렬곱으로 계산해야하는 것들
                      // 10은 나머지인데 확률카운터로 한번 더 걸러냄
                      // 손익만 있는 거래는 이것을 하지 않음
+           return
        }
 
     while(im[0] < n-1){
@@ -1485,54 +1574,23 @@ class subcal{
             
                 }else{
                     // 여기서 최고 높은 가능한 거래로 쪼개는 것을 남기는 것임
-                    
+               
+
+                    // probcal_ind 방식으로 갈지 probcal_count로 갈 지 고민할 것
                     var deepnodeprob = 1;
                     for(var pro1 in deepresult){
 
-                    	var 차변 = 0;
-                        var 대변 = 0;
-                   	
-                    	// 먼저 확률값 계산하기
-                    	var temp = new Set([]);
-                    	for(var a in deepresult[pro1]) {
-                    		temp.add(deepresult[pro1][a]["계정과목"]);
-
-                    		// 다음으로 차변, 대변이 하나만 있어야함. 그래야지 나머지 항목을 무조건적으로 귀속시키므로
-                        	if(deepresult[pro1][a]["금액"] > 0){
-                        		차변 += 1;
-                        	}else{
-                        		대변 += 1;
-                        	}
-
-                    	}
-                    	deepnodeprob *= this.probcal_count(temp);
-                        // 쪼개진 거래는 한쪽의 합계가 무조건 나머지 합계전체와 같아야함
-                        var calcul = 0;
-                        if(차변 == 1 || 대변 == 1){
-                        	calcul = 1;
-                        }
-                    	
+                    	deepnodeprob = deepnodeprob * this.probcal_avg(deepresult[pro1]);
                     }
+
                     
-                    if(this.deepnodeprob < deepnodeprob && calcul == 1){
-                        this.deepnodeprob = deepnodeprob;
-                        this.solvegroup = deepresult.slice()
-                        this.typenumber = 1;
-                    }
-
-                    /* probcal_ind 방식으로 갈지 probcal_count로 갈 지 고민할 것
-                    var deepnodeprob = 1;
-                    for(var pro1 in deepresult){
-
-                    	deepnodeprob = deepnodeprob * this.probcal_ind(deepresult[pro1]);
-                    }
-
                     if(this.deepnodeprob < deepnodeprob){
                         this.deepnodeprob = deepnodeprob;
-                        this.deepresult = deepresult.slice()
+                        this.solvegroup = deepresult.slice();
+                        this.typenumber = 1;
                     }
                     
-                    */
+                   
                     
                 }
 
@@ -1735,6 +1793,7 @@ class showing{
     
     constructor(obj){
     	
+    	this.timer = {};
     	this.func_turn_arr = [];
         // 처음 원장 받는 view와 관련된 것
         this.coasetarr = {}  // 서버에서 넘어올 것이고  
@@ -1745,8 +1804,6 @@ class showing{
         this.table = {};     // 좌측 즉 메인테이블 그 자체를 의미함
                              
         this.settlementarr = {} // 이건 정산표 모드일때 tablearr
-
-        
         this.tablediv = document.getElementById("tablediv");
         this.content_right = document.getElementById("content_right");
 
@@ -1931,153 +1988,154 @@ class showing{
     //
     makesettlement = () => {
         
-    	
-        // 기존 테이블 삭제하기
-        this.table.parentNode.removeChild(this.table);
-        this.selectsheet.parentNode.removeChild(this.selectsheet);
-        this.testbutton.parentNode.removeChild(this.testbutton);
-        this.content_right.parentNode.removeChild(this.content_right);
-        
+    	return new Promise((resolve) => {
+            // 기존 테이블 삭제하기
+            this.table.parentNode.removeChild(this.table);
+            this.selectsheet.parentNode.removeChild(this.selectsheet);
+            this.testbutton.parentNode.removeChild(this.testbutton);
+            this.content_right.parentNode.removeChild(this.content_right);
+            
 
-        // 구조를 좌측, 오른쪽, 아래쪽 세 구도를 잡기위해서
-        // tablediv에 upperdiv를 만들고 집어넣고, upperdiv에는 좌측 ,오른쪽을 집어넣고, float: left함
-        // 아래쪽은 그냥 tablediv에 집어넣음
-        
-        var upperdiv = document.createElement("div")
-        this.tablediv.appendChild(upperdiv)
-       
-        // 정산표 관련 테이블 만들기
-        var tableup = document.createElement("div");
-        
-        
-    	var table = document.createElement("table")
-        table.setAttribute("class", "settlement");
+            // 구조를 좌측, 오른쪽, 아래쪽 세 구도를 잡기위해서
+            // tablediv에 upperdiv를 만들고 집어넣고, upperdiv에는 좌측 ,오른쪽을 집어넣고, float: left함
+            // 아래쪽은 그냥 tablediv에 집어넣음
+            
+            var upperdiv = document.createElement("div")
+            this.tablediv.appendChild(upperdiv)
+           
+            // 정산표 관련 테이블 만들기
+            var tableup = document.createElement("div");
+            
+            
+        	var table = document.createElement("table")
+            table.setAttribute("class", "settlement");
 
-    	upperdiv.appendChild(tableup);
-    	tableup.appendChild(table);
-    	this.maintag = table;
-        
-        tableup.style = "float: left; overflow: scroll; width: 70%;  height: 500px; border: 1px solid #444444;"
-        // 계정과목별로 펼치기
-        // 210518 이것도 이제 손익, 영업, 투자, 재무로 쪼개서 보여줄 것
-        // 구조 계정과목, 손익, 숫자, 영업, 숫자, 투자, 숫자, 재무, 숫자, 대체, 숫자 총 11개
-        
-        
-        
-        // 제목열 만들기
-    	var thead = document.createElement("thead");
-   	    this.maintag.appendChild(thead);
-   	    var temp = {}
-    	var subdiv = this.maketrtd(temp, 8, "th");
-   	    temp[0].innerText = "계정";
-   	    temp[1].innerText = "손익";
-   	    temp[2].innerText = "영업";
-   	    temp[3].innerText = "투자유출";
-   	    temp[4].innerText = "투자유입";
-   	    temp[5].innerText = "재무유출";
-   	    temp[6].innerText = "재무유입";
-   	    temp[7].innerText = "대체";
+        	upperdiv.appendChild(tableup);
+        	tableup.appendChild(table);
+        	this.maintag = table;
+            
+            tableup.style = "float: left; overflow: scroll; width: 70%;  height: 500px; border: 1px solid #444444;"
+            // 계정과목별로 펼치기
+            // 210518 이것도 이제 손익, 영업, 투자, 재무로 쪼개서 보여줄 것
+            // 구조 계정과목, 손익, 숫자, 영업, 숫자, 투자, 숫자, 재무, 숫자, 대체, 숫자 총 11개
+            
+            
+            
+            // 제목열 만들기
+        	var thead = document.createElement("thead");
+       	    this.maintag.appendChild(thead);
+       	    var temp = {}
+        	var subdiv = this.maketrtd(temp, 8, "th");
+       	    temp[0].innerText = "계정";
+       	    temp[1].innerText = "손익";
+       	    temp[2].innerText = "영업";
+       	    temp[3].innerText = "투자유출";
+       	    temp[4].innerText = "투자유입";
+       	    temp[5].innerText = "재무유출";
+       	    temp[6].innerText = "재무유입";
+       	    temp[7].innerText = "대체";
 
-        var button = document.createElement("Input");
-        button.setAttribute('type', "button");
-        button.setAttribute('value', "엑셀출력");
-        button.addEventListener('click',()=>{this.makeexcel()});
-        temp[0].appendChild(button);
-   	    
-   	    thead.appendChild(subdiv);
-        
-        // 내용열 만들기
-    	var tbody = document.createElement("tbody");
-    	this.maintag.appendChild(tbody);
-      
-    	
-    	// 보여줄 계정들 순서 정렬하기
-    	
-    	
-    	var turn = []
-        for(var i of this.realcoa){
-    	  
-           if(this.sortedrealcoa[i]["분류1"] == "BS" && this.sortedrealcoa[i]["분류2"] != "현금및현금성자산"){
-        	   turn.push(i);
-        	   
-           }
-         }
-    	
-        for(var i of this.realcoa){
-      	  
-            if(this.sortedrealcoa[i]["분류1"] == "자산/부채에 차감하는 계정" ){
-         	   //주계정의 위치찾기
-         	   var main = this.sortedrealcoa[i]['main'];
-         	   for(var j = 0; j < turn.length; j++){
-         		   if(turn[j] == main){
-         			   turn.splice(j + 1, 0, i)
-         			   break
-         		   }
-         	   }
+            var button = document.createElement("Input");
+            button.setAttribute('type', "button");
+            button.setAttribute('value', "엑셀출력");
+            button.addEventListener('click',()=>{this.makeexcel()});
+            temp[0].appendChild(button);
+       	    
+       	    thead.appendChild(subdiv);
+            
+            // 내용열 만들기
+        	var tbody = document.createElement("tbody");
+        	this.maintag.appendChild(tbody);
+          
+        	
+        	// 보여줄 계정들 순서 정렬하기
+        	
+        	
+        	var turn = []
+            for(var i of this.realcoa){
+        	  
+               if(this.sortedrealcoa[i]["분류1"] == "BS" && this.sortedrealcoa[i]["분류2"] != "현금및현금성자산"){
+            	   turn.push(i);
+            	   
+               }
+             }
+        	
+            for(var i of this.realcoa){
+          	  
+                if(this.sortedrealcoa[i]["분류1"] == "자산/부채에 차감하는 계정" ){
+             	   //주계정의 위치찾기
+             	   var main = this.sortedrealcoa[i]['main'];
+             	   for(var j = 0; j < turn.length; j++){
+             		   if(turn[j] == main){
+             			   turn.splice(j + 1, 0, i)
+             			   break
+             		   }
+             	   }
+                }
+        	
             }
-    	
-        }
 
-    	
-      // 이제 집어넣기
-       var order = {};
-       order[0] = "계정";
-       order[1] = "손익";
-       order[2] = "영업";
-       order[3]= "투자유입";
-       order[4] = "투자유출";
-       order[5] = "재무유입";
-       order[6] = "재무유출";
-       order[7] = "대체";
-   	
-      
-      for(var i in turn){
-    	  
-    	    this.settlementarr[turn[i]] = {}
-    		var subsum = this.cal_subsum2(turn[i]);
-    	    var subdiv = this.maketrtd(this.settlementarr[turn[i]], 8);
-    	    tbody.appendChild(subdiv)
-    	   
-    	    
-     		this.settlementarr[turn[i]][0].innerText = turn[i];
-    	    this.settlementarr[turn[i]][1].innerText = this.comma(subsum["손익"].sum);
-    	    this.settlementarr[turn[i]][2].innerText = this.comma(subsum["영업"].sum);
-    	    this.settlementarr[turn[i]][3].innerText = this.comma(subsum["투자유입"].sum);
-    	    this.settlementarr[turn[i]][4].innerText = this.comma(subsum["투자유출"].sum);
-    	    this.settlementarr[turn[i]][5].innerText = this.comma(subsum["재무유입"].sum);
-    	    this.settlementarr[turn[i]][6].innerText = this.comma(subsum["재무유출"].sum);
-    	    this.settlementarr[turn[i]][7].innerText = this.comma(subsum["대체"].sum);
+        	
+          // 이제 집어넣기
+           var order = {};
+           order[0] = "계정";
+           order[1] = "손익";
+           order[2] = "영업";
+           order[3]= "투자유입";
+           order[4] = "투자유출";
+           order[5] = "재무유입";
+           order[6] = "재무유출";
+           order[7] = "대체";
+       	
+          
+          for(var i in turn){
+        	  
+        	    this.settlementarr[turn[i]] = {}
+        		var subsum = this.cal_subsum2(turn[i]);
+        	    var subdiv = this.maketrtd(this.settlementarr[turn[i]], 8);
+        	    tbody.appendChild(subdiv)
+        	   
+        	    
+         		this.settlementarr[turn[i]][0].innerText = turn[i];
+        	    this.settlementarr[turn[i]][1].innerText = this.comma(-1 * subsum["손익"].sum);
+        	    this.settlementarr[turn[i]][2].innerText = this.comma(-1 * subsum["영업"].sum);
+        	    this.settlementarr[turn[i]][3].innerText = this.comma(-1 * subsum["투자유입"].sum);
+        	    this.settlementarr[turn[i]][4].innerText = this.comma(-1 * subsum["투자유출"].sum);
+        	    this.settlementarr[turn[i]][5].innerText = this.comma(-1 * subsum["재무유입"].sum);
+        	    this.settlementarr[turn[i]][6].innerText = this.comma(-1 * subsum["재무유출"].sum);
+        	    this.settlementarr[turn[i]][7].innerText = this.comma(-1 * subsum["대체"].sum);
 
-    	    for(var num = 1; num <= 7; num++){
-    			var field = document.createElement("input");
-    			field.setAttribute("type", "checkbox");
-    	        this.settlementarr[turn[i]][num].appendChild(field)
-    	    	this.settlementarr[turn[i]][num].style = "text-align: right;"
-    	    	this.additem4(field, turn[i], subsum[order[num]].arr);
-    	    }
+        	    for(var num = 1; num <= 7; num++){
+        			var field = document.createElement("input");
+        			field.setAttribute("type", "checkbox");
+        	        this.settlementarr[turn[i]][num].appendChild(field)
+        	    	this.settlementarr[turn[i]][num].style = "text-align: right;"
+        	    	this.additem4(field, turn[i], subsum[order[num]].arr);
+        	    }
 
-    		this.beforecoa = turn[i];
-       }
-        // 우측 상세내역 볼 테이블
-    	var div = document.createElement("div")
-    	upperdiv.appendChild(div)
-    	this.righttag = div;
-     
-    	div.style = "float: left; overflow: scroll; width: 28%;  height: 500px; border: 1px solid black;"
+        		this.beforecoa = turn[i];
+           }
+            // 우측 상세내역 볼 테이블
+        	var div = document.createElement("div")
+        	upperdiv.appendChild(div)
+        	this.righttag = div;
+         
+        	div.style = "float: left; overflow: scroll; width: 28%;  height: 500px; border: 1px solid black;"
+            
+            // 아래쪽 테이블 전표번호별 수정가능한 테이블 만들기
+            // 210408 수정되는 기능 추가해야함. 드랍다운 기능 추가해야함
+            var div = document.createElement("div")
+            this.tablediv.appendChild(div)
+            this.bottomtag = div;
+            div.style = "overflow: scroll; width: 100%;  height: 300px; border: 1px solid black;"
+
+
+            this.tablediv.style = "width: 97%;"    	
+            
+            	resolve();
+    	})
+
         
-        // 아래쪽 테이블 전표번호별 수정가능한 테이블 만들기
-        // 210408 수정되는 기능 추가해야함. 드랍다운 기능 추가해야함
-        var div = document.createElement("div")
-        this.tablediv.appendChild(div)
-        this.bottomtag = div;
-        div.style = "overflow: scroll; width: 100%;  height: 300px; border: 1px solid black;"
-
-
-        this.tablediv.style = "width: 97%;"
-        
-        
-        
-
         
         
         
@@ -2148,10 +2206,10 @@ class showing{
       var settlementhash = {}
       for(var i in this.coasum){
  
-	    	  if(this.sortedrealcoa[i]["분류1"] == "BS" ||this.sortedrealcoa[i]["분류1"] == "자산/부채에 차감하는 계정" ){
+   	  
+    	  if(this.sortedrealcoa[i]["분류1"] == "BS" ||this.sortedrealcoa[i]["분류1"] == "자산/부채에 차감하는 계정" ){
   	        	  settlementhash[i] = {}
-  	        	  
-  	          }
+          }
 	    	  
           for(var j in this.coasum[i]){
         	  
@@ -2166,7 +2224,7 @@ class showing{
        		  
         	  }
         	  var last = solvecoalist.length;
-  	    	  str = "SUM('원장가공'!C" + first + ":C" + last + ")"; 
+  	    	  str = "-SUM('원장가공'!C" + first + ":C" + last + ")"; 
 
   	    	  if(this.sortedrealcoa[i]["분류1"] == "BS" ||this.sortedrealcoa[i]["분류1"] == "자산/부채에 차감하는 계정" ){
   	        	  settlementhash[i][j] = str;
@@ -2264,12 +2322,8 @@ class showing{
     	  
       }	  
     	  
-      
-      
     	
-    	
-       exportExcel2(maincoalist, solvecoalist, settlementlist);
-    	
+       exportExcel2(maincoalist, solvecoalist, settlementlist, this.sortedrealcoa);
     	
     }
     
@@ -2342,8 +2396,6 @@ class showing{
     	   console.log(res);
            this.coasortobj = res.sortobj;
            this.middlecoa = res.middlecoa;
-           
-           
            
        })
     }
@@ -2920,11 +2972,17 @@ class showing{
     }
 
     // 확률모델 만들기
-    makeprob = () => {
-        for(var i in this.subclass){
-            this.probmodel = this.subclass[i].makeprob(this.probmodel)
-        }
-
+    makeprob(){
+    	return new Promise((resolve) => {
+  
+    		for(var i in this.subclass){
+            	
+                this.probmodel = this.subclass[i].makeprob(this.probmodel)
+            }
+            resolve()
+    	})
+    	
+    	
         
     }
     
@@ -2943,7 +3001,6 @@ class showing{
  // 확률거리를 계산하기 위한 함수 
   // 현재는 차변, 대변 평균이나, 차변만, 대변만 옵션들 추가해야 할듯 
   probcal = (a, b, opt) => {
-
       var prob = this.smallval
       
       if(opt == "차변"){
@@ -3048,92 +3105,196 @@ class showing{
      return arr;
   }
 
+  
+  
+  
+  
+  
     // 연산 실행하기
+  async realexecute(){
+
+
+      await this.makeprob();
+
+      await this.execute3();
+
+      await this.execute();
+
+      await this.execute2();
+
+      await this.execute4();
+
+      await this.execute5();
+
+      await this.execute_incometype();
+
+      await this.inputcoasum();
+      
+      await this.makesettlement();
+    }
+    
+    
+    
     execute(){
-        for(var i in this.subclass){
-            this.subclass[i].execute()
-            
-     	   // 카운트 모델 만들기
-     	   if(this.subclass[i].solvearr.length > 0){
-        	   this.makecountmodel(this.subclass[i].solvegroup)
-     	   }
-        }
+    	
+    	return new Promise((resolve) => {
+        	// 먼저 smallval 전표량에 비례하여 갈아끼울 것
+        	var count = 0;
+            for(var i in this.subclass){
+            	count += this.subclass[i].mainarr.length;
+            }
+        	
+            this.smallval = Math.min(0.1/count, this.smallval);
+
+            for(var i in this.subclass){
+               this.subclass[i].smallval = this.smallval;
+            }
+
+        	// 이제 실행하기
+
+        	for(var i in this.subclass){
+                this.subclass[i].execute()
+                
+         	   // 카운트 모델 만들기
+         	   if(this.subclass[i].solvearr.length > 0){
+            	   this.makecountmodel(this.subclass[i].solvegroup)
+         	   }
+                
+                
+            }
+        	resolve();   
+    	})
+    	
+         	
     }
 
     execute2(){
-    	
-    	// 카운터 모델에 의해 쪼갤질 가능성이 다양한 경우에는 확률에 따라 최적치 도출하기
-        for(var i in this.subclass){
-        	this.subclass[i].countmodel = this.countmodel;
-            this.subclass[i].execute2()
-            
-        }
+    	return new Promise((resolve) => {
+        	// 카운터 모델에 의해 쪼갤질 가능성이 다양한 경우에는 확률에 따라 최적치 도출하기
+            for(var i in this.subclass){
+            	
+            	this.subclass[i].countmodel = this.countmodel;
+                this.subclass[i].execute2()
+                
+            }
+            resolve();
+    	})
     	
         
     }
 
      
     execute3(){
-        for(var i in this.subclass){
-            this.subclass[i].execute3(this.sortedrealcoa, this.중분류_손익);
-            
-        }
+    	
+    	return new Promise((resolve) => {
+            for(var i in this.subclass){
+                this.subclass[i].execute3(this.sortedrealcoa, this.중분류_손익);
+                
+            }
+            resolve();
+    	})
+
     	
     }
 
     execute4(){
-        for(var i in this.subclass){
-            this.subclass[i].execute4();
-            
-        }
+    	
+    	return new Promise((resolve) => {
+            for(var i in this.subclass){
+                this.subclass[i].execute4();
+                
+            }
+            resolve();
+    	})
+    	
     }
     
     execute5(){
+    	
+    	return new Promise((resolve) => {
+        	// 수행전에 probmodel업데이트 하기
             for(var i in this.subclass){
-                this.subclass[i].execute5();
                 
+            	for(var j = 0; j < this.subclass[i].solvearr.length; j++){
+            		var coa = this.subclass[i].solvearr[j]["계정과목"];
+            		var coa_other = this.subclass[i].solvearr[j]["상대계정"];
+            		var 차변대변 = this.subclass[i].solvearr[j]["금액"] > 0 ? "차변" : "대변"
+            		this.probmodel[coa][차변대변]['total'] += 1;
+            		
+            		if(coa_other in this.probmodel[coa][차변대변]){
+                		this.probmodel[coa][차변대변][coa_other] = 1;
+            			
+            		}else{
+                		this.probmodel[coa][차변대변][coa_other] += 1;
+            			
+            		}
+            		
+            	}
+                            
             }
-            
+        	
+        	
+        	// 이제 확률모델 돌리기
+                for(var i in this.subclass){
+                    this.subclass[i].execute5();
+                                
+                }
+                resolve();
+    	})
+       
     }
     
    //
    
     execute_incometype(){
-        for(var i in this.subclass){
-            this.subclass[i].execute_incometype(this.sortedrealcoa, this.middlecoa);
-            
-        }
-    	
+
+	   // 먼저 
+	   
+	   return new Promise((resolve) => {
+		   for(var i in this.subclass){
+	            this.subclass[i].execute_incometype(this.sortedrealcoa, this.middlecoa);
+	            
+	        }
+		   resolve();
+	   })
+      
+	   
     }
    
     
    // 정산표 배열에 집어넣기(coasum)
-   inputcoasum = () => {
-       
-       // 이런 구조의 배열임
-       // {장기대여금: {이자수익: {sum: , arr: []}, .....}}
+   inputcoasum(){
 
-       for(var i of this.realcoa){
-           this.coasum[i] = [];
-       } 
+	   return new Promise((resolve) => {
 
-       
+	       // 이런 구조의 배열임
+	       // {장기대여금: {이자수익: {sum: , arr: []}, .....}}
 
-       for(var i in this.subclass){
+	       for(var i of this.realcoa){
+	           this.coasum[i] = [];
+	       } 
 
-           for(var j in this.subclass[i].solvearr){
-               var 계정과목 = this.subclass[i].solvearr[j]["계정과목"];
-               var 상대계정 = this.subclass[i].solvearr[j]["상대계정"];
+	       
 
-               if(상대계정 in this.coasum[계정과목] == true){
-                  this.coasum[계정과목][상대계정].arr.push(this.subclass[i].solvearr[j]);
-                  this.coasum[계정과목][상대계정].sum += this.subclass[i].solvearr[j]["금액"];
-               }else{
-                  this.coasum[계정과목][상대계정] = {sum: this.subclass[i].solvearr[j]["금액"], arr: [this.subclass[i].solvearr[j]]};
-               }               
-           }
+	       for(var i in this.subclass){
 
-       }
+	           for(var j in this.subclass[i].solvearr){
+	               var 계정과목 = this.subclass[i].solvearr[j]["계정과목"];
+	               var 상대계정 = this.subclass[i].solvearr[j]["상대계정"];
+
+	               if(상대계정 in this.coasum[계정과목] == true){
+	                  this.coasum[계정과목][상대계정].arr.push(this.subclass[i].solvearr[j]);
+	                  this.coasum[계정과목][상대계정].sum += this.subclass[i].solvearr[j]["금액"];
+	               }else{
+	                  this.coasum[계정과목][상대계정] = {sum: this.subclass[i].solvearr[j]["금액"], arr: [this.subclass[i].solvearr[j]]};
+	               }               
+	           }
+
+	       }
+	       resolve();
+	   })
+	   
+	   
    }
    
    makecountmodel(group){
@@ -3192,7 +3353,7 @@ class showing{
        for(var r = this.itemarray["제목행"]; r <= range.r; r++){
     	       
                if(!Number(this.excelposfind("합계",r))){
-                   alert("숫자가 아닌 데이터가 있습니다. 원장 끝행 이후의 행은 삭제해 주세요")
+                   alert("숫자가 아닌 데이터가 있습니다. 0인 셀은 삭제하고, 원장 끝행 이후의 행은 삭제해 주세요")
                    return
                };
                sum += this.wb.Sheets[this.sheetname][XLSX.utils.encode_cell({r: r, c: this.itemarray["합계"]-1})].v
@@ -3274,6 +3435,8 @@ class showing{
            }else{
                // 전표별로 subclass 만들기
         	   this.subclass[i] = new subcal(this.subsumarr[i].arr, i, this.probmodel, this.smallval, this.sortedrealcoa);
+               
+               
                
            } 
        }
@@ -3586,7 +3749,7 @@ window.onload = function(){
 }
 
 
-function exportExcel2(data1, data2, data3){
+function exportExcel2(data1, data2, data3, sortedrealcoa){
 	
 	
 	
@@ -3604,6 +3767,7 @@ function exportExcel2(data1, data2, data3){
 	var range = {s:{r: 0, c: 0}, e: {r: data1.length, c: 10}};
 
 	for(var i = 0; i < data1.length; i++){
+		
 		for(var j = 0; j < data1[i].length; j++){
 			
 			if(j == 2){
@@ -3613,10 +3777,7 @@ function exportExcel2(data1, data2, data3){
 				var cell = {v: data1[i][j]};
 
 			}
-			var cellRef = XLSX.utils.encode_cell({r:i, c:j});
-            
-			
-			
+			var cellRef = XLSX.utils.encode_cell({r: i, c:j});
 			worksheet[cellRef] = cell;
 			worksheet['!ref'] = XLSX.utils.encode_range(range);
 			
@@ -3663,7 +3824,26 @@ function exportExcel2(data1, data2, data3){
 
 	var range = {s:{r: 0, c: 0}, e: {r: data3.length, c: 10}};
 
+	// 제목써주기
+	var cellRef = XLSX.utils.encode_cell({r:0, c:0});
+	worksheet[cellRef] = {v: '계정과목'};
+	var cellRef = XLSX.utils.encode_cell({r:0, c:1});
+	worksheet[cellRef] = {v: '손익계정'};
+	var cellRef = XLSX.utils.encode_cell({r:0, c:2});
+	worksheet[cellRef] = {v: '손익금액'};
+	var cellRef = XLSX.utils.encode_cell({r:0, c:3});
+	worksheet[cellRef] = {v: '영업'};
+	var cellRef = XLSX.utils.encode_cell({r:0, c:4});
+	worksheet[cellRef] = {v: '투자'};
+	var cellRef = XLSX.utils.encode_cell({r:0, c:5});
+	worksheet[cellRef] = {v: '재무'};
+	var cellRef = XLSX.utils.encode_cell({r:0, c:6});
+	worksheet[cellRef] = {v: '대체'};
+	
+	var option = 0;
+	
 	for(var i = 0; i < data3.length; i++){
+
 		for(var j = 0; j < data3[i].length; j++){
 			
 			var cell = {v: ''};
@@ -3673,9 +3853,22 @@ function exportExcel2(data1, data2, data3){
 				}
 				
 			}else{
+				
+				var tempcoa = data3[i][j];
+				if(tempcoa in sortedrealcoa){
+					if('분류2' in sortedrealcoa[tempcoa]){
+						if(sortedrealcoa[tempcoa]['분류2'] == "현금및현금성자산"){
+							option = 1;
+							break;
+						}
+						
+					}
+					
+				}
+				
 				cell = {v: data3[i][j]};
 			}
-			var cellRef = XLSX.utils.encode_cell({r:i, c:j});
+			var cellRef = XLSX.utils.encode_cell({r:i+1 - option, c:j});
             
 			worksheet[cellRef] = cell;
 			worksheet['!ref'] = XLSX.utils.encode_range(range);
@@ -3753,6 +3946,11 @@ function excelExport(event){
     var input = event.target;
     
     var reader = new FileReader();
+    progress =  document.getElementById("progress");
+    progressbar = document.getElementById("progressbar");
+
+    progress.style.visibility = "visible";
+    
     reader.onload = function(){
         var fileData = reader.result;
         var wb = XLSX.read(fileData, {type : 'binary'});
@@ -3764,6 +3962,7 @@ function excelExport(event){
 
         // row를 2로 임의로 배정했으나, 앞으로 이것도 자동 추가해야함
         
+
         
         // 사실 여기부터 필요있는 코드임. 위의 코드는 원래는 그냥 서버에서 넘겨받는 것임
 
@@ -3779,6 +3978,10 @@ function excelExport(event){
 	        //var rowObj =XLSX.utils.sheet_to_json(wb.Sheets[sheetName]);
 	        //console.log(JSON.stringify(rowObj));
         })
+        
+        
+        progress.style.visibility = "hidden";
+
     };
     reader.readAsBinaryString(input.files[0]);
 }
@@ -3819,6 +4022,12 @@ function excelExport(event){
 
 
 </div>
+
+
+<div id = "progress">
+<p style= "text-align: center"> 잠시만 기다려 주세요 </p>
+</div>
+
 
 </body>
 

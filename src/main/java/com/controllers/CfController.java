@@ -84,7 +84,7 @@ public class CfController {
     public String getsubwindow(
     		Model model, HttpSession session, 
     		HttpServletResponse response) {
-    	System.out.println("subwin");
+//    	System.out.println("subwin");
          return "/cashflow2/subwindow";
     }
 
@@ -106,7 +106,7 @@ public class CfController {
     @GetMapping("/cashflow/explanation")
     public String explanation(Model mav) {
 
-    	System.out.println(8989898);
+//    	System.out.println(8989898);
     	//SecurityContextHolder.getContext().setAuthentication(null);
     	
     	/* 데이터마이닝 위하여 파이썬 플라스크를 사용할 계획이었고, 이렇게 테스트 하였을 때 성공하였음

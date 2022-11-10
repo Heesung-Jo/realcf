@@ -69,13 +69,13 @@ public class CfRestController {
 		ArrayList<String> names = new ArrayList<>();
 		ArrayList<String> paras = new ArrayList<>();
  
-		System.out.println(realcoa);
+//		System.out.println(realcoa);
 		JSONArray arr = new JSONArray();
 		JSONObject realarr = new JSONObject();
         realarr = mywork.coatest_flask(realcoa);
         
         
-        System.out.println("이제 넘어왔습니다.");
+//        System.out.println("이제 넘어왔습니다.");
 		return ResponseEntity.status(HttpStatus.OK).body(realarr);
 	       
 	}    
@@ -87,7 +87,7 @@ public class CfRestController {
 		ArrayList<String> names = new ArrayList<>();
 		ArrayList<String> paras = new ArrayList<>();
  
-		System.out.println(realcoa);
+//		System.out.println(realcoa);
 		JSONArray arr = new JSONArray();
 		JSONObject realarr = new JSONObject();
         realarr = mywork.coatest_flask(realcoa);
@@ -99,7 +99,7 @@ public class CfRestController {
 	public ResponseEntity<Object> makesortobj(HttpSession session,
 			HttpServletRequest request) {
 	
-		 System.out.println("여기는 제대로 들어왔니");
+//		 System.out.println("여기는 제대로 들어왔니");
 		HashMap<String, Object> realdata = new HashMap<>();
 		realdata.put("sortobj", mywork.getsortobj());
 		realdata.put("middlecoa", mywork.getmiddlecoa());
@@ -112,7 +112,7 @@ public class CfRestController {
 	public ResponseEntity<Object> getaccountlist(HttpSession session,
 			HttpServletRequest request) throws JsonProcessingException, ParseException {
 	
-    	System.out.println("tutorialdata");
+//    	System.out.println("tutorialdata");
 		
     	List<accountingdata> accountlist = mywork.getaccountlist();
     	
@@ -130,15 +130,15 @@ public class CfRestController {
     
     
 	try {	
-		System.out.println("여기는 통과");
+//		System.out.println("여기는 통과");
 		JSONObject process = new JSONObject();
 
-		System.out.println("여기는 통과");
+	//	System.out.println("여기는 통과");
 	    
 		return ResponseEntity.status(HttpStatus.OK).body(process);
 
 	} catch(Exception e) {
-    	  System.out.println(e);
+//    	  System.out.println(e);
 		  return ResponseEntity.status(HttpStatus.OK).body(1909);
 	}
     	  

@@ -81,7 +81,7 @@ public class DefaultmemberService implements memberService {
 	        
 	        // 팀데이터도 일부 만들어 집어넣어야 함
 	        //user.setTeamdata();
-	        System.out.println("여기가 문제니");
+	        //System.out.println("여기가 문제니");
 	        int id = createUser(user);
         
        // this.passwordEncoder = passwordEncoder;

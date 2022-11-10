@@ -145,7 +145,7 @@ public class companywork {
 
     	// realname이므로 name으로 바꿀것
     	String name = companystockhash_opp.get(realname);
-    	System.out.println(name);
+    	//System.out.println(name);
     	findparent_stock(name, realhash, 0, opt);
     	return realhash;
     }
@@ -159,7 +159,7 @@ public class companywork {
     	// 정방향일때는 자식 조회
     	// 역방향일때는 부모 조회
     	if(opt == 1) {
-    		System.out.println("opt 1");
+    		//System.out.println("opt 1");
     	    companys = companystockRepository.findByname(name);
         	for(companystock com : companys) {
         		JSONObject tem = new JSONObject();
@@ -171,7 +171,7 @@ public class companywork {
         	}
 
     	}else {
-    		System.out.println("opt 0");
+    		//System.out.println("opt 0");
 
     		companys = companystockRepository.findByparentname(name);
     		for(companystock com : companys) {
@@ -429,9 +429,10 @@ public class companywork {
         		json.put("business", coa.getbusiness());
         		json.put("val", coa.getval());
 
+        		/*
                 if(coa.getname().equals("당기순이익") == true) {
         			System.out.println((double) coa.getval());
-                }
+                }*/
 
         		
         		if(temp.containsKey(coa.getname()) == true) {

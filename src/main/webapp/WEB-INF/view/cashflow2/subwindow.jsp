@@ -412,7 +412,7 @@ select {
 			    
 			    temp["분류1"] = this.tablearr[i]["분류1"].value
 			    temp["분류2"] = this.tablearr[i]["분류2"].value
-			    console.log(temp)
+			    
 			    opener.table.sortedrealcoa[i] = temp
 		   }
 		   this.sortedrealcoa = Object.keys(opener.table.sortedrealcoa);
@@ -432,6 +432,7 @@ select {
 
 	   coaconfirm2(){
 		   
+		   
 		   // arr의 구조가 이럼
 		   //210708 이거 할 차례임 이거 반영하고, 그 다음 바로 정산표가 뜨는게 아니도록 수정할 것
 		   // table => td.innertext = 계정, td.sel = 분류
@@ -450,20 +451,10 @@ select {
 	   
 		   
            // 210619 여기에 table 코드 집어넣을 것
-           opener.table.makeprob();
-	       opener.table.execute3();
-	       opener.table.execute();
-         
-           opener.table.execute2();
-           opener.table.execute4();
-           opener.table.execute5();
-           opener.table.execute_incometype();
-           
-           opener.table.inputcoasum();
-           
-           opener.table.makesettlement();
-           
-	       window.close();
+
+           opener.table.realexecute();
+           window.close();
+	      
 	   }
 	   
 

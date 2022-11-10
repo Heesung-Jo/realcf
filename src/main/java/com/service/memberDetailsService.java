@@ -40,7 +40,7 @@ public class memberDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     	
-    	System.out.println("여기 들어오니");
+    //	System.out.println("여기 들어오니");
     	
     	member user = memberdao.findUserByEmail(username);
         if (user == null) {
@@ -67,12 +67,12 @@ public class memberDetailsService implements UserDetailsService {
      */
     private final class memberrUserDetails extends member implements UserDetails {
         memberrUserDetails(member user) {
-        	System.out.println("여기 들어오니2");
+        	//System.out.println("여기 들어오니2");
             setId(user.getId());
             setEmail(user.getEmail());
             setName(user.getName());
             setPassword(user.getPassword());
-            System.out.println("여기 들어오니3");
+            //System.out.println("여기 들어오니3");
         }
 
         @Override

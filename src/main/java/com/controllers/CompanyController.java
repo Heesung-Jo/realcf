@@ -99,7 +99,7 @@ public class CompanyController {
     
     @GetMapping("/company/company")
     public String company(Model model) {
-    	System.out.println("why why why");
+//    	System.out.println("why why why");
       return "/company/search";
     }
 
@@ -112,7 +112,7 @@ public class CompanyController {
     
     @GetMapping("/company/search")
     public String second(Model model, HttpSession httpSession) {
-    	System.out.println("why why why");
+//    	System.out.println("why why why");
     	//member member = userContext.getCurrentUser();
     	
     	//System.out.println(member.getEmail());
@@ -123,7 +123,7 @@ public class CompanyController {
     }
     @GetMapping("/company/explanation")
     public String search(Model model) {
-    	System.out.println("why why why");
+    	//System.out.println("why why why");
       return "/company/explanation";
     }
  
@@ -131,14 +131,14 @@ public class CompanyController {
     
     @GetMapping("/company/stock")
     public String stock(Model model) {
-    	System.out.println("comin coming");
+    	//System.out.println("comin coming");
       return "/company/stock";
     }
 
     
     @GetMapping("/company/simulation")
     public String simulation(Model model) {
-    	System.out.println("comin coming");
+    	//System.out.println("comin coming");
       return "/company/simulation";
     }
     

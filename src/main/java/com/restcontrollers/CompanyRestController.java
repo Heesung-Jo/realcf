@@ -76,17 +76,17 @@ public class CompanyRestController {
 		HashMap<String, Object> realdata = new LinkedHashMap<>();
 		// 로직: company가 있을때는 무조건 company로 조회
 		// 그렇지 않을때는 나머지 두개로 조회
-		System.out.println(opt);
+		//System.out.println(opt);
 		if(company != null) {
 			for(String com : company) {
 				financialstatements financial = companywork.findbyname(com);
-				System.out.println(financial);
+				//System.out.println(financial);
 				Set<coagroupdata> coastemp = financial.getcoagroupdata();
 				
 				HashMap<String, JSONObject> coas = companywork.toresponse(coastemp);
 				
                 int coatest = 0;				
-                System.out.println(com);
+//                System.out.println(com);
                 if(coa != null) {
                 
 					// 일부 계정만 조회함
@@ -111,18 +111,18 @@ public class CompanyRestController {
 		}else {
 			
 			// 회사명이 주어지지 않았을때 조회하는 코드
-			System.out.println("why");
+//			System.out.println("why");
 			
 				for(Object[] row : companywork.findlistobject(coa, business, opt)) {
-					System.out.println("들어오니");
-					System.out.println(row[0].toString());
+//					System.out.println("들어오니");
+//					System.out.println(row[0].toString());
 					financialstatements financial = companywork.findbyname(row[0].toString());
 					Set<coagroupdata> coastemp = financial.getcoagroupdata();
-					System.out.println(coastemp.size());
+//					System.out.println(coastemp.size());
 					HashMap<String, JSONObject> coas = companywork.toresponse(coastemp);
 					
 	                int coatest = 0;				
-	                System.out.println(row[0].toString());
+//	                System.out.println(row[0].toString());
 	                if(coa != null) {
 	                
 						// 일부 계정만 조회함
@@ -183,7 +183,7 @@ public class CompanyRestController {
 			@RequestParam(value="name") String name, 
 			@RequestParam(value="opt") int opt, HttpSession session, HttpServletRequest request){
         
-		System.out.println(opt);
+//		System.out.println(opt);
 		return ResponseEntity.status(HttpStatus.OK).body(companywork.findparent_start(name, opt));
     
 	}    

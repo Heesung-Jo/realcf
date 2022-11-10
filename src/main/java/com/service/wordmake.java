@@ -92,7 +92,7 @@ public class wordmake {
 	            next_loop(num, prob, temp);
 	        }else{
 	            if(prob > this.realprob) {
-	                System.out.println(temp);
+	               // System.out.println(temp);
 	                this.remainlist = temp;
 	            }
 	        }

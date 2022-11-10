@@ -211,7 +211,7 @@ public class mywork {
 		  }
 		  
 	 	 
-		 System.out.println(result);
+//		 System.out.println(result);
          return result;
 	 }
     
@@ -261,7 +261,7 @@ public class mywork {
 		JSONObject realdata = new JSONObject();
 		JSONParser jsonParse = new JSONParser();
 		realdata = (JSONObject) jsonParse.parse(sb.toString());
-		System.out.println(realdata);
+	//	System.out.println(realdata);
 		return realdata; 
 	 }    
     
